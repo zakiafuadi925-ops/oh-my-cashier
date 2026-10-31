@@ -53,21 +53,21 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-150 border border-zinc-800">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-150 border border-slate-700 text-slate-100">
         {/* Header */}
-        <div className="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-950 text-white">
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950 text-slate-100">
           <div>
-            <div className="flex items-center gap-1.5 font-mono text-[11px] font-bold text-rose-400 uppercase tracking-wider">
+            <div className="flex items-center gap-1.5 font-mono text-[11px] font-bold text-orange-400 uppercase tracking-wider">
               <span className="text-emerald-400">➜</span>
               <span>oh-my-cashier // checkout</span>
             </div>
-            <h3 className="font-bold text-xl leading-tight text-zinc-100">Total Tagihan</h3>
+            <h3 className="font-bold text-xl leading-tight text-slate-100">Total Tagihan</h3>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-mono font-black text-rose-400">{formatRupiah(totalAmount)}</span>
+            <span className="text-2xl font-mono font-black text-orange-400">{formatRupiah(totalAmount)}</span>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-300 hover:text-white ml-2 transition-colors"
+              className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 hover:text-white ml-2 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -77,60 +77,60 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
         <div className="p-4 overflow-y-auto space-y-4 flex-1">
           {/* Payment Method Selector */}
           <div>
-            <label className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 block mb-2 flex items-center gap-1.5">
-              <span className="text-rose-500">#</span>
+            <label className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 block mb-2 flex items-center gap-1.5">
+              <span className="text-orange-400">#</span>
               <span>Pilih Metode Pembayaran</span>
             </label>
             <div className="grid grid-cols-4 gap-2">
               <button
                 type="button"
                 onClick={() => setSelectedMethod('Tunai')}
-                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
+                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
                   selectedMethod === 'Tunai'
-                    ? 'border-rose-600 bg-rose-50 text-rose-800 ring-2 ring-rose-500/30 font-bold'
-                    : 'border-zinc-200 text-zinc-600 hover:bg-zinc-50 font-medium'
+                    ? 'border-orange-500 bg-orange-500/20 text-orange-200 ring-1 ring-orange-400 font-bold'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium'
                 }`}
               >
-                <Banknote className="w-5 h-5" />
+                <Banknote className="w-5 h-5 text-emerald-400" />
                 <span className="text-xs">Tunai</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setSelectedMethod('QRIS')}
-                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
+                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
                   selectedMethod === 'QRIS'
-                    ? 'border-rose-600 bg-rose-50 text-rose-800 ring-2 ring-rose-500/30 font-bold'
-                    : 'border-zinc-200 text-zinc-600 hover:bg-zinc-50 font-medium'
+                    ? 'border-orange-500 bg-orange-500/20 text-orange-200 ring-1 ring-orange-400 font-bold'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium'
                 }`}
               >
-                <QrCode className="w-5 h-5" />
+                <QrCode className="w-5 h-5 text-blue-400" />
                 <span className="text-xs">QRIS</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setSelectedMethod('Debit')}
-                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
+                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
                   selectedMethod === 'Debit'
-                    ? 'border-rose-600 bg-rose-50 text-rose-800 ring-2 ring-rose-500/30 font-bold'
-                    : 'border-zinc-200 text-zinc-600 hover:bg-zinc-50 font-medium'
+                    ? 'border-orange-500 bg-orange-500/20 text-orange-200 ring-1 ring-orange-400 font-bold'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium'
                 }`}
               >
-                <CreditCard className="w-5 h-5" />
+                <CreditCard className="w-5 h-5 text-purple-400" />
                 <span className="text-xs">Debit / EDC</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setSelectedMethod('Transfer')}
-                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
+                className={`py-3 px-2 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer ${
                   selectedMethod === 'Transfer'
-                    ? 'border-rose-600 bg-rose-50 text-rose-800 ring-2 ring-rose-500/30 font-bold'
-                    : 'border-zinc-200 text-zinc-600 hover:bg-zinc-50 font-medium'
+                    ? 'border-orange-500 bg-orange-500/20 text-orange-200 ring-1 ring-orange-400 font-bold'
+                    : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 font-medium'
                 }`}
               >
-                <Building2 className="w-5 h-5" />
+                <Building2 className="w-5 h-5 text-amber-400" />
                 <span className="text-xs">Transfer</span>
               </button>
             </div>
@@ -138,16 +138,16 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
           {/* Cash Payment Details */}
           {selectedMethod === 'Tunai' && (
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
+            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
               <div>
-                <label className="text-xs font-bold text-gray-700 block mb-1">
+                <label className="text-xs font-bold text-slate-300 block mb-1">
                   Uang Tunai Diterima (Rp)
                 </label>
                 <input
                   type="number"
                   value={cashAmount || ''}
                   onChange={(e) => setCashAmount(Number(e.target.value) || 0)}
-                  className="w-full text-xl font-mono font-bold px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none bg-white text-gray-900"
+                  className="w-full text-xl font-mono font-bold px-3 py-2 border border-slate-700 rounded-lg focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-slate-900 text-slate-100"
                   placeholder="0"
                 />
               </div>
@@ -159,7 +159,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                     key={opt.label}
                     type="button"
                     onClick={() => setCashAmount(opt.value)}
-                    className="text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-gray-300 bg-white hover:bg-emerald-50 hover:border-emerald-500 text-gray-700 transition-colors"
+                    className="text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
                   >
                     {opt.label}
                   </button>
@@ -167,19 +167,19 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
               </div>
 
               {/* Change / Kembalian Calculation */}
-              <div className="pt-2 border-t border-gray-200 flex items-center justify-between">
+              <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-gray-500 block">Kembalian</span>
+                  <span className="text-xs text-slate-400 block">Kembalian</span>
                   <span
                     className={`text-xl font-mono font-black ${
-                      isCashSufficient ? 'text-emerald-700' : 'text-red-600'
+                      isCashSufficient ? 'text-emerald-400' : 'text-rose-400'
                     }`}
                   >
                     {isCashSufficient ? formatRupiah(changeAmount) : 'Uang Kurang!'}
                   </span>
                 </div>
                 {!isCashSufficient && (
-                  <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded">
+                  <span className="text-xs font-semibold text-rose-300 bg-rose-950/60 border border-rose-800/80 px-2 py-1 rounded">
                     Kurang {formatRupiah(totalAmount - cashAmount)}
                   </span>
                 )}
@@ -189,8 +189,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
           {/* QRIS Payment Details */}
           {selectedMethod === 'QRIS' && (
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col items-center text-center space-y-3">
-              <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center">
+            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col items-center text-center space-y-3">
+              <div className="bg-slate-900 p-3 rounded-xl border border-slate-700 shadow-sm flex flex-col items-center">
                 {/* Simulated QR Code SVG */}
                 <div className="w-44 h-44 bg-white border border-gray-300 p-2 rounded-lg flex flex-col items-center justify-center relative">
                   <svg className="w-full h-full text-gray-900" viewBox="0 0 100 100" fill="currentColor">
@@ -220,27 +220,27 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                     <rect x="80" y="82" width="8" height="6" fill="black" />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-emerald-700 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow whitespace-nowrap">
+                    <div className="bg-orange-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow whitespace-nowrap">
                       OH MY CASHIER
                     </div>
                   </div>
                 </div>
-                <div className="text-[11px] font-bold text-gray-500 mt-2 flex items-center gap-1">
+                <div className="text-[11px] font-bold text-slate-400 mt-2 flex items-center gap-1 font-mono">
                   <span>NMID: ID1020304050607</span>
                 </div>
               </div>
 
-              <div className="text-xs text-gray-500 max-w-xs">
+              <div className="text-xs text-slate-400 max-w-xs">
                 Arahkan kamera e-wallet (GoPay, OVO, Dana, ShopeePay, BCA Mobile, Livin, dll.) ke kode QR di atas.
               </div>
 
               <button
                 type="button"
                 onClick={() => setQrisPaid(true)}
-                className={`text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
+                className={`text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                   qrisPaid
-                    ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                    : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                    : 'bg-orange-500 hover:bg-orange-600 text-white'
                 }`}
               >
                 <CheckCircle className="w-4 h-4" />
@@ -251,9 +251,9 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
           {/* Debit or Transfer Details */}
           {(selectedMethod === 'Debit' || selectedMethod === 'Transfer') && (
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
+            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
               <div>
-                <label className="text-xs font-bold text-gray-700 block mb-1">
+                <label className="text-xs font-bold text-slate-300 block mb-1">
                   {selectedMethod === 'Debit' ? 'Nomor Kartu / Approval Code EDC' : 'Nomor Referensi Transfer Bank'}
                 </label>
                 <input
@@ -261,32 +261,32 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                   value={referenceNo}
                   onChange={(e) => setReferenceNo(e.target.value)}
                   placeholder="Contoh: BCA-88392019"
-                  className="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none bg-white"
+                  className="w-full text-sm px-3 py-2 border border-slate-700 rounded-lg focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none bg-slate-900 text-slate-100"
                 />
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-400">
                 Pastikan transaksi di mesin EDC atau mutasi m-banking telah sukses diverifikasi kasir.
               </p>
             </div>
           )}
 
           {/* Customer & Order Summary preview */}
-          <div className="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100 text-xs text-gray-600 space-y-1">
+          <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
             <div className="flex justify-between">
-              <span>Pelanggan:</span>
-              <span className="font-semibold text-gray-800">
+              <span className="text-slate-400">Pelanggan:</span>
+              <span className="font-semibold text-slate-100">
                 {orderData.customer ? orderData.customer.name : 'Pelanggan Umum'}
               </span>
             </div>
             <div className="flex justify-between">
-              <span>Tipe Pesanan:</span>
-              <span className="font-semibold text-gray-800">
+              <span className="text-slate-400">Tipe Pesanan:</span>
+              <span className="font-semibold text-slate-100">
                 {orderData.orderType} {orderData.tableNumber ? `(${orderData.tableNumber})` : ''}
               </span>
             </div>
             <div className="flex justify-between">
-              <span>Jumlah Item:</span>
-              <span className="font-semibold text-gray-800">
+              <span className="text-slate-400">Jumlah Item:</span>
+              <span className="font-semibold text-slate-100">
                 {orderData.items?.reduce((s, i) => s + i.quantity, 0)} item
               </span>
             </div>
@@ -294,11 +294,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
         </div>
 
         {/* Footer Submit */}
-        <div className="p-4 border-t border-gray-100 bg-gray-50 flex gap-3">
+        <div className="p-4 border-t border-slate-800 bg-slate-950 flex gap-3">
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-3 border border-gray-300 hover:bg-gray-100 text-gray-700 font-bold rounded-xl text-sm transition-colors"
+            className="flex-1 py-3 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold rounded-xl text-sm transition-colors cursor-pointer"
           >
             Batal
           </button>
@@ -306,7 +306,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             type="button"
             disabled={selectedMethod === 'Tunai' && !isCashSufficient}
             onClick={handleCompletePayment}
-            className="flex-2 py-3 bg-rose-600 hover:bg-rose-700 disabled:bg-zinc-300 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 shadow-md shadow-rose-950/20 active:scale-98 transition-all"
+            className="flex-2 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:border disabled:border-slate-700 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/20 active:scale-98 transition-all cursor-pointer"
           >
             <CheckCircle className="w-5 h-5 text-white" />
             <span>Selesaikan & Cetak Struk</span>

@@ -96,24 +96,26 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[95vh] animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[95vh] animate-in fade-in zoom-in-95 duration-150">
         {/* Header toolbar */}
-        <div className="p-3.5 border-b border-gray-100 flex items-center justify-between bg-emerald-700 text-white">
+        <div className="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-950 text-slate-100">
           <div className="flex items-center gap-2">
-            <Printer className="w-5 h-5 text-emerald-200" />
-            <h3 className="font-bold text-base">Struk Pembayaran</h3>
+            <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <Printer className="w-4 h-4 text-orange-400" />
+            </div>
+            <h3 className="font-bold text-base text-slate-100">Struk Pembayaran</h3>
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-100 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Printable Thermal Receipt Container */}
-        <div className="p-4 overflow-y-auto bg-gray-100 flex-1 flex justify-center">
+        <div className="p-4 overflow-y-auto bg-slate-950/70 flex-1 flex justify-center">
           <div
             id="thermal-receipt-print-area"
             ref={receiptRef}
@@ -248,24 +250,24 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="p-3 bg-white border-t border-gray-200 space-y-2">
+        <div className="p-3 bg-slate-950 border-t border-slate-800 space-y-2">
           {/* Quick Kitchen & Cup Label Buttons */}
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
               onClick={() => setShowKOT(true)}
-              className="py-2 px-3 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+              className="py-2 px-3 bg-slate-900 hover:bg-slate-800 border border-amber-500/30 text-amber-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
-              <ChefHat className="w-3.5 h-3.5 text-amber-700" />
+              <ChefHat className="w-3.5 h-3.5 text-amber-400" />
               <span>Cetak KOT Dapur</span>
             </button>
 
             <button
               type="button"
               onClick={() => setShowCupLabel(true)}
-              className="py-2 px-3 bg-sky-50 hover:bg-sky-100 border border-sky-300 text-sky-900 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+              className="py-2 px-3 bg-slate-900 hover:bg-slate-800 border border-sky-500/30 text-sky-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
-              <Tag className="w-3.5 h-3.5 text-sky-700" />
+              <Tag className="w-3.5 h-3.5 text-sky-400" />
               <span>Label Stiker Cup</span>
             </button>
           </div>
@@ -273,7 +275,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={handlePrint}
-              className="py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+              className="py-2.5 px-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-orange-950/20 transition-colors cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Struk</span>
@@ -281,7 +283,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
 
             <button
               onClick={handleShareWhatsApp}
-              className="py-2.5 px-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+              className="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
               <span>Kirim WhatsApp</span>
@@ -289,17 +291,17 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
 
             <button
               onClick={handleCopyText}
-              className="py-2.5 px-3 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+              className="py-2.5 px-3 border border-slate-700 hover:bg-slate-800 text-slate-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? 'Tersalin!' : 'Salin Teks'}</span>
             </button>
 
             <button
               onClick={onNewOrder}
-              className="py-2.5 px-3 bg-gray-900 hover:bg-black text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+              className="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-100 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors cursor-pointer"
             >
-              <PlusCircle className="w-4 h-4" />
+              <PlusCircle className="w-4 h-4 text-orange-400" />
               <span>Pesanan Baru</span>
             </button>
           </div>

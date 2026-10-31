@@ -137,15 +137,15 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gray-50 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-slate-900 text-slate-100 overflow-hidden">
       {/* Top Header */}
-      <div className="p-4 bg-white border-b border-gray-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="p-4 bg-slate-950 border-b border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <Package className="w-5 h-5 text-emerald-700" />
+          <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+            <Package className="w-5 h-5 text-emerald-400" />
             <span>Katalog & Manajemen Menu Makanan & Minuman</span>
           </h2>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-slate-400">
             Edit menu, harga jual, modal HPP, varian, dan resep bahan baku secara langsung.
           </p>
         </div>
@@ -153,15 +153,15 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsCategoryModalOpen(true)}
-            className="flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl text-xs font-bold transition-colors"
+            className="flex items-center justify-center gap-1.5 px-3 py-2 border border-slate-700 hover:bg-slate-800 text-slate-200 rounded-xl text-xs font-bold transition-colors"
           >
-            <FolderPlus className="w-4 h-4 text-emerald-700" />
+            <FolderPlus className="w-4 h-4 text-emerald-400" />
             <span>Kelola Kategori</span>
           </button>
 
           <button
             onClick={handleOpenAdd}
-            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow-sm transition-colors"
+            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Tambah Menu Baru</span>
@@ -170,42 +170,48 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
       </div>
 
       {/* Filter bar */}
-      <div className="p-4 bg-white border-b border-gray-200 space-y-3">
+      <div className="p-4 bg-slate-950/80 border-b border-slate-800 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="relative flex-1 min-w-[200px] max-w-md">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari nama menu, barcode..."
-              className="w-full text-xs pl-9 pr-3 py-2 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50 focus:bg-white"
+              className="w-full text-xs pl-9 pr-3 py-2 border border-slate-700 rounded-xl outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 bg-slate-900 text-slate-100 placeholder-slate-500"
             />
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 font-medium">Status Stok:</span>
-            <div className="flex gap-1 bg-gray-100 p-1 rounded-xl text-xs font-semibold">
+            <span className="text-xs text-slate-400 font-medium">Status Stok:</span>
+            <div className="flex gap-1 bg-slate-900 p-1 rounded-xl text-xs font-semibold border border-slate-800">
               <button
                 onClick={() => setStockFilter('all')}
-                className={`px-2.5 py-1 rounded-lg ${
-                  stockFilter === 'all' ? 'bg-white text-gray-900 shadow-2xs font-bold' : 'text-gray-500'
+                className={`px-2.5 py-1 rounded-lg transition-all ${
+                  stockFilter === 'all'
+                    ? 'bg-orange-500 text-white shadow-xs font-bold'
+                    : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
                 Semua ({products.length})
               </button>
               <button
                 onClick={() => setStockFilter('low')}
-                className={`px-2.5 py-1 rounded-lg ${
-                  stockFilter === 'low' ? 'bg-amber-100 text-amber-900 font-bold' : 'text-gray-500'
+                className={`px-2.5 py-1 rounded-lg transition-all ${
+                  stockFilter === 'low'
+                    ? 'bg-amber-950/80 text-amber-300 border border-amber-800/60 font-bold'
+                    : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
                 Menipis (≤10)
               </button>
               <button
                 onClick={() => setStockFilter('out')}
-                className={`px-2.5 py-1 rounded-lg ${
-                  stockFilter === 'out' ? 'bg-red-100 text-red-900 font-bold' : 'text-gray-500'
+                className={`px-2.5 py-1 rounded-lg transition-all ${
+                  stockFilter === 'out'
+                    ? 'bg-rose-950/80 text-rose-300 border border-rose-800/60 font-bold'
+                    : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
                 Habis
@@ -222,8 +228,8 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
                 selectedCategory === cat
-                  ? 'bg-emerald-700 text-white shadow-2xs'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                  ? 'bg-orange-500 text-white font-bold shadow-xs'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60'
               }`}
             >
               {cat}
@@ -231,7 +237,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
           ))}
           <button
             onClick={() => setIsCategoryModalOpen(true)}
-            className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full shrink-0 flex items-center gap-1"
+            className="text-[11px] font-bold text-emerald-400 hover:text-emerald-300 bg-slate-900 border border-slate-700 hover:border-emerald-500/50 px-2.5 py-1 rounded-full shrink-0 flex items-center gap-1 transition-colors"
           >
             <Plus className="w-3 h-3" />
             <span>Kategori</span>
@@ -244,7 +250,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
         {/* Mobile View (< 640px): 1-Column Thumb-Friendly Cards */}
         <div className="block sm:hidden space-y-3 pb-6">
           {filteredProducts.length === 0 ? (
-            <div className="bg-white p-8 rounded-2xl text-center text-gray-400 border border-gray-200">
+            <div className="bg-slate-800/60 p-8 rounded-2xl text-center text-slate-400 border border-slate-700">
               Tidak ada produk sesuai filter pencarian.
             </div>
           ) : (
@@ -257,52 +263,52 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
               return (
                 <div
                   key={p.id}
-                  className="bg-white rounded-2xl border border-gray-200 p-4 shadow-2xs space-y-3"
+                  className="bg-slate-800 rounded-2xl border border-slate-700 p-4 shadow-sm space-y-3"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm">{p.name}</h4>
+                      <h4 className="font-bold text-slate-100 text-sm">{p.name}</h4>
                       <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                        <span className="text-[10px] font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-medium text-slate-300 bg-slate-900 border border-slate-700 px-2 py-0.5 rounded-md">
                           {p.category}
                         </span>
                         {p.barcode && (
-                          <span className="text-[10px] font-mono text-gray-400">
+                          <span className="text-[10px] font-mono text-slate-400">
                             #{p.barcode}
                           </span>
                         )}
                       </div>
                     </div>
                     <span
-                      className={`text-xs font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                      className={`text-xs font-bold px-2 py-0.5 rounded-full shrink-0 border ${
                         isOut
-                          ? 'bg-red-100 text-red-700'
+                          ? 'bg-rose-950/80 text-rose-300 border-rose-800/60'
                           : isLow
-                          ? 'bg-amber-100 text-amber-800'
-                          : 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
+                          : 'bg-emerald-950/80 text-emerald-300 border-emerald-800/60'
                       }`}
                     >
                       {isOut ? 'Habis (0)' : `${p.stock} ${p.unit}`}
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-xs">
+                  <div className="grid grid-cols-2 gap-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-700/60 text-xs">
                     <div>
-                      <span className="text-[10px] text-gray-400 block">Harga Jual</span>
-                      <span className="font-mono font-bold text-gray-900 tabular-nums">
+                      <span className="text-[10px] text-slate-400 block">Harga Jual</span>
+                      <span className="font-mono font-bold text-orange-400 tabular-nums">
                         {formatRupiah(p.price)}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-gray-400 block">Modal (HPP)</span>
-                      <span className="font-mono text-gray-600 tabular-nums">
+                      <span className="text-[10px] text-slate-400 block">Modal (HPP)</span>
+                      <span className="font-mono text-slate-400 tabular-nums">
                         {formatRupiah(p.costPrice)}
                       </span>
                     </div>
-                    <div className="col-span-2 pt-1 border-t border-gray-200 flex justify-between items-center text-[11px]">
-                      <span className="text-gray-500">Margin Laba:</span>
-                      <span className="font-mono font-bold text-emerald-700 tabular-nums">
-                        {formatRupiah(margin)} ({marginPercent}%)
+                    <div className="col-span-2 pt-1 border-t border-slate-700 flex justify-between items-center text-[11px]">
+                      <span className="text-slate-400">Margin Laba:</span>
+                      <span className="font-mono font-bold text-emerald-400 tabular-nums">
+                        +{formatRupiah(margin)} ({marginPercent}%)
                       </span>
                     </div>
                   </div>
@@ -315,9 +321,9 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                         setAdjustAmount(0);
                         setAdjustReason('Restock');
                       }}
-                      className="min-h-[44px] px-3 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors active:scale-95"
+                      className="min-h-[44px] px-3 bg-slate-900 hover:bg-slate-850 text-amber-300 border border-amber-800/60 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors active:scale-95"
                     >
-                      <Boxes className="w-4 h-4 text-amber-700" />
+                      <Boxes className="w-4 h-4 text-amber-400" />
                       <span>Atur Stok</span>
                     </button>
 
@@ -325,7 +331,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                       <button
                         type="button"
                         onClick={() => handleOpenEdit(p)}
-                        className="min-h-[44px] px-3.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors active:scale-95"
+                        className="min-h-[44px] px-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors active:scale-95"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                         <span>Edit</span>
@@ -334,7 +340,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                       <button
                         type="button"
                         onClick={() => setProductToDelete(p)}
-                        className="min-h-[44px] min-w-[44px] bg-red-50 hover:bg-red-100 text-red-600 rounded-xl flex items-center justify-center transition-colors active:scale-95"
+                        className="min-h-[44px] min-w-[44px] bg-slate-900 hover:bg-slate-800 border border-rose-800/60 text-rose-400 rounded-xl flex items-center justify-center transition-colors active:scale-95"
                         title="Hapus menu"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -348,10 +354,10 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
         </div>
 
         {/* Tablet & Desktop View (>= 640px): Full Data Table */}
-        <div className="hidden sm:block bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="hidden sm:block bg-slate-800 rounded-2xl shadow-sm border border-slate-700 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-gray-600">
-              <thead className="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+            <table className="w-full text-left text-xs text-slate-300">
+              <thead className="bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700">
                 <tr>
                   <th className="px-4 py-3">Nama Menu / Produk</th>
                   <th className="px-4 py-3">Kategori</th>
@@ -363,10 +369,10 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                   <th className="px-4 py-3 text-right">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-slate-700/60">
                 {filteredProducts.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-12 text-center text-gray-400">
+                    <td colSpan={8} className="py-12 text-center text-slate-400">
                       Tidak ada produk sesuai filter pencarian.
                     </td>
                   </tr>
@@ -380,19 +386,19 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                     const isOut = p.stock <= 0;
 
                     return (
-                      <tr key={p.id} className="hover:bg-gray-50/80 transition-colors">
+                      <tr key={p.id} className="hover:bg-slate-700/40 transition-colors">
                         {/* Name & Badges */}
                         <td className="px-4 py-3.5">
-                          <div className="font-bold text-gray-900 text-sm">{p.name}</div>
+                          <div className="font-bold text-slate-100 text-sm">{p.name}</div>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {p.variantGroups && p.variantGroups.length > 0 && (
-                              <span className="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
+                              <span className="text-[10px] text-emerald-300 bg-emerald-950/80 border border-emerald-800/60 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
                                 <Layers className="w-2.5 h-2.5" />
                                 {p.variantGroups.length} Varian ({p.variantGroups.map((vg) => vg.name).join(', ')})
                               </span>
                             )}
                             {p.ingredients && p.ingredients.length > 0 && (
-                              <span className="text-[10px] text-blue-700 bg-blue-50 border border-blue-200 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
+                              <span className="text-[10px] text-cyan-300 bg-cyan-950/80 border border-cyan-800/60 px-1.5 py-0.2 rounded font-semibold flex items-center gap-1">
                                 <Boxes className="w-2.5 h-2.5" />
                                 {p.ingredients.length} Bahan Baku Terikat
                               </span>
@@ -402,13 +408,13 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
 
                         {/* Category */}
                         <td className="px-4 py-3.5">
-                          <span className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-medium">
+                          <span className="bg-slate-900 border border-slate-700 text-slate-300 px-2 py-0.5 rounded font-medium">
                             {p.category}
                           </span>
                         </td>
 
                         {/* Barcode */}
-                        <td className="px-4 py-3.5 font-mono text-[11px] text-gray-500">
+                        <td className="px-4 py-3.5 font-mono text-[11px] text-slate-400">
                           {p.barcode}
                         </td>
 
@@ -420,12 +426,12 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                               step={500}
                               value={inlinePrice}
                               onChange={(e) => setInlinePrice(Number(e.target.value) || 0)}
-                              className="w-24 px-2 py-1 text-right font-bold text-xs border border-emerald-500 rounded bg-emerald-50 outline-none"
+                              className="w-24 px-2 py-1 text-right font-bold text-xs border border-orange-500 rounded bg-slate-950 text-slate-100 outline-none"
                             />
                           ) : (
                             <span
                               onClick={() => startInlineEdit(p)}
-                              className="font-bold text-gray-900 hover:text-emerald-700 cursor-pointer hover:underline"
+                              className="font-bold text-orange-400 hover:text-orange-300 cursor-pointer hover:underline"
                               title="Klik untuk edit cepat harga"
                             >
                               {formatRupiah(p.price)}
@@ -434,14 +440,14 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                         </td>
 
                         {/* Modal HPP */}
-                        <td className="px-4 py-3.5 text-right font-mono text-gray-500">
+                        <td className="px-4 py-3.5 text-right font-mono text-slate-400">
                           {isInline ? (
                             <input
                               type="number"
                               step={500}
                               value={inlineCostPrice}
                               onChange={(e) => setInlineCostPrice(Number(e.target.value) || 0)}
-                              className="w-24 px-2 py-1 text-right text-xs border border-gray-300 rounded bg-white outline-none"
+                              className="w-24 px-2 py-1 text-right text-xs border border-slate-700 rounded bg-slate-950 text-slate-100 outline-none"
                             />
                           ) : (
                             formatRupiah(p.costPrice)
@@ -450,8 +456,8 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
 
                         {/* Margin */}
                         <td className="px-4 py-3.5 text-right font-medium">
-                          <span className="text-emerald-700 font-mono">+{formatRupiah(margin)}</span>
-                          <span className="text-[10px] text-gray-400 block">({marginPercent}%)</span>
+                          <span className="text-emerald-400 font-mono">+{formatRupiah(margin)}</span>
+                          <span className="text-[10px] text-slate-400 block">({marginPercent}%)</span>
                         </td>
 
                         {/* Stok */}
@@ -461,19 +467,19 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                               type="number"
                               value={inlineStock}
                               onChange={(e) => setInlineStock(Number(e.target.value) || 0)}
-                              className="w-16 px-1 py-1 text-center font-bold text-xs border border-emerald-500 rounded bg-emerald-50 outline-none"
+                              className="w-16 px-1 py-1 text-center font-bold text-xs border border-orange-500 rounded bg-slate-950 text-slate-100 outline-none"
                             />
                           ) : (
                             <button
                               type="button"
                               onClick={() => handleToggleStockStatus(p)}
                               title="Klik untuk ubah cepat status Stok Habis / Tersedia"
-                              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-bold text-xs transition-all hover:scale-105 ${
+                              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-bold text-xs transition-all hover:scale-105 border ${
                                 isOut
-                                  ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                                  ? 'bg-rose-950/80 text-rose-300 border-rose-800/60'
                                   : isLow
-                                  ? 'bg-amber-100 text-amber-800 hover:bg-amber-200'
-                                  : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+                                  ? 'bg-amber-950/80 text-amber-300 border-amber-800/60'
+                                  : 'bg-emerald-950/80 text-emerald-300 border-emerald-800/60'
                               }`}
                             >
                               <span>{p.stock <= 0 ? 'Habis (0)' : `${p.stock} ${p.unit}`}</span>
@@ -487,14 +493,14 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                             <div className="flex items-center justify-end gap-1">
                               <button
                                 onClick={() => saveInlineEdit(p)}
-                                className="px-2 py-1 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-2xs"
+                                className="px-2 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs"
                               >
                                 <Check className="w-3.5 h-3.5" />
                                 <span>Simpan</span>
                               </button>
                               <button
                                 onClick={() => setInlineEditingId(null)}
-                                className="px-2 py-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs font-bold"
+                                className="px-2 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-lg text-xs font-bold"
                               >
                                 Batal
                               </button>
@@ -506,21 +512,21 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                                   setAdjustingProduct(p);
                                   setAdjustAmount(0);
                                 }}
-                                className="p-1.5 text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors"
+                                className="p-1.5 text-emerald-400 hover:bg-slate-700 rounded-lg transition-colors"
                                 title="Penyesuaian Stok / Opname"
                               >
                                 <RefreshCw className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => handleOpenEdit(p)}
-                                className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                className="p-1.5 text-cyan-400 hover:bg-slate-700 rounded-lg transition-colors"
                                 title="Edit Lengkap (Nama, Varian, Resep, Harga)"
                               >
                                 <Edit2 className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => setProductToDelete(p)}
-                                className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                className="p-1.5 text-rose-400 hover:bg-slate-700 rounded-lg transition-colors"
                                 title="Hapus Menu"
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -558,22 +564,22 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
 
       {/* Stock Adjustment Modal */}
       {adjustingProduct && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-4 space-y-3">
-            <h4 className="font-bold text-gray-900 text-sm flex items-center gap-1.5">
-              <RefreshCw className="w-4 h-4 text-emerald-700" />
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-sm w-full p-4 space-y-3">
+            <h4 className="font-bold text-slate-100 text-sm flex items-center gap-1.5">
+              <RefreshCw className="w-4 h-4 text-emerald-400" />
               <span>Penyesuaian Stok Produk</span>
             </h4>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-slate-400">
               Ubah stok produk <b>{adjustingProduct.name}</b>. Stok saat ini:{' '}
-              <span className="font-bold text-gray-800">
+              <span className="font-bold text-slate-200">
                 {adjustingProduct.stock} {adjustingProduct.unit}
               </span>
             </p>
 
             <form onSubmit={handleStockAdjustmentSubmit} className="space-y-3 text-xs">
               <div>
-                <label className="font-semibold text-gray-700 block mb-1">
+                <label className="font-semibold text-slate-300 block mb-1">
                   Penambahan (+) atau Pengurangan (-) Stok
                 </label>
                 <input
@@ -582,16 +588,16 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                   value={adjustAmount || ''}
                   onChange={(e) => setAdjustAmount(Number(e.target.value) || 0)}
                   placeholder="Contoh: +20 atau -5"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none font-mono font-bold text-sm"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg outline-none font-mono font-bold text-sm text-slate-100 focus:border-orange-500"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-gray-700 block mb-1">Alasan Penyesuaian</label>
+                <label className="font-semibold text-slate-300 block mb-1">Alasan Penyesuaian</label>
                 <select
                   value={adjustReason}
                   onChange={(e) => setAdjustReason(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg outline-none bg-white text-xs"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg outline-none text-slate-100 text-xs focus:border-orange-500"
                 >
                   <option value="Restok Pembelian Baru">Restok Pembelian Baru</option>
                   <option value="Koreksi Fisik Opname">Koreksi Fisik Opname</option>
@@ -600,9 +606,9 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                 </select>
               </div>
 
-              <div className="bg-gray-50 p-2.5 rounded-lg border border-gray-200 flex justify-between items-center">
-                <span>Stok Baru Akhir:</span>
-                <span className="font-mono font-bold text-emerald-800 text-sm">
+              <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                <span className="text-slate-400">Stok Baru Akhir:</span>
+                <span className="font-mono font-bold text-emerald-400 text-sm">
                   {Math.max(0, adjustingProduct.stock + adjustAmount)} {adjustingProduct.unit}
                 </span>
               </div>
@@ -611,13 +617,13 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                 <button
                   type="button"
                   onClick={() => setAdjustingProduct(null)}
-                  className="flex-1 py-2 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-100"
+                  className="flex-1 py-2 bg-slate-800 border border-slate-700 rounded-lg font-bold text-slate-300 hover:bg-slate-700"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg"
+                  className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-sm"
                 >
                   Terapkan Penyesuaian
                 </button>
@@ -629,14 +635,14 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
 
       {/* Delete Confirmation Modal (Safe, in-app without window.confirm) */}
       {productToDelete && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-4 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mx-auto">
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-sm w-full p-4 space-y-3">
+            <div className="w-10 h-10 rounded-full bg-rose-950/80 border border-rose-800/60 flex items-center justify-center text-rose-400 mx-auto">
               <Trash2 className="w-5 h-5" />
             </div>
             <div className="text-center">
-              <h4 className="font-bold text-gray-900 text-base">Hapus Menu Ini?</h4>
-              <p className="text-xs text-gray-500 mt-1">
+              <h4 className="font-bold text-slate-100 text-base">Hapus Menu Ini?</h4>
+              <p className="text-xs text-slate-400 mt-1">
                 Menu <b>"{productToDelete.name}"</b> akan dihapus dari daftar menu makanan/minuman kasir.
               </p>
             </div>
@@ -644,7 +650,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
               <button
                 type="button"
                 onClick={() => setProductToDelete(null)}
-                className="flex-1 py-2 border border-gray-300 rounded-xl font-bold text-gray-700 hover:bg-gray-100 text-xs"
+                className="flex-1 py-2 bg-slate-800 border border-slate-700 rounded-xl font-bold text-slate-300 hover:bg-slate-700 text-xs"
               >
                 Batal
               </button>
@@ -654,7 +660,7 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                   onDeleteProduct(productToDelete.id);
                   setProductToDelete(null);
                 }}
-                className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs"
+                className="flex-1 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs shadow-sm"
               >
                 Ya, Hapus Menu
               </button>
@@ -665,16 +671,16 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
 
       {/* Category Management Modal */}
       {isCategoryModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-4 space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-gray-100">
-              <h4 className="font-bold text-gray-900 text-sm flex items-center gap-2">
-                <FolderPlus className="w-4 h-4 text-emerald-700" />
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-md w-full p-4 space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+              <h4 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <FolderPlus className="w-4 h-4 text-emerald-400" />
                 <span>Kelola Kategori Menu</span>
               </h4>
               <button
                 onClick={() => setIsCategoryModalOpen(false)}
-                className="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500"
+                className="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -687,12 +693,12 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                 value={newCatInput}
                 onChange={(e) => setNewCatInput(e.target.value)}
                 placeholder="Nama kategori baru, e.g. Dessert, Pastry..."
-                className="flex-1 text-xs px-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500"
+                className="flex-1 text-xs px-3 py-2 bg-slate-950 border border-slate-700 rounded-xl outline-none text-slate-100 placeholder-slate-500 focus:border-orange-500"
               />
               <button
                 type="submit"
                 disabled={!newCatInput.trim()}
-                className="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white rounded-xl text-xs font-bold shrink-0"
+                className="px-3.5 py-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white rounded-xl text-xs font-bold shrink-0 shadow-sm"
               >
                 + Tambah
               </button>
@@ -705,18 +711,18 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
                 return (
                   <div
                     key={cat}
-                    className="flex items-center justify-between p-2.5 bg-gray-50 rounded-xl border border-gray-100 text-xs"
+                    className="flex items-center justify-between p-2.5 bg-slate-950 rounded-xl border border-slate-800 text-xs"
                   >
-                    <span className="font-semibold text-gray-800">{cat}</span>
+                    <span className="font-semibold text-slate-200">{cat}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] text-gray-400 bg-white px-2 py-0.5 rounded-full border border-gray-200">
+                      <span className="text-[11px] text-slate-400 bg-slate-900 px-2 py-0.5 rounded-full border border-slate-700">
                         {count} menu
                       </span>
                       {cat !== 'Semua' && onDeleteCategory && (
                         <button
                           type="button"
                           onClick={() => onDeleteCategory(cat)}
-                          className="text-gray-400 hover:text-red-500 p-1"
+                          className="text-slate-400 hover:text-rose-400 p-1"
                           title="Hapus Kategori"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -728,11 +734,11 @@ export const ProductManagement: React.FC<ProductManagementProps> = ({
               })}
             </div>
 
-            <div className="pt-2 border-t border-gray-100 text-right">
+            <div className="pt-2 border-t border-slate-800 text-right">
               <button
                 type="button"
                 onClick={() => setIsCategoryModalOpen(false)}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold"
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold"
               >
                 Tutup
               </button>

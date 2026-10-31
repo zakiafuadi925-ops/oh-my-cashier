@@ -139,22 +139,22 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gray-50 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-slate-900 text-slate-100 overflow-hidden">
       {/* Top Header */}
-      <div className="p-4 bg-white border-b border-gray-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="p-4 bg-slate-950 border-b border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-emerald-700" />
+          <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-emerald-400" />
             <span>Laporan Penjualan, Margin & Batch Expiry</span>
           </h2>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-slate-400">
             Analisis omset penjualan, keuntungan bersih HPP, loyalitas pelanggan, dan evaluasi kedaluwarsa bahan baku.
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow-sm transition-colors"
+          className="flex items-center justify-center gap-1.5 px-3.5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold shadow-sm transition-colors"
         >
           <FileSpreadsheet className="w-4 h-4" />
           <span>Ekspor Laporan (Excel/CSV)</span>
@@ -164,63 +164,63 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
       <div className="flex-1 p-4 overflow-y-auto space-y-4">
         {/* KPI Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-2xs space-y-1">
-            <div className="flex items-center justify-between text-xs text-emerald-700 font-bold">
+          <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm space-y-1">
+            <div className="flex items-center justify-between text-xs text-emerald-400 font-bold">
               <span>Total Omset Penjualan</span>
               <DollarSign className="w-4 h-4" />
             </div>
-            <div className="text-2xl font-mono font-black text-gray-900">
+            <div className="text-2xl font-mono font-black text-slate-100">
               {formatRupiah(totalOmset)}
             </div>
-            <p className="text-[11px] text-gray-400">{validOrders.length} transaksi selesai</p>
+            <p className="text-[11px] text-slate-400">{validOrders.length} transaksi selesai</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-2xs space-y-1">
-            <div className="flex items-center justify-between text-xs text-blue-700 font-bold">
+          <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm space-y-1">
+            <div className="flex items-center justify-between text-xs text-cyan-400 font-bold">
               <span>Laba Kotor (Gross Profit)</span>
               <TrendingUp className="w-4 h-4" />
             </div>
-            <div className="text-2xl font-mono font-black text-emerald-700">
+            <div className="text-2xl font-mono font-black text-emerald-400">
               {formatRupiah(totalProfit)}
             </div>
-            <p className="text-[11px] text-emerald-600 font-semibold">
+            <p className="text-[11px] text-emerald-400 font-semibold">
               {overallMarginPercent}% Margin dari Omset
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-2xs space-y-1">
-            <div className="flex items-center justify-between text-xs text-purple-700 font-bold">
+          <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm space-y-1">
+            <div className="flex items-center justify-between text-xs text-purple-400 font-bold">
               <span>Rata-Rata Transaksi (AOV)</span>
               <ShoppingBag className="w-4 h-4" />
             </div>
-            <div className="text-2xl font-mono font-black text-gray-900">
+            <div className="text-2xl font-mono font-black text-slate-100">
               {formatRupiah(averageOrderValue)}
             </div>
-            <p className="text-[11px] text-gray-400">Total HPP modal: {formatRupiah(totalCost)}</p>
+            <p className="text-[11px] text-slate-400">Total HPP modal: {formatRupiah(totalCost)}</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-2xs space-y-1">
-            <div className="flex items-center justify-between text-xs text-amber-700 font-bold">
+          <div className="p-4 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm space-y-1">
+            <div className="flex items-center justify-between text-xs text-amber-400 font-bold">
               <span>Aset Stok Bahan Baku</span>
               <Boxes className="w-4 h-4" />
             </div>
-            <div className="text-2xl font-mono font-black text-gray-900">
+            <div className="text-2xl font-mono font-black text-slate-100">
               {formatRupiah(totalIngredientsAssetValue)}
             </div>
-            <p className="text-[11px] text-amber-700 font-semibold">
+            <p className="text-[11px] text-amber-300 font-semibold">
               {nearingExpiryCount > 0 ? `⚠️ ${nearingExpiryCount} batch mendekati expired` : 'Semua batch aman'}
             </p>
           </div>
         </div>
 
         {/* Tab Selector */}
-        <div className="flex border-b border-gray-200 bg-white px-2 rounded-t-2xl overflow-x-auto">
+        <div className="flex border-b border-slate-700 bg-slate-950 px-2 rounded-t-2xl overflow-x-auto">
           <button
             onClick={() => setActiveReportTab('sales')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeReportTab === 'sales'
-                ? 'border-emerald-700 text-emerald-800'
-                : 'border-transparent text-gray-500 hover:text-gray-900'
+                ? 'border-orange-500 text-orange-400'
+                : 'border-transparent text-slate-400 hover:text-slate-100'
             }`}
           >
             <PieChart className="w-4 h-4" />
@@ -231,8 +231,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
             onClick={() => setActiveReportTab('margin')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeReportTab === 'margin'
-                ? 'border-emerald-700 text-emerald-800'
-                : 'border-transparent text-gray-500 hover:text-gray-900'
+                ? 'border-orange-500 text-orange-400'
+                : 'border-transparent text-slate-400 hover:text-slate-100'
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -243,8 +243,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
             onClick={() => setActiveReportTab('loyalty')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeReportTab === 'loyalty'
-                ? 'border-emerald-700 text-emerald-800'
-                : 'border-transparent text-gray-500 hover:text-gray-900'
+                ? 'border-orange-500 text-orange-400'
+                : 'border-transparent text-slate-400 hover:text-slate-100'
             }`}
           >
             <Award className="w-4 h-4" />
@@ -255,21 +255,21 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
             onClick={() => setActiveReportTab('expiry')}
             className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
               activeReportTab === 'expiry'
-                ? 'border-amber-600 text-amber-900'
-                : 'border-transparent text-gray-500 hover:text-gray-900'
+                ? 'border-orange-500 text-orange-400'
+                : 'border-transparent text-slate-400 hover:text-slate-100'
             }`}
           >
-            <Calendar className="w-4 h-4 text-amber-600" />
+            <Calendar className="w-4 h-4" />
             <span>Laporan Batch & Expiry Bahan</span>
           </button>
         </div>
 
         {/* Report Content */}
-        <div className="bg-white rounded-b-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-slate-800 rounded-b-2xl shadow-sm border border-slate-700 overflow-hidden">
           {activeReportTab === 'sales' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-gray-600">
-                <thead className="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+              <table className="w-full text-left text-xs text-slate-300">
+                <thead className="bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700">
                   <tr>
                     <th className="px-4 py-3">Peringkat</th>
                     <th className="px-4 py-3">Nama Menu Produk</th>
@@ -279,10 +279,10 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     <th className="px-4 py-3 text-right">Kontribusi Omset</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-slate-700/60">
                   {productReportList.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="py-10 text-center text-gray-400">
+                      <td colSpan={6} className="py-10 text-center text-slate-400">
                         Belum ada data penjualan tercatat.
                       </td>
                     </tr>
@@ -290,22 +290,22 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     productReportList.map((row, idx) => {
                       const share = totalOmset > 0 ? (row.totalSales / totalOmset) * 100 : 0;
                       return (
-                        <tr key={row.product.id} className="hover:bg-gray-50/80">
-                          <td className="px-4 py-3 font-mono font-bold text-gray-400">
+                        <tr key={row.product.id} className="hover:bg-slate-700/40">
+                          <td className="px-4 py-3 font-mono font-bold text-slate-400">
                             #{idx + 1}
                           </td>
-                          <td className="px-4 py-3 font-bold text-gray-900">
+                          <td className="px-4 py-3 font-bold text-slate-100">
                             {row.product.name}
                           </td>
-                          <td className="px-4 py-3 text-gray-500">{row.product.category}</td>
-                          <td className="px-4 py-3 text-center font-mono font-bold text-gray-900">
+                          <td className="px-4 py-3 text-slate-400">{row.product.category}</td>
+                          <td className="px-4 py-3 text-center font-mono font-bold text-slate-100">
                             {row.quantitySold} {row.product.unit}
                           </td>
-                          <td className="px-4 py-3 text-right font-mono font-bold text-emerald-800">
+                          <td className="px-4 py-3 text-right font-mono font-bold text-orange-400">
                             {formatRupiah(row.totalSales)}
                           </td>
-                          <td className="px-4 py-3 text-right font-mono text-gray-700">
-                            <span className="bg-gray-100 px-2 py-0.5 rounded font-semibold text-[11px]">
+                          <td className="px-4 py-3 text-right font-mono text-slate-300">
+                            <span className="bg-slate-900 border border-slate-700 px-2 py-0.5 rounded font-semibold text-[11px]">
                               {share.toFixed(1)}%
                             </span>
                           </td>
@@ -320,8 +320,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
 
           {activeReportTab === 'margin' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-gray-600">
-                <thead className="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+              <table className="w-full text-left text-xs text-slate-300">
+                <thead className="bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700">
                   <tr>
                     <th className="px-4 py-3">Nama Menu Produk</th>
                     <th className="px-4 py-3 text-right">Harga Jual</th>
@@ -332,7 +332,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     <th className="px-4 py-3 text-center">Margin (%)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-slate-700/60">
                   {productReportList.map((row) => {
                     const unitMargin = row.product.price - row.product.costPrice;
                     const marginPct =
@@ -341,27 +341,27 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                         : 0;
 
                     return (
-                      <tr key={row.product.id} className="hover:bg-gray-50/80">
-                        <td className="px-4 py-3 font-bold text-gray-900">
+                      <tr key={row.product.id} className="hover:bg-slate-700/40">
+                        <td className="px-4 py-3 font-bold text-slate-100">
                           {row.product.name}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-gray-800">
+                        <td className="px-4 py-3 text-right font-mono text-slate-200">
                           {formatRupiah(row.product.price)}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-gray-500">
+                        <td className="px-4 py-3 text-right font-mono text-slate-400">
                           {formatRupiah(row.product.costPrice)}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono font-medium text-emerald-700">
+                        <td className="px-4 py-3 text-right font-mono font-medium text-emerald-400">
                           +{formatRupiah(unitMargin)}
                         </td>
-                        <td className="px-4 py-3 text-center font-mono font-bold text-gray-800">
+                        <td className="px-4 py-3 text-center font-mono font-bold text-slate-200">
                           {row.quantitySold}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono font-black text-emerald-800">
+                        <td className="px-4 py-3 text-right font-mono font-black text-emerald-400">
                           {formatRupiah(row.profit)}
                         </td>
                         <td className="px-4 py-3 text-center">
-                          <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full text-[10px]">
+                          <span className="bg-emerald-950/80 border border-emerald-800/60 text-emerald-300 font-bold px-2 py-0.5 rounded-full text-[10px]">
                             {marginPct}%
                           </span>
                         </td>
@@ -375,8 +375,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
 
           {activeReportTab === 'loyalty' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-gray-600">
-                <thead className="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+              <table className="w-full text-left text-xs text-slate-300">
+                <thead className="bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700">
                   <tr>
                     <th className="px-4 py-3">Nama Pelanggan</th>
                     <th className="px-4 py-3">No. Kontak</th>
@@ -386,31 +386,31 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     <th className="px-4 py-3 text-right">Total Belanja</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-slate-700/60">
                   {customers.map((c) => (
-                    <tr key={c.id} className="hover:bg-gray-50/80">
-                      <td className="px-4 py-3 font-bold text-gray-900">{c.name}</td>
-                      <td className="px-4 py-3 font-mono text-gray-500">{c.phone}</td>
+                    <tr key={c.id} className="hover:bg-slate-700/40">
+                      <td className="px-4 py-3 font-bold text-slate-100">{c.name}</td>
+                      <td className="px-4 py-3 font-mono text-slate-400">{c.phone}</td>
                       <td className="px-4 py-3">
                         <span
                           className={`px-2 py-0.5 rounded-md font-bold text-[10px] ${
                             c.tier === 'VIP'
-                              ? 'bg-amber-100 text-amber-800 border border-amber-300'
+                              ? 'bg-amber-950/80 text-amber-300 border border-amber-800/60'
                               : c.tier === 'Member'
-                              ? 'bg-blue-100 text-blue-800'
-                              : 'bg-gray-100 text-gray-700'
+                              ? 'bg-cyan-950/80 text-cyan-300 border border-cyan-800/60'
+                              : 'bg-slate-900 text-slate-300 border border-slate-700'
                           }`}
                         >
                           {c.tier}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-center font-mono font-bold text-emerald-700">
+                      <td className="px-4 py-3 text-center font-mono font-bold text-emerald-400">
                         {c.points} Pts
                       </td>
-                      <td className="px-4 py-3 text-center font-mono font-bold text-gray-800">
+                      <td className="px-4 py-3 text-center font-mono font-bold text-slate-200">
                         {c.totalOrders}x
                       </td>
-                      <td className="px-4 py-3 text-right font-mono font-black text-gray-900">
+                      <td className="px-4 py-3 text-right font-mono font-black text-orange-400">
                         {formatRupiah(c.totalSpent)}
                       </td>
                     </tr>
@@ -422,8 +422,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
 
           {activeReportTab === 'expiry' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-gray-600">
-                <thead className="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+              <table className="w-full text-left text-xs text-slate-300">
+                <thead className="bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700">
                   <tr>
                     <th className="px-4 py-3">Nama Bahan Baku</th>
                     <th className="px-4 py-3">Kategori</th>
@@ -436,7 +436,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     <th className="px-4 py-3 text-center">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-slate-700/60">
                   {ingredients.map((ing) => {
                     const days = getDaysUntilExpiry(ing.expiryDate);
                     const isExp = days !== null && days <= 0;
@@ -446,50 +446,50 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                     return (
                       <tr
                         key={ing.id}
-                        className={`hover:bg-gray-50/80 transition-colors ${
-                          isExp ? 'bg-red-50/40' : isWarning ? 'bg-amber-50/40' : ''
+                        className={`hover:bg-slate-700/40 transition-colors ${
+                          isExp ? 'bg-rose-950/20' : isWarning ? 'bg-amber-950/20' : ''
                         }`}
                       >
-                        <td className="px-4 py-3 font-bold text-gray-900">{ing.name}</td>
-                        <td className="px-4 py-3 text-gray-500">{ing.category}</td>
-                        <td className="px-4 py-3 font-mono font-semibold text-gray-700">
+                        <td className="px-4 py-3 font-bold text-slate-100">{ing.name}</td>
+                        <td className="px-4 py-3 text-slate-400">{ing.category}</td>
+                        <td className="px-4 py-3 font-mono font-semibold text-slate-300">
                           {ing.batchNumber || '-'}
                         </td>
-                        <td className="px-4 py-3 text-gray-600">{ing.supplier || '-'}</td>
-                        <td className="px-4 py-3 font-mono font-medium">{ing.expiryDate || '-'}</td>
+                        <td className="px-4 py-3 text-slate-400">{ing.supplier || '-'}</td>
+                        <td className="px-4 py-3 font-mono font-medium text-slate-300">{ing.expiryDate || '-'}</td>
                         <td className="px-4 py-3 text-center font-bold">
                           {days !== null ? (
                             <span
                               className={`${
-                                isExp ? 'text-red-600' : isWarning ? 'text-amber-600' : 'text-emerald-700'
+                                isExp ? 'text-rose-400' : isWarning ? 'text-amber-400' : 'text-emerald-400'
                               }`}
                             >
                               {days <= 0 ? 'Kedaluwarsa' : `${days} hari`}
                             </span>
                           ) : (
-                            <span className="text-gray-400">-</span>
+                            <span className="text-slate-500">-</span>
                           )}
                         </td>
-                        <td className="px-4 py-3 font-mono font-bold text-right text-gray-800">
+                        <td className="px-4 py-3 font-mono font-bold text-right text-slate-200">
                           {ing.stock} {ing.unit}
                         </td>
-                        <td className="px-4 py-3 font-mono text-right text-gray-700">
+                        <td className="px-4 py-3 font-mono text-right text-slate-300">
                           {formatRupiah(val)}
                         </td>
                         <td className="px-4 py-3 text-center">
                           {isExp ? (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">
-                              <AlertCircle className="w-3 h-3" />
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-300 bg-rose-950/80 border border-rose-800/60 px-2 py-0.5 rounded-full">
+                              <AlertCircle className="w-3 h-3 text-rose-400" />
                               Kedaluwarsa
                             </span>
                           ) : isWarning ? (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">
-                              <Clock className="w-3 h-3" />
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-300 bg-amber-950/80 border border-amber-800/60 px-2 py-0.5 rounded-full">
+                              <Clock className="w-3 h-3 text-amber-400" />
                               Segera Pakai
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">
-                              <CheckCircle2 className="w-3 h-3" />
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-800/60 px-2 py-0.5 rounded-full">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                               Aman
                             </span>
                           )}

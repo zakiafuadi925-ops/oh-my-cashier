@@ -251,23 +251,23 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gray-50 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-slate-900 text-slate-100 overflow-hidden">
       {/* Top Header */}
-      <div className="p-4 bg-white border-b border-zinc-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="p-4 bg-slate-950 border-b border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold text-zinc-900 flex items-center gap-2 font-mono">
-            <span className="text-emerald-500 font-bold">➜</span>
-            <Settings className="w-5 h-5 text-rose-600" />
+          <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2 font-mono">
+            <span className="text-emerald-400 font-bold">➜</span>
+            <Settings className="w-5 h-5 text-orange-400" />
             <span>Pengaturan Toko & Printer Struk</span>
           </h2>
-          <p className="text-xs text-zinc-500 font-mono mt-0.5">
+          <p className="text-xs text-slate-400 font-mono mt-0.5">
             ~/.oh-my-cashier/config.json • profil outlet, pajak PPN, format nota kasir, dan printer thermal.
           </p>
         </div>
 
         {savedSuccess && (
-          <span className="flex items-center gap-1.5 text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1.5 rounded-xl font-mono">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span>git:(config-saved ✔)</span>
           </span>
         )}
@@ -276,82 +276,82 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       <div className="flex-1 p-4 overflow-y-auto max-w-4xl space-y-4">
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Card 1: Profil Usaha */}
-          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
-            <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2 border-b border-zinc-100 pb-3">
-              <Store className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2 border-b border-slate-700/80 pb-3">
+              <Store className="w-4 h-4 text-orange-400" />
               <span>Profil Usaha & Outlet</span>
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Nama Toko / Resto *</label>
+                <label className="font-bold text-slate-300 block mb-1">Nama Toko / Resto *</label>
                 <input
                   type="text"
                   required
                   value={formData.storeName}
                   onChange={(e) => setFormData({ ...formData, storeName: e.target.value })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none focus:ring-2 focus:ring-rose-500 font-medium"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-medium"
                 />
               </div>
 
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Nama Cabang / Outlet</label>
+                <label className="font-bold text-slate-300 block mb-1">Nama Cabang / Outlet</label>
                 <input
                   type="text"
                   value={formData.branchName}
                   onChange={(e) => setFormData({ ...formData, branchName: e.target.value })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none focus:ring-2 focus:ring-rose-500 font-medium"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-medium"
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="font-bold text-zinc-700 block mb-1">Alamat Lengkap Toko</label>
+                <label className="font-bold text-slate-300 block mb-1">Alamat Lengkap Toko</label>
                 <input
                   type="text"
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
                 />
               </div>
 
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">No. WhatsApp / Telepon</label>
+                <label className="font-bold text-slate-300 block mb-1">No. WhatsApp / Telepon</label>
                 <input
                   type="text"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
                 />
               </div>
             </div>
           </div>
 
           {/* Card 2: Pengaturan Printer Thermal */}
-          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
-              <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2">
-                <Printer className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <Printer className="w-4 h-4 text-orange-400" />
                 <span>Pengaturan Printer Thermal Struk (ESC/POS & TSPL)</span>
               </h3>
               <button
                 type="button"
                 onClick={onTestPrint}
-                className="text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors flex items-center gap-1.5 cursor-pointer font-mono"
+                className="text-xs font-bold text-slate-200 bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg border border-slate-600 transition-colors flex items-center gap-1.5 cursor-pointer font-mono"
               >
-                <Printer className="w-3.5 h-3.5" />
+                <Printer className="w-3.5 h-3.5 text-orange-400" />
                 <span>Tes Cetak Nota</span>
               </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Ukuran Kertas Kasir</label>
+                <label className="font-bold text-slate-300 block mb-1">Ukuran Kertas Kasir</label>
                 <select
                   value={formData.paperWidth}
                   onChange={(e) =>
                     setFormData({ ...formData, paperWidth: e.target.value as '58mm' | '80mm' })
                   }
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none bg-white text-xs font-semibold focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg outline-none text-slate-100 text-xs font-semibold focus:border-orange-500"
                 >
                   <option value="58mm">58 mm (Printer Portabel Kecil)</option>
                   <option value="80mm">80 mm (Printer Desktop Standard)</option>
@@ -359,13 +359,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               </div>
 
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Protokol Driver Printer</label>
+                <label className="font-bold text-slate-300 block mb-1">Protokol Driver Printer</label>
                 <select
                   value={formData.printerType}
                   onChange={(e) =>
                     setFormData({ ...formData, printerType: e.target.value as 'ESC/POS' | 'TSPL' })
                   }
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none bg-white text-xs font-semibold focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg outline-none text-slate-100 text-xs font-semibold focus:border-orange-500"
                 >
                   <option value="ESC/POS">ESC / POS (Standar Thermal Kasir)</option>
                   <option value="TSPL">TSPL (Label & Barcode Thermal)</option>
@@ -373,8 +373,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               </div>
 
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Status Koneksi Bluetooth</label>
-                <div className="flex items-center gap-2 px-3 py-2 bg-zinc-950 rounded-lg border border-zinc-800 text-zinc-200 font-mono font-semibold">
+                <label className="font-bold text-slate-300 block mb-1">Status Koneksi Bluetooth</label>
+                <div className="flex items-center gap-2 px-3 py-2 bg-slate-950 rounded-lg border border-slate-700 text-slate-200 font-mono font-semibold">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <Bluetooth className="w-4 h-4 text-cyan-400" />
                   <span className="text-xs">BT-Printer (Siap)</span>
@@ -383,67 +383,67 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </div>
 
             <div>
-              <label className="font-bold text-zinc-700 block mb-1 text-xs">
+              <label className="font-bold text-slate-300 block mb-1 text-xs">
                 Pesan Penutup Nota (Receipt Footer)
               </label>
               <textarea
                 rows={3}
                 value={formData.receiptFooter}
                 onChange={(e) => setFormData({ ...formData, receiptFooter: e.target.value })}
-                className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none text-xs focus:ring-2 focus:ring-rose-500 font-mono"
+                className="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg outline-none text-xs focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-mono text-slate-100"
               />
-              <p className="text-[11px] text-zinc-400 mt-1">
+              <p className="text-[11px] text-slate-400 mt-1">
                 Pesan ini akan dicetak di bagian paling bawah struk pembayaran pelanggan.
               </p>
             </div>
           </div>
 
           {/* Card 3: Pajak & Biaya Layanan */}
-          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
-            <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2 border-b border-zinc-100 pb-3">
-              <Percent className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2 border-b border-slate-700/80 pb-3">
+              <Percent className="w-4 h-4 text-orange-400" />
               <span>Pajak (PPN) & Biaya Layanan</span>
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div className="p-3 rounded-xl border border-zinc-200 flex items-center justify-between">
+              <div className="p-3 bg-slate-900 rounded-xl border border-slate-700 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-zinc-800 block">Terapkan Pajak Resto (PPN)</span>
-                  <span className="text-[11px] text-zinc-400">Tambahkan PPN {formData.taxRate}% ke setiap pesanan</span>
+                  <span className="font-bold text-slate-200 block">Terapkan Pajak Resto (PPN)</span>
+                  <span className="text-[11px] text-slate-400">Tambahkan PPN {formData.taxRate}% ke setiap pesanan</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={formData.enableTax}
                   onChange={(e) => setFormData({ ...formData, enableTax: e.target.checked })}
-                  className="w-4 h-4 text-rose-600 accent-rose-600 rounded cursor-pointer"
+                  className="w-4 h-4 text-orange-500 accent-orange-500 rounded cursor-pointer"
                 />
               </div>
 
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">Tarif PPN (%)</label>
+                <label className="font-bold text-slate-300 block mb-1">Tarif PPN (%)</label>
                 <input
                   type="number"
                   disabled={!formData.enableTax}
                   value={formData.taxRate}
                   onChange={(e) => setFormData({ ...formData, taxRate: Number(e.target.value) })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none font-mono disabled:bg-zinc-100 focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none font-mono disabled:bg-slate-900 disabled:text-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
                 />
               </div>
             </div>
           </div>
 
           {/* Card: Lisensi & Kunci Aktivasi Perangkat */}
-          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
-              <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2">
-                <Key className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <Key className="w-4 h-4 text-orange-400" />
                 <span>Lisensi & Kunci Aktivasi Perangkat</span>
               </h3>
               <span
                 className={`text-[10px] px-2.5 py-0.5 rounded font-mono font-bold tracking-wider flex items-center gap-1 ${
                   licenseInfo.isActivated
                     ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                    : 'bg-rose-950 text-rose-300 border border-rose-800'
+                    : 'bg-amber-950/60 text-amber-300 border border-amber-800/80'
                 }`}
               >
                 {licenseInfo.isActivated ? (
@@ -453,7 +453,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                   </>
                 ) : (
                   <>
-                    <AlertCircle className="w-3 h-3 text-rose-400" />
+                    <AlertCircle className="w-3 h-3 text-amber-400" />
                     <span>git:(trial-mode ✗)</span>
                   </>
                 )}
@@ -461,22 +461,22 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div className="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800 space-y-1.5 text-zinc-200">
-                <span className="text-[11px] font-mono text-zinc-400 block flex items-center gap-1">
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-700 space-y-1.5 text-slate-200">
+                <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
                   <span className="text-emerald-400">➜</span> ID Perangkat (Device ID):
                 </span>
                 <span className="font-mono font-bold text-xs sm:text-sm text-cyan-300 block select-all tracking-wide">
                   {licenseInfo.deviceId}
                 </span>
-                <p className="text-[10px] text-zinc-400 font-mono">
+                <p className="text-[10px] text-slate-400 font-mono">
                   Kriptografi SHA-256 terikat erat ke hardware ID perangkat kasir ini.
                 </p>
               </div>
 
-              <div className="flex flex-col justify-between p-3.5 bg-zinc-900 rounded-xl border border-zinc-800 space-y-2">
+              <div className="flex flex-col justify-between p-3.5 bg-slate-900 rounded-xl border border-slate-700 space-y-2">
                 <div>
-                  <span className="font-bold text-zinc-100 font-mono block">Status Fitur:</span>
-                  <span className="text-[11px] text-zinc-300 font-mono">
+                  <span className="font-bold text-slate-100 font-mono block">Status Fitur:</span>
+                  <span className="text-[11px] text-slate-300 font-mono">
                     {licenseInfo.isActivated
                       ? licenseInfo.expiresAt
                         ? `Pro License (Berlaku s/d ${licenseInfo.expiresAt})`
@@ -487,10 +487,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowActivationModal(true)}
-                  className="w-full py-2 px-3 bg-rose-600 hover:bg-rose-700 active:scale-98 text-white rounded-lg font-bold text-xs shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer font-mono"
+                  className="w-full py-2 px-3 bg-orange-500 hover:bg-orange-600 active:scale-98 text-white rounded-lg font-bold text-xs shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer font-mono"
                 >
                   <span className="text-emerald-300 font-bold">➜</span>
-                  <Key className="w-3.5 h-3.5 text-amber-300" />
+                  <Key className="w-3.5 h-3.5 text-amber-200" />
                   <span>{licenseInfo.isActivated ? 'Kelola / Perpanjang Lisensi' : 'Masukkan Kunci Aktivasi'}</span>
                 </button>
               </div>
@@ -498,15 +498,15 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
 
           {/* Card 4: Keamanan & PIN Supervisor */}
-          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
-            <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2 border-b border-zinc-100 pb-3">
-              <ShieldAlert className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2 border-b border-slate-700/80 pb-3">
+              <ShieldAlert className="w-4 h-4 text-orange-400" />
               <span>Keamanan & PIN Otorisasi Supervisor</span>
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               <div>
-                <label className="font-bold text-zinc-700 block mb-1">
+                <label className="font-bold text-slate-300 block mb-1">
                   PIN Supervisor / Manajer (4 Digit)
                 </label>
                 <input
@@ -514,18 +514,18 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                   maxLength={6}
                   value={formData.supervisorPin || '1234'}
                   onChange={(e) => setFormData({ ...formData, supervisorPin: e.target.value })}
-                  className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none font-mono font-bold text-sm tracking-widest focus:ring-2 focus:ring-rose-500"
+                  className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg outline-none font-mono font-bold text-sm tracking-widest focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
                 />
-                <p className="text-[11px] text-zinc-400 mt-1">
+                <p className="text-[11px] text-slate-400 mt-1">
                   PIN ini diminta saat kasir membatalkan transaksi (void), menghapus produk, atau mereset data.
                 </p>
               </div>
 
-              <div className="bg-zinc-950 p-3 rounded-xl border border-zinc-800 flex flex-col justify-center text-zinc-300 font-mono">
+              <div className="bg-slate-950 p-3 rounded-xl border border-slate-700 flex flex-col justify-center text-slate-300 font-mono">
                 <span className="font-bold text-emerald-400 text-xs flex items-center gap-1.5">
                   <span>✔</span> Proteksi Supervisor Aktif
                 </span>
-                <p className="text-[11px] text-zinc-400 mt-0.5 font-sans">
+                <p className="text-[11px] text-slate-400 mt-0.5 font-sans">
                   Setiap pembatalan transaksi di Riwayat Pesanan otomatis mewajibkan otorisasi PIN manajer ini untuk mencegah kecurangan (fraud).
                 </p>
               </div>
@@ -533,60 +533,60 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
 
           {/* Card 5: Cadangan & Pemulihan Basis Data Lengkap (.json) */}
-          <div className="bg-white p-5 rounded-2xl border-2 border-zinc-200 shadow-xs space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
-              <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2">
-                <Database className="w-4 h-4 text-rose-600" />
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <Database className="w-4 h-4 text-orange-400" />
                 <span>Cadangan & Pemulihan Basis Data Lengkap (.json)</span>
               </h3>
-              <span className="text-[10px] bg-zinc-950 text-emerald-400 font-mono font-bold px-2 py-0.5 rounded border border-zinc-800">
+              <span className="text-[10px] bg-slate-950 text-emerald-400 font-mono font-bold px-2 py-0.5 rounded border border-slate-700">
                 oh-my-cashier v1.26.6
               </span>
             </div>
 
-            <p className="text-xs text-zinc-500 leading-relaxed font-mono">
+            <p className="text-xs text-slate-400 leading-relaxed font-mono">
               ~/.oh-my-cashier/backup • Cadangkan seluruh data operasional toko Anda (katalog produk, resep bahan baku, pelanggan, riwayat transaksi, shift kasir, dan pengaturan) ke dalam satu berkas format <b>.json</b>.
             </p>
 
             {/* Live Database Snapshot Pills */}
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-xs">
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Menu</span>
-                <strong className="font-mono text-rose-400 font-bold">{products.length}</strong>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Menu</span>
+                <strong className="font-mono text-orange-400 font-bold">{products.length}</strong>
               </div>
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Kategori</span>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Kategori</span>
                 <strong className="font-mono text-cyan-400 font-bold">{categories.length}</strong>
               </div>
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Pelanggan</span>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Pelanggan</span>
                 <strong className="font-mono text-purple-400 font-bold">{customers.length}</strong>
               </div>
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Bahan Baku</span>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Bahan Baku</span>
                 <strong className="font-mono text-amber-400 font-bold">{ingredients.length}</strong>
               </div>
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Transaksi</span>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Transaksi</span>
                 <strong className="font-mono text-emerald-400 font-bold">{orders.length}</strong>
               </div>
-              <div className="p-2 bg-zinc-950 rounded-xl border border-zinc-800 text-center text-zinc-200">
-                <span className="text-[10px] text-zinc-400 block font-mono">Shift</span>
-                <strong className="font-mono text-rose-300 font-bold">{activeShift?.status || 'Open'}</strong>
+              <div className="p-2 bg-slate-950 rounded-xl border border-slate-700 text-center text-slate-200">
+                <span className="text-[10px] text-slate-400 block font-mono">Shift</span>
+                <strong className="font-mono text-orange-300 font-bold">{activeShift?.status || 'Open'}</strong>
               </div>
             </div>
 
             {/* Error banner if file parsing failed */}
             {importError && (
-              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-800 flex items-center justify-between font-mono">
+              <div className="p-3 bg-rose-950/30 border border-rose-500/30 rounded-xl text-xs text-rose-300 flex items-center justify-between font-mono">
                 <div className="flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
                   <span>{importError}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setImportError(null)}
-                  className="text-rose-500 hover:text-rose-700 font-bold text-xs"
+                  className="text-rose-400 hover:text-rose-300 font-bold text-xs"
                 >
                   Tutup
                 </button>
@@ -596,14 +596,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             {/* Action Grid: Export & Import */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
               {/* Export Button Card */}
-              <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2 flex flex-col justify-between text-zinc-200">
+              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-2 flex flex-col justify-between text-slate-200">
                 <div>
-                  <div className="flex items-center gap-2 font-bold text-xs text-zinc-100 font-mono">
+                  <div className="flex items-center gap-2 font-bold text-xs text-slate-100 font-mono">
                     <span className="text-emerald-400">➜</span>
-                    <Download className="w-4 h-4 text-rose-400" />
+                    <Download className="w-4 h-4 text-orange-400" />
                     <span>Ekspor Cadangan Lengkap (.json)</span>
                   </div>
-                  <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
                     Unduh satu berkas JSON berisi seluruh basis data aplikasi secara instan untuk disimpan sebagai arsip cadangan.
                   </p>
                 </div>
@@ -611,7 +611,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                 <button
                   type="button"
                   onClick={handleExportBackup}
-                  className="w-full py-2 px-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-2xs transition-colors cursor-pointer font-mono"
+                  className="w-full py-2 px-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-2xs transition-colors cursor-pointer font-mono active:scale-95"
                 >
                   <FileJson className="w-4 h-4" />
                   <span>Unduh Cadangan (.json)</span>
@@ -619,14 +619,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               </div>
 
               {/* Import Button Card */}
-              <div className="p-3.5 bg-zinc-950 rounded-xl border border-zinc-800 space-y-2 flex flex-col justify-between text-zinc-200">
+              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-2 flex flex-col justify-between text-slate-200">
                 <div>
-                  <div className="flex items-center gap-2 font-bold text-xs text-zinc-100 font-mono">
+                  <div className="flex items-center gap-2 font-bold text-xs text-slate-100 font-mono">
                     <span className="text-emerald-400">➜</span>
                     <Upload className="w-4 h-4 text-cyan-400" />
                     <span>Pulihkan Basis Data dari Berkas (.json)</span>
                   </div>
-                  <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
                     Pilih berkas cadangan JSON yang pernah diunduh sebelumnya untuk memulihkan seluruh data toko ke perangkat ini.
                   </p>
                 </div>
@@ -642,7 +642,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="w-full py-2 px-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 border border-zinc-700 shadow-2xs transition-colors cursor-pointer font-mono"
+                    className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 border border-slate-700 shadow-2xs transition-colors cursor-pointer font-mono"
                   >
                     <Upload className="w-4 h-4 text-cyan-400" />
                     <span>Pilih Berkas Cadangan (.json)</span>
@@ -653,14 +653,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
             {/* Factory Reset Section */}
             {onResetData && (
-              <div className="pt-3 border-t border-zinc-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="text-[11px] text-zinc-400">
+              <div className="pt-3 border-t border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <span className="text-[11px] text-slate-400">
                   Ingin menghapus seluruh transaksi demo dan kembali ke data awal toko?
                 </span>
                 <button
                   type="button"
                   onClick={() => setShowResetPinModal(true)}
-                  className="text-xs font-bold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors flex items-center gap-1 shrink-0 cursor-pointer font-mono"
+                  className="text-xs font-bold text-rose-300 hover:text-rose-200 bg-rose-500/20 hover:bg-rose-500/30 px-3 py-1.5 rounded-lg border border-rose-500/30 transition-colors flex items-center gap-1 shrink-0 cursor-pointer font-mono"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset ke Data Bawaan (Perlu PIN)</span>
@@ -673,7 +673,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <div className="flex justify-end">
             <button
               type="submit"
-              className="py-3 px-6 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-md transition-colors cursor-pointer font-mono"
+              className="py-3 px-6 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-md transition-colors cursor-pointer font-mono active:scale-95"
             >
               <span className="text-emerald-300 font-bold">➜</span>
               <Save className="w-4 h-4" />
@@ -718,7 +718,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
         {/* Floating Toast Notification */}
         {toastMsg && (
-          <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-gray-900/95 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-xl border border-gray-700 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+          <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 text-slate-100 px-4 py-2 rounded-full text-xs font-semibold shadow-xl border border-slate-700 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
             <span>{toastMsg}</span>
           </div>

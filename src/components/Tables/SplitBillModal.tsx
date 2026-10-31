@@ -346,21 +346,21 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-700 text-slate-100 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 bg-emerald-700 text-white flex items-center justify-between shadow-md">
+        <div className="p-4 bg-slate-950 text-slate-100 border-b border-slate-800 flex items-center justify-between shadow-md">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
-              <Split className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-orange-400">
+              <Split className="w-5 h-5 text-orange-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-base text-white">Pisah Tagihan (Split Bill)</h3>
-                <span className="text-xs bg-emerald-800 text-emerald-200 px-2 py-0.5 rounded-full font-mono font-semibold">
+                <h3 className="font-bold text-base text-slate-100">Pisah Tagihan (Split Bill)</h3>
+                <span className="text-xs bg-slate-900 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded-full font-mono font-semibold">
                   {order.tableNumber || 'Order'} • {order.orderNumber}
                 </span>
               </div>
-              <p className="text-xs text-emerald-100">
+              <p className="text-xs text-slate-400">
                 Pilih metode pemisahan pembayaran per menu atau bagi sama rata per orang
               </p>
             </div>
@@ -368,22 +368,22 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Selection: Per Menu vs Sama Rata */}
-        <div className="bg-emerald-50 px-4 py-2.5 border-b border-emerald-100 flex items-center justify-between">
+        <div className="bg-slate-950 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setSplitMode('per_item')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-2xs ${
                 splitMode === 'per_item'
-                  ? 'bg-emerald-700 text-white shadow-emerald-700/20'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  ? 'bg-orange-500 text-white shadow-orange-500/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
               }`}
             >
               <UtensilsCrossed className="w-4 h-4" />
@@ -394,8 +394,8 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
               onClick={() => setSplitMode('equal')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-2xs ${
                 splitMode === 'equal'
-                  ? 'bg-emerald-700 text-white shadow-emerald-700/20'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                  ? 'bg-orange-500 text-white shadow-orange-500/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
               }`}
             >
               <Users className="w-4 h-4" />
@@ -403,8 +403,8 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
             </button>
           </div>
 
-          <div className="text-xs text-gray-600 font-mono">
-            Total Tagihan Meja: <strong className="text-emerald-800 font-bold">{formatRupiah(order.total)}</strong>
+          <div className="text-xs text-slate-400 font-mono">
+            Total Tagihan Meja: <strong className="text-orange-400 font-bold">{formatRupiah(order.total)}</strong>
           </div>
         </div>
 
@@ -416,19 +416,19 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
           {splitMode === 'per_item' && (
             <div className="space-y-4">
               {/* Controls: Number of bills & Reset */}
-              <div className="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-200">
+              <div className="flex items-center justify-between bg-slate-950 p-2.5 rounded-xl border border-slate-800">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-gray-700">Jumlah Tagihan (Sub-Bills):</span>
+                  <span className="text-xs font-bold text-slate-300">Jumlah Tagihan (Sub-Bills):</span>
                   <div className="flex gap-1">
                     {[2, 3, 4].map((count) => (
                       <button
                         key={count}
                         type="button"
                         onClick={() => setNumBills(count)}
-                        className={`px-3 py-1 text-xs rounded-lg font-bold ${
+                        className={`px-3 py-1 text-xs rounded-lg font-bold transition-colors ${
                           numBills === count
-                            ? 'bg-emerald-700 text-white'
-                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
+                            ? 'bg-orange-500 text-white'
+                            : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'
                         }`}
                       >
                         {count} Tagihan
@@ -440,7 +440,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                 <button
                   type="button"
                   onClick={resetAllocations}
-                  className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-800 bg-white border border-gray-300 px-2.5 py-1 rounded-lg"
+                  className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-100 bg-slate-800 border border-slate-700 px-2.5 py-1 rounded-lg transition-colors"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset ke Tagihan A</span>
@@ -456,25 +456,25 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                   return (
                     <div
                       key={billIdx}
-                      className="bg-white border-2 border-emerald-200 rounded-xl overflow-hidden flex flex-col shadow-xs"
+                      className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden flex flex-col shadow-xs text-slate-200"
                     >
                       {/* Sub-Bill Header */}
-                      <div className="bg-emerald-50 p-2.5 border-b border-emerald-100 flex items-center justify-between">
+                      <div className="bg-slate-950 p-2.5 border-b border-slate-700/80 flex items-center justify-between">
                         <div>
-                          <span className="text-xs font-bold text-emerald-900 block">{billLabel}</span>
-                          <span className="text-[10px] text-gray-500 font-mono">
+                          <span className="text-xs font-bold text-slate-100 block">{billLabel}</span>
+                          <span className="text-[10px] text-slate-400 font-mono">
                             {items.reduce((sum, it) => sum + it.quantity, 0)} item hidangan
                           </span>
                         </div>
                         <div className="text-right">
-                          <span className="text-xs font-mono font-bold text-emerald-700">
+                          <span className="text-xs font-mono font-bold text-orange-400">
                             {formatRupiah(total)}
                           </span>
                         </div>
                       </div>
 
                       {/* Items List in this Sub-Bill */}
-                      <div className="p-2 space-y-1.5 flex-1 min-h-[160px] max-h-[260px] overflow-y-auto divide-y divide-gray-100">
+                      <div className="p-2 space-y-1.5 flex-1 min-h-[160px] max-h-[260px] overflow-y-auto divide-y divide-slate-700/60">
                         {order.items.map((cartItem) => {
                           const assignedQty = allocations[cartItem.cartItemId]?.[billIdx] || 0;
                           if (assignedQty === 0) return null;
@@ -482,10 +482,10 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                           return (
                             <div key={cartItem.cartItemId} className="pt-1.5 first:pt-0 flex items-center justify-between text-xs">
                               <div className="pr-1 flex-1">
-                                <span className="font-semibold text-gray-800 block line-clamp-1">
+                                <span className="font-semibold text-slate-100 block line-clamp-1">
                                   {cartItem.product.name}
                                 </span>
-                                <span className="text-[10px] text-gray-500 font-mono">
+                                <span className="text-[10px] text-slate-400 font-mono">
                                   {assignedQty}x @ {formatRupiah(cartItem.unitPrice)} = {formatRupiah(cartItem.unitPrice * assignedQty)}
                                 </span>
                               </div>
@@ -496,20 +496,20 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                                   <button
                                     type="button"
                                     onClick={() => moveItemUnit(cartItem.cartItemId, billIdx, billIdx - 1)}
-                                    className="p-1 text-gray-600 hover:text-emerald-700 hover:bg-emerald-50 rounded"
+                                    className="p-1 text-slate-400 hover:text-orange-400 hover:bg-slate-700 rounded transition-colors"
                                     title="Pindahkan 1 ke tagihan sebelumnya"
                                   >
                                     <ChevronLeft className="w-3.5 h-3.5" />
                                   </button>
                                 )}
-                                <span className="font-mono font-bold text-xs px-1 bg-gray-100 rounded">
+                                <span className="font-mono font-bold text-xs px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-slate-200">
                                   {assignedQty}
                                 </span>
                                 {billIdx < numBills - 1 && (
                                   <button
                                     type="button"
                                     onClick={() => moveItemUnit(cartItem.cartItemId, billIdx, billIdx + 1)}
-                                    className="p-1 text-gray-600 hover:text-emerald-700 hover:bg-emerald-50 rounded"
+                                    className="p-1 text-slate-400 hover:text-orange-400 hover:bg-slate-700 rounded transition-colors"
                                     title="Pindahkan 1 ke tagihan berikutnya"
                                   >
                                     <ChevronRight className="w-3.5 h-3.5" />
@@ -521,7 +521,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                         })}
 
                         {items.length === 0 && (
-                          <div className="h-full flex flex-col items-center justify-center py-6 text-gray-400">
+                          <div className="h-full flex flex-col items-center justify-center py-6 text-slate-500">
                             <UtensilsCrossed className="w-6 h-6 mb-1 stroke-1" />
                             <span className="text-[11px]">Belum ada item di {billLabel}</span>
                           </div>
@@ -529,20 +529,20 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                       </div>
 
                       {/* Sub-Bill Calculation Footer */}
-                      <div className="p-2.5 bg-gray-50 border-t border-gray-200 space-y-1 text-xs">
-                        <div className="flex justify-between text-gray-600 text-[11px]">
+                      <div className="p-2.5 bg-slate-950 border-t border-slate-700/80 space-y-1 text-xs">
+                        <div className="flex justify-between text-slate-400 text-[11px]">
                           <span>Subtotal:</span>
-                          <span className="font-mono">{formatRupiah(subtotal)}</span>
+                          <span className="font-mono text-slate-200">{formatRupiah(subtotal)}</span>
                         </div>
                         {settings.enableTax && (
-                          <div className="flex justify-between text-gray-600 text-[11px]">
+                          <div className="flex justify-between text-slate-400 text-[11px]">
                             <span>PPN ({settings.taxRate}%):</span>
-                            <span className="font-mono">{formatRupiah(taxAmount)}</span>
+                            <span className="font-mono text-slate-200">{formatRupiah(taxAmount)}</span>
                           </div>
                         )}
-                        <div className="flex justify-between font-bold text-gray-800 pt-1 border-t border-gray-200">
+                        <div className="flex justify-between font-bold text-slate-100 pt-1 border-t border-slate-800">
                           <span>Total {billLabel}:</span>
-                          <span className="font-mono text-emerald-700 font-bold">{formatRupiah(total)}</span>
+                          <span className="font-mono text-orange-400 font-bold">{formatRupiah(total)}</span>
                         </div>
 
                         {/* Action buttons */}
@@ -554,7 +554,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                               setActivePaymentSubBill(billIdx);
                               setSubBillCashAmount(total);
                             }}
-                            className="flex-1 py-1.5 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white rounded-lg font-bold text-xs shadow-2xs flex items-center justify-center gap-1"
+                            className="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white rounded-lg font-bold text-xs shadow-2xs flex items-center justify-center gap-1 transition-colors active:scale-95"
                           >
                             <Banknote className="w-3.5 h-3.5" />
                             <span>Bayar {billLabel}</span>
@@ -583,10 +583,10 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                               `;
                               handlePrintSlip(`${order.tableNumber || ''} - ${billLabel}`, content);
                             }}
-                            className="px-2 py-1.5 bg-white border border-gray-300 hover:bg-gray-100 disabled:opacity-50 rounded-lg text-gray-700"
+                            className="px-2 py-1.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 disabled:opacity-50 rounded-lg text-slate-200 transition-colors"
                             title="Cetak Struk Thermal Sub-Bill"
                           >
-                            <Printer className="w-3.5 h-3.5" />
+                            <Printer className="w-3.5 h-3.5 text-orange-400" />
                           </button>
                         </div>
                       </div>
@@ -598,26 +598,26 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
               {/* Sub-Bill Payment Modal Overlay */}
               {activePaymentSubBill !== null && (
                 <div className="fixed inset-0 z-60 bg-black/60 flex items-center justify-center p-4">
-                  <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-5 animate-in zoom-in-95">
+                  <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden p-5 animate-in zoom-in-95">
                     <div className="flex justify-between items-center mb-3">
                       <div>
-                        <h4 className="font-bold text-gray-800 text-sm">
+                        <h4 className="font-bold text-slate-100 text-sm">
                           Bayar {billNames[activePaymentSubBill]} • {order.tableNumber}
                         </h4>
-                        <p className="text-xs text-gray-500">Pilih metode bayar untuk sub-tagihan ini</p>
+                        <p className="text-xs text-slate-400">Pilih metode bayar untuk sub-tagihan ini</p>
                       </div>
                       <button
                         onClick={() => setActivePaymentSubBill(null)}
-                        className="p-1 rounded text-gray-400 hover:text-gray-700"
+                        className="p-1 rounded text-slate-400 hover:text-white"
                       >
                         <X className="w-5 h-5" />
                       </button>
                     </div>
 
                     {/* Total info */}
-                    <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-center mb-4">
-                      <span className="text-xs text-emerald-800 font-medium">Tagihan Harus Dibayar:</span>
-                      <div className="text-2xl font-black font-mono text-emerald-700">
+                    <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center mb-4">
+                      <span className="text-xs text-slate-400 font-medium">Tagihan Harus Dibayar:</span>
+                      <div className="text-2xl font-black font-mono text-orange-400">
                         {formatRupiah(getSubBillCalculation(activePaymentSubBill).total)}
                       </div>
                     </div>
@@ -629,16 +629,16 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                           key={m}
                           type="button"
                           onClick={() => setSubBillPaymentMethod(m)}
-                          className={`p-2 rounded-lg text-xs font-bold border flex items-center gap-2 ${
+                          className={`p-2 rounded-lg text-xs font-bold border flex items-center gap-2 transition-colors ${
                             subBillPaymentMethod === m
-                              ? 'border-emerald-600 bg-emerald-50 text-emerald-800'
-                              : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+                              ? 'border-orange-500 bg-orange-500/20 text-orange-200'
+                              : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                           }`}
                         >
-                          {m === 'Tunai' && <Banknote className="w-4 h-4 text-emerald-600" />}
-                          {m === 'QRIS' && <QrCode className="w-4 h-4 text-blue-600" />}
-                          {m === 'Debit' && <CreditCard className="w-4 h-4 text-purple-600" />}
-                          {m === 'Transfer' && <Building2 className="w-4 h-4 text-amber-600" />}
+                          {m === 'Tunai' && <Banknote className="w-4 h-4 text-emerald-400" />}
+                          {m === 'QRIS' && <QrCode className="w-4 h-4 text-blue-400" />}
+                          {m === 'Debit' && <CreditCard className="w-4 h-4 text-purple-400" />}
+                          {m === 'Transfer' && <Building2 className="w-4 h-4 text-amber-400" />}
                           <span>{m}</span>
                         </button>
                       ))}
@@ -647,16 +647,16 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                     {/* Cash Quick options if Tunai */}
                     {subBillPaymentMethod === 'Tunai' && (
                       <div className="space-y-2 mb-4">
-                        <label className="text-xs text-gray-600 font-medium block">Nominal Uang Diterima:</label>
+                        <label className="text-xs text-slate-400 font-medium block">Nominal Uang Diterima:</label>
                         <input
                           type="number"
                           value={subBillCashAmount || ''}
                           onChange={(e) => setSubBillCashAmount(Number(e.target.value) || 0)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg font-mono font-bold text-sm text-right"
+                          className="w-full px-3 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg font-mono font-bold text-sm text-right outline-none focus:border-orange-500"
                         />
-                        <div className="flex justify-between text-xs text-gray-600 pt-1">
+                        <div className="flex justify-between text-xs text-slate-400 pt-1">
                           <span>Kembalian:</span>
-                          <span className="font-mono font-bold text-emerald-700">
+                          <span className="font-mono font-bold text-emerald-400">
                             {formatRupiah(
                               Math.max(
                                 0,
@@ -672,7 +672,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setActivePaymentSubBill(null)}
-                        className="flex-1 py-2 border border-gray-300 rounded-lg font-bold text-xs text-gray-700 hover:bg-gray-100"
+                        className="flex-1 py-2 border border-slate-700 rounded-lg font-bold text-xs text-slate-300 hover:bg-slate-800 transition-colors"
                       >
                         Batal
                       </button>
@@ -682,7 +682,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                           handleExecuteSubBillPayment(activePaymentSubBill);
                           setActivePaymentSubBill(null);
                         }}
-                        className="flex-1 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg font-bold text-xs shadow-md"
+                        className="flex-1 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold text-xs shadow-md transition-colors active:scale-95"
                       >
                         Konfirmasi Lunas & Cetak
                       </button>
@@ -699,10 +699,10 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
           {splitMode === 'equal' && (
             <div className="space-y-4">
               {/* Controls: Number of persons */}
-              <div className="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 flex items-center justify-between">
+              <div className="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
                 <div>
-                  <span className="text-xs font-bold text-emerald-900 block">Bagi Rata ke Berapa Orang?</span>
-                  <span className="text-[11px] text-emerald-700">
+                  <span className="text-xs font-bold text-slate-100 block">Bagi Rata ke Berapa Orang?</span>
+                  <span className="text-[11px] text-slate-400">
                     Sistem membagi total tagihan meja secara adil per individu
                   </span>
                 </div>
@@ -715,8 +715,8 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                       onClick={() => handleUpdateNumPersons(count)}
                       className={`w-9 h-9 rounded-lg font-bold text-xs flex items-center justify-center transition-all ${
                         numPersons === count
-                          ? 'bg-emerald-700 text-white shadow-md'
-                          : 'bg-white text-gray-700 border border-emerald-200 hover:bg-emerald-100'
+                          ? 'bg-orange-500 text-white shadow-md'
+                          : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'
                       }`}
                     >
                       {count}
@@ -727,17 +727,17 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
 
               {/* Progress Summary */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-center">
-                  <span className="text-[10px] text-gray-500 uppercase font-semibold">Total Meja</span>
-                  <div className="text-sm font-black font-mono text-gray-800">{formatRupiah(order.total)}</div>
+                <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center">
+                  <span className="text-[10px] text-slate-400 uppercase font-semibold">Total Meja</span>
+                  <div className="text-sm font-black font-mono text-slate-100">{formatRupiah(order.total)}</div>
                 </div>
-                <div className="bg-emerald-50 p-2.5 rounded-xl border border-emerald-200 text-center">
-                  <span className="text-[10px] text-emerald-700 uppercase font-semibold">Sudah Dibayar</span>
-                  <div className="text-sm font-black font-mono text-emerald-700">{formatRupiah(totalPaidAmount)}</div>
+                <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center">
+                  <span className="text-[10px] text-emerald-400 uppercase font-semibold">Sudah Dibayar</span>
+                  <div className="text-sm font-black font-mono text-emerald-400">{formatRupiah(totalPaidAmount)}</div>
                 </div>
-                <div className="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-center">
-                  <span className="text-[10px] text-amber-700 uppercase font-semibold">Sisa Belum Bayar</span>
-                  <div className="text-sm font-black font-mono text-amber-800">{formatRupiah(remainingAmount)}</div>
+                <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center">
+                  <span className="text-[10px] text-amber-400 uppercase font-semibold">Sisa Belum Bayar</span>
+                  <div className="text-sm font-black font-mono text-amber-300">{formatRupiah(remainingAmount)}</div>
                 </div>
               </div>
 
@@ -748,8 +748,8 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                     key={person.guestIndex}
                     className={`p-3 rounded-xl border flex items-center justify-between transition-all ${
                       person.isPaid
-                        ? 'bg-emerald-50/60 border-emerald-200'
-                        : 'bg-white border-gray-200 hover:border-gray-300'
+                        ? 'bg-emerald-950/20 border-emerald-500/30'
+                        : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -757,7 +757,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                         className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs ${
                           person.isPaid
                             ? 'bg-emerald-600 text-white'
-                            : 'bg-gray-100 text-gray-700 border border-gray-300'
+                            : 'bg-slate-900 text-slate-200 border border-slate-700'
                         }`}
                       >
                         {person.isPaid ? <Check className="w-4 h-4" /> : person.guestIndex}
@@ -777,16 +777,16 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                                 )
                               );
                             }}
-                            className="font-bold text-xs text-gray-800 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-emerald-600 outline-none px-0.5"
+                            className="font-bold text-xs text-slate-100 bg-transparent border-b border-transparent hover:border-slate-600 focus:border-orange-500 outline-none px-0.5"
                           />
                           {person.isPaid && (
-                            <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                            <span className="text-[10px] bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                               <span>Lunas ({person.paymentMethod})</span>
                             </span>
                           )}
                         </div>
-                        <span className="text-[11px] text-gray-500 font-mono">
-                          Nominal: <strong className="text-gray-800">{formatRupiah(person.amount)}</strong>
+                        <span className="text-[11px] text-slate-400 font-mono">
+                          Nominal: <strong className="text-slate-100">{formatRupiah(person.amount)}</strong>
                         </span>
                       </div>
                     </div>
@@ -811,9 +811,9 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                             `;
                             handlePrintSlip(`Struk ${escapeHtml(person.guestName)}`, content);
                           }}
-                          className="flex items-center gap-1 text-xs px-2.5 py-1.5 bg-white border border-gray-300 hover:bg-gray-50 rounded-lg text-gray-700"
+                          className="flex items-center gap-1 text-xs px-2.5 py-1.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 rounded-lg text-slate-200 transition-colors"
                         >
-                          <Printer className="w-3.5 h-3.5" />
+                          <Printer className="w-3.5 h-3.5 text-orange-400" />
                           <span>Cetak Slip</span>
                         </button>
                       ) : (
@@ -824,7 +824,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                             setGuestCashAmount(person.amount);
                             setGuestPayMethod(person.paymentMethod);
                           }}
-                          className="flex items-center gap-1.5 text-xs px-3.5 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg shadow-2xs"
+                          className="flex items-center gap-1.5 text-xs px-3.5 py-1.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-2xs transition-colors active:scale-95"
                         >
                           <Banknote className="w-3.5 h-3.5" />
                           <span>Bayar Sekarang</span>
@@ -838,19 +838,19 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
               {/* Modal Bayar Tamu Individu */}
               {payingGuestIdx !== null && (
                 <div className="fixed inset-0 z-60 bg-black/60 flex items-center justify-center p-4">
-                  <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-4 animate-in zoom-in-95 space-y-3">
+                  <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-sm w-full p-4 animate-in zoom-in-95 space-y-3">
                     <div className="flex justify-between items-center">
-                      <h4 className="font-bold text-sm text-gray-800">
+                      <h4 className="font-bold text-sm text-slate-100">
                         Bayar Tamu {payingGuestIdx} ({splitPayments.find((p) => p.guestIndex === payingGuestIdx)?.guestName})
                       </h4>
-                      <button onClick={() => setPayingGuestIdx(null)} className="text-gray-400 hover:text-gray-700">
+                      <button onClick={() => setPayingGuestIdx(null)} className="text-slate-400 hover:text-white">
                         <X className="w-4 h-4" />
                       </button>
                     </div>
 
-                    <div className="bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 text-center">
-                      <span className="text-[10px] text-emerald-800">Nominal yang Dibayar:</span>
-                      <div className="text-xl font-black font-mono text-emerald-700">
+                    <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center">
+                      <span className="text-[10px] text-slate-400">Nominal yang Dibayar:</span>
+                      <div className="text-xl font-black font-mono text-orange-400">
                         {formatRupiah(splitPayments.find((p) => p.guestIndex === payingGuestIdx)?.amount || 0)}
                       </div>
                     </div>
@@ -861,10 +861,10 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                           key={m}
                           type="button"
                           onClick={() => setGuestPayMethod(m)}
-                          className={`p-1.5 text-xs font-bold rounded-lg border ${
+                          className={`p-1.5 text-xs font-bold rounded-lg border transition-colors ${
                             guestPayMethod === m
-                              ? 'bg-emerald-50 border-emerald-600 text-emerald-800'
-                              : 'border-gray-200 text-gray-700'
+                              ? 'bg-orange-500/20 border-orange-500 text-orange-200'
+                              : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
                           }`}
                         >
                           {m}
@@ -874,12 +874,12 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
 
                     {guestPayMethod === 'Tunai' && (
                       <div>
-                        <label className="text-[10px] text-gray-500 block mb-0.5">Uang Diterima:</label>
+                        <label className="text-[10px] text-slate-400 block mb-0.5">Uang Diterima:</label>
                         <input
                           type="number"
                           value={guestCashAmount}
                           onChange={(e) => setGuestCashAmount(Number(e.target.value) || 0)}
-                          className="w-full px-2 py-1.5 border rounded-lg font-mono font-bold text-xs text-right"
+                          className="w-full px-2 py-1.5 bg-slate-950 border border-slate-700 text-slate-100 rounded-lg font-mono font-bold text-xs text-right outline-none focus:border-orange-500"
                         />
                       </div>
                     )}
@@ -888,14 +888,14 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setPayingGuestIdx(null)}
-                        className="flex-1 py-1.5 border rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50"
+                        className="flex-1 py-1.5 border border-slate-700 rounded-lg text-xs font-bold text-slate-300 hover:bg-slate-800 transition-colors"
                       >
                         Batal
                       </button>
                       <button
                         type="button"
                         onClick={() => handlePayGuest(payingGuestIdx)}
-                        className="flex-1 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-bold shadow-md"
+                        className="flex-1 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-xs font-bold shadow-md transition-colors active:scale-95"
                       >
                         Selesaikan
                       </button>
@@ -908,8 +908,8 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-xs text-gray-500">
+        <div className="p-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-slate-400">
+          <div className="text-xs">
             {splitMode === 'per_item'
               ? 'Tiap sub-tagihan yang dibayar akan menghasilkan nomor struk unik bertingkat (misal: #0004-A, #0004-B)'
               : `${paidGuestsCount} dari ${splitPayments.length} orang telah menyelesaikan pembayaran`}
@@ -919,7 +919,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 font-bold text-xs rounded-xl shadow-2xs"
+              className="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs rounded-xl shadow-2xs transition-colors"
             >
               Tutup
             </button>
@@ -931,7 +931,7 @@ export const SplitBillModal: React.FC<SplitBillModalProps> = ({
                   handleSaveEqualSplit();
                   onClose();
                 }}
-                className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl shadow-md flex items-center gap-1.5"
+                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs rounded-xl shadow-md flex items-center gap-1.5 transition-colors active:scale-95"
               >
                 <Check className="w-4 h-4" />
                 <span>Simpan Progres Pisah Tagihan</span>

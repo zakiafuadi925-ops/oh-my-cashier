@@ -113,27 +113,29 @@ export const PreBillModal: React.FC<PreBillModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[95vh] animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[95vh] animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-3.5 border-b border-gray-100 flex items-center justify-between bg-amber-600 text-white">
-          <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-amber-100" />
+        <div className="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-950 text-slate-100">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <FileText className="w-4 h-4 text-orange-400" />
+            </div>
             <div>
-              <h3 className="font-bold text-sm leading-tight">Cetak Tagihan Sementara (Pre-Bill)</h3>
-              <p className="text-[10px] text-amber-100">Diserahkan ke meja tamu sebelum pembayaran</p>
+              <h3 className="font-bold text-sm leading-tight text-slate-100">Cetak Tagihan Sementara (Pre-Bill)</h3>
+              <p className="text-[11px] text-slate-400">Diserahkan ke meja tamu sebelum pembayaran</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white"
+            className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Printable Area */}
-        <div className="p-4 overflow-y-auto bg-gray-100 flex-1 flex justify-center">
+        {/* Printable Area Container */}
+        <div className="p-4 overflow-y-auto bg-slate-950/70 flex-1 flex justify-center">
           <div
             id="thermal-receipt-print-area"
             ref={billRef}
@@ -251,10 +253,10 @@ export const PreBillModal: React.FC<PreBillModalProps> = ({
         </div>
 
         {/* Buttons */}
-        <div className="p-3 bg-white border-t border-gray-200 grid grid-cols-3 gap-2">
+        <div className="p-3 bg-slate-950 border-t border-slate-800 grid grid-cols-3 gap-2">
           <button
             onClick={handlePrint}
-            className="py-2.5 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+            className="py-2.5 px-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors cursor-pointer"
           >
             <Printer className="w-4 h-4" />
             <span>Cetak Bill</span>
@@ -262,7 +264,7 @@ export const PreBillModal: React.FC<PreBillModalProps> = ({
 
           <button
             onClick={handleShareWhatsApp}
-            className="py-2.5 px-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+            className="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors cursor-pointer"
           >
             <Share2 className="w-4 h-4" />
             <span>Kirim WA</span>
@@ -270,9 +272,9 @@ export const PreBillModal: React.FC<PreBillModalProps> = ({
 
           <button
             onClick={handleCopy}
-            className="py-2.5 px-3 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+            className="py-2.5 px-3 border border-slate-700 hover:bg-slate-800 text-slate-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <FileText className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <FileText className="w-4 h-4" />}
             <span>{copied ? 'Tersalin!' : 'Salin Teks'}</span>
           </button>
         </div>

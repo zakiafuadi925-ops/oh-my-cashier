@@ -40,23 +40,23 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-60 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-700 text-slate-100 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 bg-emerald-700 text-white flex items-center justify-between">
+        <div className="p-4 bg-slate-950 text-slate-100 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-              <Merge className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-orange-400">
+              <Merge className="w-5 h-5 text-orange-400" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-white">Gabung Meja (Merge Tables)</h3>
-              <p className="text-[11px] text-emerald-100">
+              <h3 className="font-bold text-sm text-slate-100">Gabung Meja (Merge Tables)</h3>
+              <p className="text-[11px] text-slate-400">
                 Satukan tagihan dari dua meja terisi menjadi satu meja tunggal
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-emerald-100 hover:text-white hover:bg-white/10 rounded-lg"
+            className="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -65,8 +65,8 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
         {/* Content */}
         <div className="p-4 space-y-4">
           {otherOccupied.length === 0 ? (
-            <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 shrink-0 text-amber-600" />
+            <div className="p-4 bg-amber-950/30 border border-amber-500/30 rounded-xl text-xs text-amber-200 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 shrink-0 text-amber-400" />
               <span>
                 Tidak ada meja terisi lain saat ini. Fitur gabung meja memerlukan minimal 2 meja yang sedang aktif.
               </span>
@@ -76,25 +76,25 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
               {/* Visual Merge Representation */}
               <div className="grid grid-cols-2 gap-3">
                 {/* Source Table */}
-                <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs space-y-1">
-                  <span className="text-[10px] font-bold text-red-700 uppercase">Meja yang Digabung</span>
-                  <div className="font-bold text-sm text-gray-800">{currentTable}</div>
-                  <div className="text-[11px] text-gray-500 font-mono">
+                <div className="p-3 bg-rose-950/40 border border-rose-500/30 rounded-xl text-xs space-y-1">
+                  <span className="text-[10px] font-bold text-rose-400 uppercase">Meja yang Digabung</span>
+                  <div className="font-bold text-sm text-slate-100">{currentTable}</div>
+                  <div className="text-[11px] text-slate-400 font-mono">
                     {currentOrder?.orderNumber} • {currentOrder?.items.length} item
                   </div>
-                  <div className="font-mono font-bold text-red-700">
+                  <div className="font-mono font-bold text-rose-400">
                     {formatRupiah(currentOrder?.total || 0)}
                   </div>
                 </div>
 
                 {/* Target Table */}
-                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs space-y-1">
-                  <span className="text-[10px] font-bold text-emerald-700 uppercase">Meja Tujuan Gabung</span>
-                  <div className="font-bold text-sm text-gray-800">{selectedTarget}</div>
-                  <div className="text-[11px] text-gray-500 font-mono">
+                <div className="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-xs space-y-1">
+                  <span className="text-[10px] font-bold text-emerald-400 uppercase">Meja Tujuan Gabung</span>
+                  <div className="font-bold text-sm text-slate-100">{selectedTarget}</div>
+                  <div className="text-[11px] text-slate-400 font-mono">
                     {targetOrder?.orderNumber} • {targetOrder?.items.length} item
                   </div>
-                  <div className="font-mono font-bold text-emerald-700">
+                  <div className="font-mono font-bold text-emerald-400">
                     {formatRupiah(targetOrder?.total || 0)}
                   </div>
                 </div>
@@ -102,7 +102,7 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
 
               {/* Target Picker */}
               <div>
-                <label className="text-xs font-bold text-gray-700 block mb-1.5">
+                <label className="text-xs font-bold text-slate-300 block mb-1.5">
                   Pilih Meja Terisi yang Ingin Digabungkan:
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -113,13 +113,13 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
                       onClick={() => setSelectedTarget(t.tableNumber)}
                       className={`p-2.5 rounded-xl border text-left text-xs transition-all ${
                         selectedTarget === t.tableNumber
-                          ? 'border-emerald-600 bg-emerald-50 text-emerald-900 shadow-sm ring-2 ring-emerald-300'
-                          : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-700'
+                          ? 'border-orange-500 bg-orange-500/20 text-orange-200 shadow-sm ring-1 ring-orange-400'
+                          : 'border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200'
                       }`}
                     >
-                      <div className="font-bold text-xs">{t.tableNumber}</div>
-                      <div className="text-[10px] text-gray-500 font-mono">{t.order.orderNumber}</div>
-                      <div className="text-[11px] font-mono font-bold text-emerald-700">
+                      <div className="font-bold text-xs text-slate-100">{t.tableNumber}</div>
+                      <div className="text-[10px] text-slate-400 font-mono">{t.order.orderNumber}</div>
+                      <div className="text-[11px] font-mono font-bold text-emerald-400">
                         {formatRupiah(t.order.total)}
                       </div>
                     </button>
@@ -128,19 +128,19 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
               </div>
 
               {/* Combined Result Preview */}
-              <div className="p-3 bg-gray-50 border border-gray-200 rounded-xl text-xs flex items-center justify-between">
+              <div className="p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs flex items-center justify-between text-slate-300">
                 <div>
-                  <span className="text-[11px] text-gray-500 block">Hasil Setelah Penggabungan:</span>
-                  <span className="font-bold text-gray-800">
+                  <span className="text-[11px] text-slate-400 block">Hasil Setelah Penggabungan:</span>
+                  <span className="font-bold text-slate-100">
                     Semua pesanan {currentTable} akan disatukan ke {selectedTarget}
                   </span>
-                  <span className="text-[10px] text-gray-500 block mt-0.5 font-mono">
+                  <span className="text-[10px] text-slate-400 block mt-0.5 font-mono">
                     Total {combinedItemsCount} hidangan menu
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] text-gray-500 block">Total Tagihan Gabungan:</span>
-                  <span className="text-base font-black font-mono text-emerald-700">
+                  <span className="text-[10px] text-slate-400 block">Total Tagihan Gabungan:</span>
+                  <span className="text-base font-black font-mono text-emerald-400">
                     {formatRupiah(combinedTotal)}
                   </span>
                 </div>
@@ -150,11 +150,11 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3 bg-gray-50 border-t border-gray-200 flex justify-end gap-2">
+        <div className="p-3 bg-slate-950 border-t border-slate-800 flex justify-end gap-2">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-100"
+            className="px-4 py-2 border border-slate-700 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800 transition-colors"
           >
             Batal
           </button>
@@ -162,7 +162,7 @@ export const MergeTableModal: React.FC<MergeTableModalProps> = ({
             type="button"
             disabled={!selectedTarget || otherOccupied.length === 0}
             onClick={handleExecuteMerge}
-            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5"
+            className="px-4 py-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 transition-colors active:scale-95"
           >
             <Check className="w-4 h-4" />
             <span>Konfirmasi Gabung ke {selectedTarget}</span>

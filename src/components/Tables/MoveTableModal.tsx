@@ -34,23 +34,23 @@ export const MoveTableModal: React.FC<MoveTableModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-60 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-700 text-slate-100 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 bg-emerald-700 text-white flex items-center justify-between">
+        <div className="p-4 bg-slate-950 text-slate-100 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-              <ArrowRightLeft className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-orange-400">
+              <ArrowRightLeft className="w-5 h-5 text-orange-400" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-white">Pindah Meja (Transfer Table)</h3>
-              <p className="text-[11px] text-emerald-100">
+              <h3 className="font-bold text-sm text-slate-100">Pindah Meja (Transfer Table)</h3>
+              <p className="text-[11px] text-slate-400">
                 Pindahkan pesanan aktif dari {currentTable} ke meja kosong lain
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-emerald-100 hover:text-white hover:bg-white/10 rounded-lg"
+            className="p-1 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -60,44 +60,44 @@ export const MoveTableModal: React.FC<MoveTableModalProps> = ({
         <div className="p-4 space-y-4">
           {/* Current Order Summary */}
           {activeOrder && (
-            <div className="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1">
-              <div className="flex justify-between items-center text-gray-500">
+            <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs space-y-1">
+              <div className="flex justify-between items-center text-slate-400">
                 <span>Pesanan Aktif:</span>
-                <span className="font-mono font-bold text-gray-700">{activeOrder.orderNumber}</span>
+                <span className="font-mono font-bold text-slate-200">{activeOrder.orderNumber}</span>
               </div>
-              <div className="flex justify-between items-center text-gray-500">
+              <div className="flex justify-between items-center text-slate-400">
                 <span>Jumlah Item:</span>
-                <span className="font-mono text-gray-700">{activeOrder.items.length} menu</span>
+                <span className="font-mono text-slate-300">{activeOrder.items.length} menu</span>
               </div>
-              <div className="flex justify-between items-center font-bold text-gray-800 pt-1 border-t border-gray-200">
+              <div className="flex justify-between items-center font-bold text-slate-100 pt-1 border-t border-slate-800">
                 <span>Total Tagihan:</span>
-                <span className="font-mono text-emerald-700">{formatRupiah(activeOrder.total)}</span>
+                <span className="font-mono text-orange-400 font-bold">{formatRupiah(activeOrder.total)}</span>
               </div>
             </div>
           )}
 
           {/* Visual Route */}
           <div className="flex items-center justify-center gap-3 py-2">
-            <div className="px-3.5 py-2 bg-emerald-100 text-emerald-900 border border-emerald-300 rounded-xl font-bold text-sm text-center">
-              <span className="text-[10px] uppercase block text-emerald-700">Asal</span>
+            <div className="px-3.5 py-2 bg-slate-800 text-slate-100 border border-slate-700 rounded-xl font-bold text-sm text-center">
+              <span className="text-[10px] uppercase block text-slate-400">Asal</span>
               {currentTable}
             </div>
-            <ArrowRightLeft className="w-5 h-5 text-gray-400" />
-            <div className="px-3.5 py-2 bg-blue-100 text-blue-900 border border-blue-300 rounded-xl font-bold text-sm text-center">
-              <span className="text-[10px] uppercase block text-blue-700">Tujuan</span>
+            <ArrowRightLeft className="w-5 h-5 text-slate-500" />
+            <div className="px-3.5 py-2 bg-orange-500/20 text-orange-300 border border-orange-500/40 rounded-xl font-bold text-sm text-center">
+              <span className="text-[10px] uppercase block text-orange-400">Tujuan</span>
               {selectedTarget || 'Pilih Meja'}
             </div>
           </div>
 
           {/* Target Table Picker */}
           <div>
-            <label className="text-xs font-bold text-gray-700 block mb-1.5">
+            <label className="text-xs font-bold text-slate-300 block mb-1.5">
               Pilih Meja Tujuan (Tersedia):
             </label>
 
             {availableTables.length === 0 ? (
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0 text-amber-600" />
+              <div className="p-3 bg-amber-950/30 border border-amber-500/30 rounded-xl text-xs text-amber-200 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0 text-amber-400" />
                 <span>Semua meja saat ini sedang terisi. Tidak ada meja kosong yang tersedia.</span>
               </div>
             ) : (
@@ -109,8 +109,8 @@ export const MoveTableModal: React.FC<MoveTableModalProps> = ({
                     onClick={() => setSelectedTarget(t)}
                     className={`py-2 px-1 rounded-xl text-xs font-bold transition-all border text-center ${
                       selectedTarget === t
-                        ? 'bg-blue-600 text-white border-blue-700 shadow-md ring-2 ring-blue-300'
-                        : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200'
+                        ? 'bg-orange-500 text-white border-orange-500 shadow-md ring-1 ring-orange-400'
+                        : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700'
                     }`}
                   >
                     {t}
@@ -122,11 +122,11 @@ export const MoveTableModal: React.FC<MoveTableModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-3 bg-gray-50 border-t border-gray-200 flex justify-end gap-2">
+        <div className="p-3 bg-slate-950 border-t border-slate-800 flex justify-end gap-2">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-100"
+            className="px-4 py-2 border border-slate-700 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800 transition-colors"
           >
             Batal
           </button>
@@ -134,7 +134,7 @@ export const MoveTableModal: React.FC<MoveTableModalProps> = ({
             type="button"
             disabled={!selectedTarget || availableTables.length === 0}
             onClick={handleExecuteMove}
-            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5"
+            className="px-4 py-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 transition-colors active:scale-95"
           >
             <Check className="w-4 h-4" />
             <span>Konfirmasi Pindah Meja</span>

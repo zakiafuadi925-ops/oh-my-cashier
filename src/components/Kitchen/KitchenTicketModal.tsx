@@ -100,32 +100,32 @@ export const KitchenTicketModal: React.FC<KitchenTicketModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
-      <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden border border-gray-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-150">
+      <div className="bg-slate-900 w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden border border-slate-800 text-slate-100">
         {/* Modal Header */}
-        <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-amber-500 text-white">
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950 text-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-amber-600 flex items-center justify-center shadow-inner">
-              <ChefHat className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <ChefHat className="w-5 h-5 text-orange-400" />
             </div>
             <div>
-              <h3 className="font-bold text-sm tracking-wide">Cetak Tiket Dapur (KOT)</h3>
-              <p className="text-[11px] text-amber-100 font-medium">
+              <h3 className="font-bold text-sm tracking-wide text-slate-100">Cetak Tiket Dapur (KOT)</h3>
+              <p className="text-[11px] text-slate-400 font-medium">
                 Kitchen Order Ticket • Standar Printer Thermal 58/80mm
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-amber-100 hover:text-white hover:bg-amber-600 transition-colors"
+            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-100 transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Station Tabs */}
-        <div className="bg-gray-100 px-4 py-2 border-b border-gray-200 flex items-center gap-2">
-          <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+        <div className="bg-slate-950 px-4 py-2 border-b border-slate-800 flex items-center gap-2">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
             Stasiun:
           </span>
           <div className="flex items-center gap-1.5 flex-1">
@@ -134,10 +134,10 @@ export const KitchenTicketModal: React.FC<KitchenTicketModalProps> = ({
                 key={st}
                 type="button"
                 onClick={() => setActiveStation(st)}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   activeStation === st
-                    ? 'bg-amber-600 text-white shadow-xs'
-                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                    ? 'bg-orange-500 text-white shadow-xs'
+                    : 'bg-slate-900 text-slate-300 border border-slate-700 hover:bg-slate-800'
                 }`}
               >
                 {st === 'Semua' && 'Semua Menu'}
@@ -149,7 +149,7 @@ export const KitchenTicketModal: React.FC<KitchenTicketModalProps> = ({
         </div>
 
         {/* Thermal KOT Preview Container */}
-        <div className="flex-1 overflow-y-auto p-4 bg-gray-50 flex justify-center">
+        <div className="flex-1 overflow-y-auto p-4 bg-slate-950/70 flex justify-center">
           <div
             ref={ticketRef}
             className="w-full max-w-[340px] bg-white p-5 rounded-xl border border-gray-300 shadow-sm font-mono text-xs text-gray-900 select-all leading-tight print:shadow-none print:border-none print:w-full print:p-0 print:max-w-none"
@@ -290,19 +290,19 @@ export const KitchenTicketModal: React.FC<KitchenTicketModalProps> = ({
         </div>
 
         {/* Modal Actions */}
-        <div className="p-4 bg-white border-t border-gray-200 flex flex-wrap items-center justify-between gap-2">
+        <div className="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
-              className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="px-3 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? 'Tersalin!' : 'Salin Teks'}</span>
             </button>
 
             <button
               onClick={handleShareWhatsApp}
-              className="px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Share2 className="w-4 h-4" />
               <span>Kirim WA Dapur</span>
@@ -312,13 +312,13 @@ export const KitchenTicketModal: React.FC<KitchenTicketModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-100 rounded-xl text-xs font-semibold transition-colors"
+              className="px-4 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
             >
               Tutup
             </button>
             <button
               onClick={handlePrint}
-              className="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-colors"
+              className="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-md shadow-orange-950/20 transition-colors cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Tiket Dapur (KOT)</span>

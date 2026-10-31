@@ -55,7 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       sublabel: 'Antrean & Tiket',
       icon: ChefHat,
       badge: kitchenCount > 0 ? kitchenCount : undefined,
-      badgeColor: 'bg-amber-500 text-slate-950',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border border-amber-500/40',
     },
     {
       id: 'history' as NavTab,
@@ -135,7 +135,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   {item.badge !== undefined && (
                     <span
                       className={`lg:hidden absolute -top-1.5 -right-2 font-mono text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs ${
-                        item.badgeColor || 'bg-orange-600 text-white'
+                        isActive
+                          ? 'bg-slate-950 text-orange-300 border border-orange-500/40'
+                          : item.badgeColor || 'bg-slate-800 text-slate-200 border border-slate-700'
                       }`}
                     >
                       {item.badge}
@@ -152,8 +154,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       <span
                         className={`font-mono text-[10px] font-bold px-1.5 py-0.2 rounded-full ${
                           isActive
-                            ? 'bg-slate-950 text-orange-300'
-                            : item.badgeColor || 'bg-orange-500 text-white'
+                            ? 'bg-slate-950 text-orange-300 border border-orange-500/40'
+                            : item.badgeColor || 'bg-slate-800 text-slate-200 border border-slate-700'
                         }`}
                       >
                         {item.badge}
@@ -195,7 +197,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               {/* Drawer Header */}
               <div className="p-4 bg-slate-900 border-b border-slate-800 text-white flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl overflow-hidden bg-slate-950 border border-slate-750 flex items-center justify-center shrink-0 shadow-xs ring-1 ring-orange-500/40">
+                  <div className="w-9 h-9 rounded-xl overflow-hidden bg-slate-950 border border-slate-700 flex items-center justify-center shrink-0 shadow-xs ring-1 ring-orange-500/40">
                     <img src="/logo.png" alt="Oh My Cashier Logo" className="w-full h-full object-cover" />
                   </div>
                   <div>
@@ -244,7 +246,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           {item.badge !== undefined && (
                             <span
                               className={`font-mono text-xs font-bold px-2 py-0.5 rounded-full ${
-                                item.badgeColor || 'bg-orange-600 text-white'
+                                isActive
+                                  ? 'bg-slate-950 text-orange-300 border border-orange-500/40'
+                                  : item.badgeColor || 'bg-slate-800 text-slate-200 border border-slate-700'
                               }`}
                             >
                               {item.badge}

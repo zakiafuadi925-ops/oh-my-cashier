@@ -652,7 +652,7 @@ export const POSView: React.FC<POSViewProps> = ({
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold shrink-0 transition-all flex items-center gap-1.5 ${
                     isSelected
                       ? 'bg-orange-500 text-white shadow-xs font-bold'
-                      : 'bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 hover:text-white'
+                      : 'bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/60 hover:text-white'
                   }`}
                 >
                   {isSelected && <span className="font-mono text-[10px]">➜</span>}
@@ -691,13 +691,13 @@ export const POSView: React.FC<POSViewProps> = ({
                     onClick={() => handleProductClick(product)}
                     className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all relative group bg-slate-800 shadow-2xs select-none ${
                       isOutOfStock
-                        ? 'opacity-60 border-slate-800 bg-slate-850 cursor-not-allowed'
-                        : 'border-slate-700/80 hover:border-orange-500/70 hover:shadow-lg active:scale-98 cursor-pointer hover:bg-slate-750'
+                        ? 'opacity-60 border-slate-800 bg-slate-800 cursor-not-allowed'
+                        : 'border-slate-700/80 hover:border-orange-500/70 hover:shadow-lg active:scale-98 cursor-pointer hover:bg-slate-700'
                     }`}
                   >
                     {/* Top Row: Category + Informative Stock Badge */}
                     <div className="flex items-center justify-between w-full mb-1 gap-1">
-                      <span className="text-[10px] font-mono font-medium text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded-md truncate max-w-[80px] border border-slate-750">
+                      <span className="text-[10px] font-mono font-medium text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded-md truncate max-w-[80px] border border-slate-700">
                         {product.category}
                       </span>
 
@@ -807,7 +807,7 @@ export const POSView: React.FC<POSViewProps> = ({
           <button
             type="button"
             onClick={() => setIsMobileCartOpen(false)}
-            className="min-h-[44px] px-3.5 py-1.5 bg-slate-900 hover:bg-slate-850 active:scale-95 text-slate-100 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border border-slate-750 shadow-2xs"
+            className="min-h-[44px] px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 active:scale-95 text-slate-100 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border border-slate-700 shadow-2xs"
           >
             <span className="text-orange-400 font-bold">←</span>
             <span>Kembali ke Menu</span>
@@ -881,7 +881,7 @@ export const POSView: React.FC<POSViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowTableModal(true)}
-                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-750 text-emerald-400 border border-emerald-800/60 rounded-lg text-xs font-bold flex items-center gap-1 shrink-0 transition-colors shadow-2xs"
+                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-800/60 rounded-lg text-xs font-bold flex items-center gap-1 shrink-0 transition-colors shadow-2xs"
                   title="Buka Denah & Manajemen Meja"
                 >
                   <LayoutGrid className="w-3.5 h-3.5 text-emerald-400" />
@@ -1152,7 +1152,7 @@ export const POSView: React.FC<POSViewProps> = ({
                   className={`text-[10px] font-bold px-2 py-0.5 rounded font-mono transition-colors ${
                     discountPercent === d && customDiscountNominal === 0
                       ? 'bg-orange-500 text-white shadow-2xs'
-                      : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-850'
+                      : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'
                   }`}
                   title={d > 20 ? 'Diskon khusus memerlukan PIN supervisor' : undefined}
                 >
@@ -1204,7 +1204,7 @@ export const POSView: React.FC<POSViewProps> = ({
                 type="button"
                 disabled={cart.length === 0}
                 onClick={() => setShowPreBill(true)}
-                className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-850 disabled:opacity-30 disabled:cursor-not-allowed text-amber-300 border border-amber-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
+                className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed text-amber-300 border border-amber-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
                 title="Cetak lembar tagihan sementara untuk meja tamu sebelum bayar"
               >
                 <FileText className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -1215,7 +1215,7 @@ export const POSView: React.FC<POSViewProps> = ({
                 type="button"
                 disabled={cart.length === 0}
                 onClick={() => setShowKitchenTicket(true)}
-                className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-850 disabled:opacity-30 disabled:cursor-not-allowed text-sky-300 border border-sky-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
+                className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed text-sky-300 border border-sky-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
                 title="Cetak Tiket Dapur (KOT) untuk koki / barista sebelum bayar"
               >
                 <ChefHat className="w-3.5 h-3.5 text-sky-400 shrink-0" />
@@ -1228,7 +1228,7 @@ export const POSView: React.FC<POSViewProps> = ({
                     type="button"
                     disabled={cart.length === 0}
                     onClick={handleHoldOrderToTable}
-                    className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-850 disabled:opacity-30 disabled:cursor-not-allowed text-blue-300 border border-blue-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
+                    className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed text-blue-300 border border-blue-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
                     title="Simpan pesanan ke meja ini sebagai Open Bill & kirim ke Dapur"
                   >
                     <BookmarkCheck className="w-3.5 h-3.5 text-blue-400 shrink-0" />
@@ -1239,7 +1239,7 @@ export const POSView: React.FC<POSViewProps> = ({
                     type="button"
                     disabled={cart.length === 0 && !activeTableOrder}
                     onClick={() => setShowSplitBill(true)}
-                    className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-850 disabled:opacity-30 disabled:cursor-not-allowed text-purple-300 border border-purple-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
+                    className="min-h-[42px] py-2 px-1 bg-slate-900 hover:bg-slate-800 disabled:opacity-30 disabled:cursor-not-allowed text-purple-300 border border-purple-800/60 font-bold rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1 transition-colors active:scale-95"
                     title="Pisah tagihan per menu atau bagi sama rata per orang"
                   >
                     <Split className="w-3.5 h-3.5 text-purple-400 shrink-0" />
@@ -1357,7 +1357,7 @@ export const POSView: React.FC<POSViewProps> = ({
       {/* Quick Add Customer Modal */}
       {isNewCustomerModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className="bg-slate-900 border border-slate-750 text-slate-100 rounded-2xl shadow-2xl max-w-sm w-full p-4 space-y-3">
+          <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-sm w-full p-4 space-y-3">
             <h4 className="font-bold text-slate-100 text-sm">Tambah Pelanggan Baru</h4>
             <form onSubmit={handleCreateCustomer} className="space-y-3">
               <div>
@@ -1404,7 +1404,7 @@ export const POSView: React.FC<POSViewProps> = ({
       {/* Camera & Barcode Scanner Simulator Modal */}
       {showCameraScanner && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-xs">
-          <div className="bg-slate-900 border border-slate-750 text-slate-100 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in">
+          <div className="bg-slate-900 border border-slate-700 text-slate-100 rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in">
             {/* Header */}
             <div className="p-4 bg-slate-950 border-b border-slate-800 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -1453,7 +1453,7 @@ export const POSView: React.FC<POSViewProps> = ({
                   <button
                     key={p.id}
                     onClick={() => handleScanBarcodeFromCamera(p.barcode)}
-                    className="p-2.5 rounded-xl border border-slate-800 bg-slate-850 hover:border-orange-500 hover:bg-slate-800 text-left flex items-center justify-between transition-all group"
+                    className="p-2.5 rounded-xl border border-slate-800 bg-slate-800 hover:border-orange-500 hover:bg-slate-800 text-left flex items-center justify-between transition-all group"
                   >
                     <div className="min-w-0 pr-2">
                       <span className="font-bold text-xs text-slate-200 block truncate">{p.name}</span>
@@ -1587,7 +1587,7 @@ export const POSView: React.FC<POSViewProps> = ({
 
       {/* Floating Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-gray-900/90 text-white px-4 py-2 rounded-full text-xs font-semibold shadow-xl border border-gray-700 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 text-slate-100 px-4 py-2 rounded-full text-xs font-semibold shadow-xl border border-slate-700 flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
           <Info className="w-3.5 h-3.5 text-emerald-400" />
           <span>{toastMessage}</span>
         </div>

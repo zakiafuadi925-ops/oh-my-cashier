@@ -249,40 +249,40 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
   const marginPercent = price > 0 ? Math.round((margin / price) * 100) : 0;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3 sm:p-4 backdrop-blur-xs overflow-y-auto">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col my-auto border border-gray-100 animate-in fade-in zoom-in-95 max-h-[92vh]">
+    <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-4 backdrop-blur-xs overflow-y-auto">
+      <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col my-auto border border-slate-800 animate-in fade-in zoom-in-95 max-h-[92vh]">
         {/* Header */}
-        <div className="px-5 py-3.5 bg-emerald-700 text-white flex items-center justify-between shrink-0">
+        <div className="px-5 py-3.5 bg-slate-950 text-slate-100 flex items-center justify-between shrink-0 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center shadow-inner">
-              <Package className="w-4 h-4 text-emerald-100" />
+            <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <Package className="w-4 h-4 text-orange-400" />
             </div>
             <div>
-              <h3 className="font-bold text-sm sm:text-base leading-tight">
+              <h3 className="font-bold text-sm sm:text-base leading-tight text-slate-100">
                 {product ? `Edit Menu: ${product.name}` : 'Tambah Menu Makanan & Minuman Baru'}
               </h3>
-              <p className="text-[11px] text-emerald-100">
+              <p className="text-[11px] text-slate-400">
                 Kelola nama, harga, stok, varian, dan resep bahan baku langsung dari aplikasi
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-200 border border-slate-700 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-gray-200 bg-gray-50 px-5 pt-2 gap-2 shrink-0">
+        <div className="flex border-b border-slate-800 bg-slate-950 px-5 pt-2 gap-2 shrink-0">
           <button
             type="button"
             onClick={() => setActiveTab('info')}
-            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
               activeTab === 'info'
-                ? 'border-emerald-600 text-emerald-800 bg-white rounded-t-lg shadow-2xs'
-                : 'border-transparent text-gray-500 hover:text-gray-800'
+                ? 'border-orange-500 text-orange-400 bg-slate-900 rounded-t-lg'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <Package className="w-3.5 h-3.5" />
@@ -292,16 +292,16 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('variants')}
-            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
               activeTab === 'variants'
-                ? 'border-emerald-600 text-emerald-800 bg-white rounded-t-lg shadow-2xs'
-                : 'border-transparent text-gray-500 hover:text-gray-800'
+                ? 'border-orange-500 text-orange-400 bg-slate-900 rounded-t-lg'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
             <span>2. Varian & Topping</span>
             {variantGroups.length > 0 && (
-              <span className="bg-emerald-100 text-emerald-800 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold">
+              <span className="bg-orange-500/20 text-orange-300 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold border border-orange-500/30">
                 {variantGroups.length}
               </span>
             )}
@@ -310,16 +310,16 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('recipe')}
-            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold border-b-2 transition-all cursor-pointer ${
               activeTab === 'recipe'
-                ? 'border-emerald-600 text-emerald-800 bg-white rounded-t-lg shadow-2xs'
-                : 'border-transparent text-gray-500 hover:text-gray-800'
+                ? 'border-orange-500 text-orange-400 bg-slate-900 rounded-t-lg'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <Boxes className="w-3.5 h-3.5" />
             <span>3. Resep Bahan (BOM)</span>
             {recipeItems.length > 0 && (
-              <span className="bg-blue-100 text-blue-800 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold">
+              <span className="bg-sky-500/20 text-sky-300 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold border border-sky-500/30">
                 {recipeItems.length}
               </span>
             )}
@@ -327,8 +327,8 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
         </div>
 
         {errorMsg && (
-          <div className="mx-5 mt-3 p-2.5 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
+          <div className="mx-5 mt-3 p-2.5 bg-rose-950/40 border border-rose-800 text-rose-300 text-xs rounded-xl flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
             <span>{errorMsg}</span>
           </div>
         )}
@@ -339,8 +339,8 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
           {activeTab === 'info' && (
             <div className="space-y-4">
               <div>
-                <label className="font-bold text-gray-800 block mb-1">
-                  Nama Menu Makanan / Minuman <span className="text-red-500">*</span>
+                <label className="font-bold text-slate-300 block mb-1">
+                  Nama Menu Makanan / Minuman <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -351,18 +351,18 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                     if (errorMsg) setErrorMsg(null);
                   }}
                   placeholder="Contoh: Kopi Susu Aren Oh My Cashier, Mie Goreng Telur, Croissant Butter..."
-                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 text-sm font-semibold text-gray-900 shadow-2xs"
+                  className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-orange-500 text-sm font-semibold text-slate-100 placeholder-slate-400"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="font-bold text-gray-800">Kategori Menu</label>
+                    <label className="font-bold text-slate-300">Kategori Menu</label>
                     <button
                       type="button"
                       onClick={() => setIsAddingNewCategory(!isAddingNewCategory)}
-                      className="text-[10px] text-emerald-700 font-bold hover:underline"
+                      className="text-[10px] text-orange-400 font-bold hover:text-orange-300 transition-colors cursor-pointer"
                     >
                       {isAddingNewCategory ? 'Pilih dari List' : '+ Buat Kategori Baru'}
                     </button>
@@ -374,18 +374,18 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                       value={customCategory}
                       onChange={(e) => setCustomCategory(e.target.value)}
                       placeholder="Ketik kategori baru, e.g. Dessert, Snack..."
-                      className="w-full px-3 py-2 border border-emerald-400 bg-emerald-50/40 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 font-medium"
+                      className="w-full px-3 py-2 bg-slate-950 border border-orange-500/50 rounded-xl outline-none focus:border-orange-500 text-slate-100 placeholder-slate-400 font-medium"
                     />
                   ) : (
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white font-medium"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-orange-500 text-slate-100 font-medium"
                     >
                       {categories
                         .filter((c) => c !== 'Semua')
                         .map((c) => (
-                          <option key={c} value={c}>
+                          <option key={c} value={c} className="bg-slate-900 text-slate-100">
                             {c}
                           </option>
                         ))}
@@ -394,30 +394,30 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="font-bold text-gray-800 block mb-1">Satuan Porsi</label>
+                  <label className="font-bold text-slate-300 block mb-1">Satuan Porsi</label>
                   <select
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 bg-white font-medium"
+                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-orange-500 text-slate-100 font-medium"
                   >
-                    <option value="cup">Cup / Gelas</option>
-                    <option value="porsi">Porsi</option>
-                    <option value="pcs">Pcs / Buah</option>
-                    <option value="botol">Botol</option>
-                    <option value="piring">Piring / Mangkok</option>
-                    <option value="paket">Paket</option>
+                    <option value="cup" className="bg-slate-900 text-slate-100">Cup / Gelas</option>
+                    <option value="porsi" className="bg-slate-900 text-slate-100">Porsi</option>
+                    <option value="pcs" className="bg-slate-900 text-slate-100">Pcs / Buah</option>
+                    <option value="botol" className="bg-slate-900 text-slate-100">Botol</option>
+                    <option value="piring" className="bg-slate-900 text-slate-100">Piring / Mangkok</option>
+                    <option value="paket" className="bg-slate-900 text-slate-100">Paket</option>
                   </select>
                 </div>
               </div>
 
               {/* Price & Cost */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-gray-50 p-3.5 rounded-2xl border border-gray-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
                 <div>
-                  <label className="font-bold text-gray-800 block mb-1">
-                    Harga Jual ke Pelanggan (Rp) <span className="text-red-500">*</span>
+                  <label className="font-bold text-slate-300 block mb-1">
+                    Harga Jual ke Pelanggan (Rp) <span className="text-rose-500">*</span>
                   </label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-xs">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-slate-400 text-xs">
                       Rp
                     </span>
                     <input
@@ -427,19 +427,19 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                       step={500}
                       value={price || ''}
                       onChange={(e) => setPrice(Number(e.target.value) || 0)}
-                      className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 font-mono font-bold text-sm bg-white"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-orange-500 font-mono font-bold text-sm text-slate-100"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="font-bold text-gray-800">Modal / HPP (Rp)</label>
+                    <label className="font-bold text-slate-300">Modal / HPP (Rp)</label>
                     {estimatedHPPFromRecipe > 0 && (
                       <button
                         type="button"
                         onClick={() => setCostPrice(Math.round(estimatedHPPFromRecipe))}
-                        className="text-[10px] text-blue-700 font-bold hover:underline"
+                        className="text-[10px] text-sky-400 hover:text-sky-300 font-bold transition-colors cursor-pointer"
                         title="Gunakan total HPP yang dihitung dari bahan baku"
                       >
                         Pakai HPP Resep: {formatRupiah(Math.round(estimatedHPPFromRecipe))}
@@ -447,7 +447,7 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                     )}
                   </div>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-xs">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-slate-400 text-xs">
                       Rp
                     </span>
                     <input
@@ -456,19 +456,19 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                       step={500}
                       value={costPrice || ''}
                       onChange={(e) => setCostPrice(Number(e.target.value) || 0)}
-                      className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 font-mono text-sm bg-white"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-900 border border-slate-700 rounded-xl outline-none focus:border-orange-500 font-mono text-sm text-slate-100"
                     />
                   </div>
                 </div>
 
                 {/* Profit Margin indicator */}
-                <div className="sm:col-span-2 flex items-center justify-between px-3 py-2 bg-emerald-50 rounded-xl border border-emerald-100">
-                  <span className="text-emerald-900 font-semibold">Estimasi Margin Laba Bersih:</span>
+                <div className="sm:col-span-2 flex items-center justify-between px-3 py-2 bg-slate-900/80 rounded-xl border border-slate-800">
+                  <span className="text-slate-300 font-semibold">Estimasi Margin Laba Bersih:</span>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono font-extrabold text-emerald-800 text-sm">
+                    <span className="font-mono font-extrabold text-emerald-400 text-sm">
                       +{formatRupiah(Math.max(0, margin))}
                     </span>
-                    <span className="bg-emerald-700 text-white font-extrabold text-[11px] px-2 py-0.5 rounded-full">
+                    <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-extrabold text-[11px] px-2 py-0.5 rounded-full">
                       {marginPercent}% Margin
                     </span>
                   </div>
@@ -479,13 +479,13 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="font-bold text-gray-800">Stok Menu Saat Ini</label>
+                    <label className="font-bold text-slate-300">Stok Menu Saat Ini</label>
                     <div className="flex gap-1.5">
                       <button
                         type="button"
                         onClick={() => setStock(0)}
-                        className={`text-[10px] px-2 py-0.5 rounded-md font-bold transition-colors ${
-                          stock === 0 ? 'bg-red-600 text-white' : 'bg-red-50 text-red-600 hover:bg-red-100'
+                        className={`text-[10px] px-2 py-0.5 rounded-md font-bold transition-colors cursor-pointer ${
+                          stock === 0 ? 'bg-rose-600 text-white' : 'bg-rose-950/40 text-rose-400 border border-rose-800/40 hover:bg-rose-900/50'
                         }`}
                       >
                         Set Habis (0)
@@ -493,7 +493,7 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setStock(50)}
-                        className="text-[10px] px-2 py-0.5 rounded-md font-bold bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        className="text-[10px] px-2 py-0.5 rounded-md font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 cursor-pointer"
                       >
                         Set 50
                       </button>
@@ -504,9 +504,9 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                     min={0}
                     value={stock}
                     onChange={(e) => setStock(Number(e.target.value) || 0)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 font-mono text-sm font-bold"
+                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-orange-500 font-mono text-sm font-bold text-slate-100"
                   />
-                  <p className="text-[10px] text-gray-400 mt-1">
+                  <p className="text-[10px] text-slate-400 mt-1">
                     {stock <= 0
                       ? '⚠️ Produk akan berstatus "Habis" dan tidak bisa dipilih kasir.'
                       : `Tersedia ${stock} ${unit} untuk dipesan pelanggan.`}
@@ -515,24 +515,24 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
 
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="font-bold text-gray-800">Barcode / SKU Produk</label>
+                    <label className="font-bold text-slate-300">Barcode / SKU Produk</label>
                     <button
                       type="button"
                       onClick={handleGenerateBarcode}
-                      className="text-[10px] text-emerald-700 font-bold hover:underline flex items-center gap-1"
+                      className="text-[10px] text-orange-400 font-bold hover:text-orange-300 flex items-center gap-1 cursor-pointer transition-colors"
                     >
                       <Sparkles className="w-3 h-3" />
                       <span>Buat Otomatis</span>
                     </button>
                   </div>
                   <div className="relative">
-                    <Barcode className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Barcode className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       value={barcode}
                       onChange={(e) => setBarcode(e.target.value)}
                       placeholder="899..."
-                      className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 font-mono text-xs"
+                      className="w-full pl-9 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-orange-500 font-mono text-xs text-slate-100 placeholder-slate-400"
                     />
                   </div>
                 </div>
@@ -545,15 +545,15 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-gray-900 text-sm">Kelola Varian & Opsi Tambahan</h4>
-                  <p className="text-[11px] text-gray-500">
+                  <h4 className="font-bold text-slate-100 text-sm">Kelola Varian & Opsi Tambahan</h4>
+                  <p className="text-[11px] text-slate-400">
                     Contoh: Ukuran cup (Regular/Large), Tingkat Kemanisan, atau Extra Topping dengan biaya tambahan.
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={handleAddVariantGroup}
-                  className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs flex items-center gap-1 shadow-2xs"
+                  className="px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-xs flex items-center gap-1 shadow-sm transition-colors cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Tambah Kelompok Varian</span>
@@ -561,18 +561,18 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
               </div>
 
               {variantGroups.length === 0 ? (
-                <div className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center space-y-2 bg-gray-50/50">
-                  <Layers className="w-8 h-8 text-gray-300 mx-auto" />
-                  <p className="font-bold text-gray-600 text-xs">Belum ada varian untuk menu ini</p>
-                  <p className="text-[11px] text-gray-400 max-w-sm mx-auto">
+                <div className="p-8 border-2 border-dashed border-slate-800 rounded-2xl text-center space-y-2 bg-slate-950/40">
+                  <Layers className="w-8 h-8 text-slate-400 mx-auto" />
+                  <p className="font-bold text-slate-300 text-xs">Belum ada varian untuk menu ini</p>
+                  <p className="text-[11px] text-slate-400 max-w-sm mx-auto">
                     Produk akan dijual dalam 1 ukuran / tipe standar. Klik "Tambah Kelompok Varian" jika menu ini memiliki opsi ukuran, level pedas, es, atau topping.
                   </p>
                   <button
                     type="button"
                     onClick={handleAddVariantGroup}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-800 hover:bg-emerald-200 font-bold rounded-xl text-xs transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold rounded-xl text-xs transition-colors cursor-pointer"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-3.5 h-3.5 text-orange-400" />
                     <span>Buat Varian Pertama</span>
                   </button>
                 </div>
@@ -581,32 +581,32 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                   {variantGroups.map((group, gIndex) => (
                     <div
                       key={group.id}
-                      className="p-3.5 bg-gray-50 rounded-2xl border border-gray-200 space-y-3"
+                      className="p-3.5 bg-slate-950/70 rounded-2xl border border-slate-800 space-y-3"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex-1 flex items-center gap-2">
-                          <span className="font-bold text-gray-500 text-xs">#{gIndex + 1}</span>
+                          <span className="font-bold text-slate-400 text-xs">#{gIndex + 1}</span>
                           <input
                             type="text"
                             value={group.name}
                             onChange={(e) => handleUpdateGroupName(group.id, e.target.value)}
                             placeholder="Nama Kelompok (e.g. Ukuran Cup, Suhu, Level Gula)..."
-                            className="font-bold text-gray-900 bg-white border border-gray-300 px-2.5 py-1 rounded-lg text-xs flex-1 outline-none focus:ring-1 focus:ring-emerald-500"
+                            className="font-bold text-slate-100 bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg text-xs flex-1 outline-none focus:border-orange-500"
                           />
                         </div>
-                        <label className="flex items-center gap-1.5 text-[11px] font-semibold text-gray-600 cursor-pointer select-none">
+                        <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 cursor-pointer select-none">
                           <input
                             type="checkbox"
                             checked={group.required}
                             onChange={() => handleToggleGroupRequired(group.id)}
-                            className="rounded text-emerald-700 focus:ring-emerald-500"
+                            className="rounded text-orange-500 focus:ring-orange-500 bg-slate-900 border-slate-700"
                           />
                           <span>Wajib Dipilih</span>
                         </label>
                         <button
                           type="button"
                           onClick={() => handleRemoveVariantGroup(group.id)}
-                          className="p-1 text-red-500 hover:bg-red-50 rounded-lg"
+                          className="p-1 text-rose-400 hover:bg-rose-950/40 rounded-lg transition-colors cursor-pointer"
                           title="Hapus Kelompok Varian"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -614,8 +614,8 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                       </div>
 
                       {/* Options list */}
-                      <div className="space-y-2 pl-4 border-l-2 border-emerald-300">
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">
+                      <div className="space-y-2 pl-4 border-l-2 border-orange-500/30">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                           Daftar Opsi & Tambahan Harga:
                         </span>
                         {group.options.map((option) => (
@@ -627,10 +627,10 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                                 handleUpdateOption(group.id, option.id, 'name', e.target.value)
                               }
                               placeholder="Nama Opsi (e.g. Less Sugar, Large, Extra Boba)"
-                              className="flex-1 px-2.5 py-1 bg-white border border-gray-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-emerald-500"
+                              className="flex-1 px-2.5 py-1 bg-slate-900 border border-slate-700 rounded-lg text-xs text-slate-100 outline-none focus:border-orange-500"
                             />
                             <div className="relative w-32 shrink-0">
-                              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-gray-400">
+                              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400">
                                 +Rp
                               </span>
                               <input
@@ -647,13 +647,13 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                                   )
                                 }
                                 placeholder="0"
-                                className="w-full pl-8 pr-2 py-1 bg-white border border-gray-200 rounded-lg text-xs font-mono font-bold outline-none focus:ring-1 focus:ring-emerald-500"
+                                className="w-full pl-8 pr-2 py-1 bg-slate-900 border border-slate-700 rounded-lg text-xs font-mono font-bold text-slate-100 outline-none focus:border-orange-500"
                               />
                             </div>
                             <button
                               type="button"
                               onClick={() => handleRemoveOption(group.id, option.id)}
-                              className="text-gray-400 hover:text-red-500 p-1"
+                              className="text-slate-400 hover:text-rose-400 p-1 transition-colors cursor-pointer"
                               title="Hapus Opsi"
                             >
                               <X className="w-3.5 h-3.5" />
@@ -664,7 +664,7 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleAddOption(group.id)}
-                          className="mt-1 text-[11px] font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+                          className="mt-1 text-[11px] font-bold text-orange-400 hover:text-orange-300 flex items-center gap-1 cursor-pointer transition-colors"
                         >
                           <Plus className="w-3 h-3" />
                           <span>Tambah Opsi Pilihan</span>
@@ -682,8 +682,8 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-gray-900 text-sm">Resep Menu & Pengurangan Stok Bahan</h4>
-                  <p className="text-[11px] text-gray-500">
+                  <h4 className="font-bold text-slate-100 text-sm">Resep Menu & Pengurangan Stok Bahan</h4>
+                  <p className="text-[11px] text-slate-400">
                     Setiap menu ini terjual di kasir, stok bahan baku mentah akan terpotong secara otomatis.
                   </p>
                 </div>
@@ -691,67 +691,67 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                   <button
                     type="button"
                     onClick={handleAddRecipeIngredient}
-                    className="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded-xl font-bold text-xs flex items-center gap-1 shadow-2xs"
+                    className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-3.5 h-3.5 text-orange-400" />
                     <span>Hubungkan Bahan Baku</span>
                   </button>
                 )}
               </div>
 
               {ingredients.length === 0 ? (
-                <div className="p-6 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-xs">
+                <div className="p-6 bg-amber-950/30 rounded-2xl border border-amber-800/40 text-amber-200 text-xs">
                   <p className="font-bold mb-1">Belum Ada Data Bahan Baku di Sistem</p>
-                  <p className="text-[11px] text-amber-800">
+                  <p className="text-[11px] text-amber-300">
                     Anda dapat menambahkan daftar bahan mentah (seperti Biji Kopi, Susu UHT, Sirup, Tepung) di tab <b>"Bahan Baku"</b> pada sidebar terlebih dahulu.
                   </p>
                 </div>
               ) : recipeItems.length === 0 ? (
-                <div className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center space-y-2 bg-gray-50/50">
-                  <Boxes className="w-8 h-8 text-gray-300 mx-auto" />
-                  <p className="font-bold text-gray-600 text-xs">Belum ada bahan baku yang dihubungkan ke menu ini</p>
-                  <p className="text-[11px] text-gray-400 max-w-sm mx-auto">
+                <div className="p-8 border-2 border-dashed border-slate-800 rounded-2xl text-center space-y-2 bg-slate-950/40">
+                  <Boxes className="w-8 h-8 text-slate-400 mx-auto" />
+                  <p className="font-bold text-slate-300 text-xs">Belum ada bahan baku yang dihubungkan ke menu ini</p>
+                  <p className="text-[11px] text-slate-400 max-w-sm mx-auto">
                     Hubungkan bahan seperti kopi, susu, atau sirup agar stok inventaris dapur berkurang otomatis saat order diselesaikan di kasir.
                   </p>
                   <button
                     type="button"
                     onClick={handleAddRecipeIngredient}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-800 hover:bg-blue-200 font-bold rounded-xl text-xs transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold rounded-xl text-xs transition-colors cursor-pointer"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-3.5 h-3.5 text-orange-400" />
                     <span>Hubungkan Bahan Sekarang</span>
                   </button>
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs text-gray-600">
-                      <thead className="bg-gray-100 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                  <div className="overflow-x-auto rounded-xl border border-slate-800">
+                    <table className="w-full text-left text-xs text-slate-300">
+                      <thead className="bg-slate-950 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         <tr>
-                          <th className="px-3 py-2 rounded-l-lg">Bahan Baku</th>
+                          <th className="px-3 py-2">Bahan Baku</th>
                           <th className="px-3 py-2 text-right">Takaran Per Porsi</th>
                           <th className="px-3 py-2 text-right">Biaya Satuan</th>
                           <th className="px-3 py-2 text-right">Subtotal Modal</th>
-                          <th className="px-2 py-2 text-center rounded-r-lg">Aksi</th>
+                          <th className="px-2 py-2 text-center">Aksi</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-100">
+                      <tbody className="divide-y divide-slate-800 bg-slate-900">
                         {recipeItems.map((item, idx) => {
                           const ing = ingredients.find((i) => i.id === item.ingredientId);
                           const subCost = ing ? (ing.costPerUnit || 0) * item.amount : 0;
 
                           return (
-                            <tr key={idx} className="hover:bg-gray-50">
+                            <tr key={idx} className="hover:bg-slate-800/50">
                               <td className="px-3 py-2.5">
                                 <select
                                   value={item.ingredientId}
                                   onChange={(e) =>
                                     handleUpdateRecipeIngredient(idx, 'ingredientId', e.target.value)
                                   }
-                                  className="w-full px-2 py-1 bg-white border border-gray-300 rounded-lg text-xs outline-none font-medium"
+                                  className="w-full px-2 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-100 outline-none font-medium"
                                 >
                                   {ingredients.map((ingItem) => (
-                                    <option key={ingItem.id} value={ingItem.id}>
+                                    <option key={ingItem.id} value={ingItem.id} className="bg-slate-900 text-slate-100">
                                       {ingItem.name} ({ingItem.unit})
                                     </option>
                                   ))}
@@ -767,24 +767,24 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                                     onChange={(e) =>
                                       handleUpdateRecipeIngredient(idx, 'amount', e.target.value)
                                     }
-                                    className="w-20 px-2 py-1 bg-white border border-gray-300 rounded-lg text-xs font-mono font-bold text-right outline-none"
+                                    className="w-20 px-2 py-1 bg-slate-950 border border-slate-700 rounded-lg text-xs font-mono font-bold text-right text-slate-100 outline-none"
                                   />
-                                  <span className="text-gray-500 font-semibold text-[11px] w-8 text-left">
+                                  <span className="text-slate-400 font-semibold text-[11px] w-8 text-left">
                                     {ing?.unit || item.unit}
                                   </span>
                                 </div>
                               </td>
-                              <td className="px-3 py-2.5 text-right font-mono text-gray-500">
+                              <td className="px-3 py-2.5 text-right font-mono text-slate-400">
                                 {ing ? formatRupiah(ing.costPerUnit) : '-'}
                               </td>
-                              <td className="px-3 py-2.5 text-right font-mono font-bold text-gray-800">
+                              <td className="px-3 py-2.5 text-right font-mono font-bold text-slate-100">
                                 {formatRupiah(Math.round(subCost))}
                               </td>
                               <td className="px-2 py-2.5 text-center">
                                 <button
                                   type="button"
                                   onClick={() => handleRemoveRecipeIngredient(idx)}
-                                  className="p-1 text-red-500 hover:bg-red-50 rounded"
+                                  className="p-1 text-rose-400 hover:bg-rose-950/40 rounded transition-colors cursor-pointer"
                                   title="Hapus Bahan"
                                 >
                                   <Trash2 className="w-3.5 h-3.5" />
@@ -798,21 +798,21 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                   </div>
 
                   {/* Summary Box */}
-                  <div className="p-3 bg-blue-50/70 border border-blue-200 rounded-xl flex items-center justify-between">
+                  <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
                     <div>
-                      <span className="font-bold text-blue-900 block text-xs">Total Modal Bahan (HPP Resep):</span>
-                      <span className="text-[11px] text-blue-700">
+                      <span className="font-bold text-slate-200 block text-xs">Total Modal Bahan (HPP Resep):</span>
+                      <span className="text-[11px] text-slate-400">
                         {recipeItems.length} bahan baku akan berkurang setiap 1 {unit} pesanan dibuat.
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="font-mono font-extrabold text-blue-950 text-sm block">
+                      <span className="font-mono font-extrabold text-sky-400 text-sm block">
                         {formatRupiah(Math.round(estimatedHPPFromRecipe))}
                       </span>
                       <button
                         type="button"
                         onClick={() => setCostPrice(Math.round(estimatedHPPFromRecipe))}
-                        className="text-[10px] text-blue-700 underline font-bold"
+                        className="text-[10px] text-sky-400 hover:text-sky-300 underline font-bold cursor-pointer"
                       >
                         Pasang sebagai Modal (HPP)
                       </button>
@@ -824,26 +824,26 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
           )}
 
           {/* Bottom Actions */}
-          <div className="pt-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-2">
+          <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
             <div>
               {product && onDelete && (
                 showDeleteConfirm ? (
-                  <div className="flex items-center gap-1.5 bg-red-50 p-1.5 rounded-xl border border-red-200">
-                    <span className="text-[11px] text-red-700 font-bold px-1">Yakin hapus?</span>
+                  <div className="flex items-center gap-1.5 bg-rose-950/40 p-1.5 rounded-xl border border-rose-800">
+                    <span className="text-[11px] text-rose-300 font-bold px-1">Yakin hapus?</span>
                     <button
                       type="button"
                       onClick={() => {
                         onDelete(product.id);
                         onClose();
                       }}
-                      className="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold"
+                      className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
                     >
                       Ya, Hapus
                     </button>
                     <button
                       type="button"
                       onClick={() => setShowDeleteConfirm(false)}
-                      className="px-2 py-1 bg-white border border-gray-300 text-gray-600 rounded-lg text-xs font-bold"
+                      className="px-2 py-1 bg-slate-800 border border-slate-700 text-slate-300 rounded-lg text-xs font-bold hover:bg-slate-700 transition-colors cursor-pointer"
                     >
                       Batal
                     </button>
@@ -852,7 +852,7 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
-                    className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl font-bold text-xs flex items-center gap-1 transition-colors"
+                    className="px-3 py-2 text-rose-400 hover:bg-rose-950/40 rounded-xl font-bold text-xs flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     <span>Hapus Menu</span>
@@ -865,13 +865,13 @@ export const ProductEditorModal: React.FC<ProductEditorModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 border border-gray-300 hover:bg-gray-100 text-gray-700 font-bold rounded-xl text-xs transition-colors"
+                className="px-4 py-2 border border-slate-700 hover:bg-slate-800 text-slate-300 font-bold rounded-xl text-xs transition-colors cursor-pointer"
               >
                 Batal
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs shadow-md shadow-emerald-700/20 flex items-center gap-1.5 transition-all"
+                className="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-xs shadow-md shadow-orange-950/30 flex items-center gap-1.5 transition-all cursor-pointer"
               >
                 <Check className="w-4 h-4" />
                 <span>Simpan Perubahan Menu</span>

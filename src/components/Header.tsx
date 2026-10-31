@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onToggleMobileMenu}
-            className="md:hidden p-2 -ml-1 text-slate-300 hover:text-white hover:bg-slate-850 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors"
+            className="md:hidden p-2 -ml-1 text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors"
             title="Buka Menu Navigasi"
           >
             <Menu className="w-5 h-5" />
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenShiftTab}
-          className="flex items-center gap-1.5 text-xs font-mono bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-slate-700/80 transition-all min-h-[36px] sm:min-h-[40px] shrink-0 shadow-sm active:scale-95"
+          className="flex items-center gap-1.5 text-xs font-mono bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-slate-700/80 transition-all min-h-[36px] sm:min-h-[40px] shrink-0 shadow-sm active:scale-95"
           title="Klik untuk melihat detail shift kasir"
         >
           <span className="text-orange-400 font-bold">➜</span>

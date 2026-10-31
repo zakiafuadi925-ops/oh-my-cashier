@@ -85,36 +85,36 @@ export const CupLabelModal: React.FC<CupLabelModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden border border-gray-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-xs animate-in fade-in duration-150">
+      <div className="bg-slate-900 w-full max-w-md rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden border border-slate-800 text-slate-100">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 flex items-center justify-between bg-sky-600 text-white">
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950 text-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-sky-700 flex items-center justify-center shadow-inner">
-              <Tag className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+              <Tag className="w-5 h-5 text-orange-400" />
             </div>
             <div>
-              <h3 className="font-bold text-sm tracking-wide">Cetak Label Stiker Cup (TSPL)</h3>
-              <p className="text-[11px] text-sky-100 font-medium">
+              <h3 className="font-bold text-sm tracking-wide text-slate-100">Cetak Label Stiker Cup (TSPL)</h3>
+              <p className="text-[11px] text-slate-400 font-medium">
                 Ukuran Standar Label Cup 40x30mm / 50x30mm
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-sky-100 hover:text-white hover:bg-sky-700 transition-colors"
+            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-100 transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-4 bg-gray-50 flex flex-col items-center justify-center">
+        <div className="flex-1 overflow-y-auto p-4 bg-slate-950/70 flex flex-col items-center justify-center">
           {cupInstances.length === 0 ? (
-            <div className="text-center p-8 text-gray-500">
-              <Tag className="w-12 h-12 text-gray-300 mx-auto mb-2" />
-              <p className="font-bold text-sm text-gray-700">Tidak Ada Item Minuman</p>
-              <p className="text-xs text-gray-400 mt-1">
+            <div className="text-center p-8 text-slate-400">
+              <Tag className="w-12 h-12 text-slate-600 mx-auto mb-2" />
+              <p className="font-bold text-sm text-slate-200">Tidak Ada Item Minuman</p>
+              <p className="text-xs text-slate-400 mt-1">
                 Pesanan ini tidak memiliki menu berlabel cup/minuman untuk dicetak.
               </p>
             </div>
@@ -122,21 +122,21 @@ export const CupLabelModal: React.FC<CupLabelModalProps> = ({
             <div className="w-full flex flex-col items-center space-y-4">
               {/* Pagination bar */}
               <div className="flex items-center justify-between w-full max-w-[320px] px-1 text-xs">
-                <span className="font-semibold text-gray-600">
-                  Label Cup: <b>{activeLabelIndex + 1}</b> dari <b>{cupInstances.length}</b>
+                <span className="font-semibold text-slate-300">
+                  Label Cup: <b className="text-slate-100">{activeLabelIndex + 1}</b> dari <b className="text-slate-100">{cupInstances.length}</b>
                 </span>
                 <div className="flex items-center gap-1">
                   <button
                     disabled={activeLabelIndex === 0}
                     onClick={() => setActiveLabelIndex((p) => Math.max(0, p - 1))}
-                    className="p-1 rounded border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-40"
+                    className="p-1 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 disabled:opacity-40 transition-colors cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     disabled={activeLabelIndex === cupInstances.length - 1}
                     onClick={() => setActiveLabelIndex((p) => Math.min(cupInstances.length - 1, p + 1))}
-                    className="p-1 rounded border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-40"
+                    className="p-1 rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 disabled:opacity-40 transition-colors cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -207,7 +207,7 @@ export const CupLabelModal: React.FC<CupLabelModalProps> = ({
                 </div>
               </div>
 
-              <p className="text-[11px] text-gray-400 text-center">
+              <p className="text-[11px] text-slate-400 text-center">
                 Kompatibel dengan printer label thermal (Zijiang, Xprinter, Panda, Bluetooth Barcode Printer).
               </p>
             </div>
@@ -215,27 +215,27 @@ export const CupLabelModal: React.FC<CupLabelModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 bg-white border-t border-gray-200 flex items-center justify-between gap-2">
+        <div className="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-2">
           <button
             onClick={handleCopy}
             disabled={cupInstances.length === 0}
-            className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors disabled:opacity-40"
+            className="px-3 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors disabled:opacity-40 cursor-pointer"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Tersalin' : 'Salin Data'}</span>
           </button>
 
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-100 rounded-xl text-xs font-semibold transition-colors"
+              className="px-4 py-2 border border-slate-700 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
             >
               Tutup
             </button>
             <button
               onClick={handlePrint}
               disabled={cupInstances.length === 0}
-              className="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-colors disabled:opacity-40"
+              className="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold flex items-center gap-2 shadow-md shadow-orange-950/20 transition-colors disabled:opacity-40 cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Label Stiker</span>

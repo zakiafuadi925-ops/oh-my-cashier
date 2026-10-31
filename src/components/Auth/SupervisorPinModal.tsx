@@ -45,24 +45,24 @@ export const SupervisorPinModal: React.FC<SupervisorPinModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-xs w-full overflow-hidden p-5 flex flex-col items-center animate-in fade-in zoom-in-95">
+    <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-xs w-full overflow-hidden p-5 flex flex-col items-center animate-in fade-in zoom-in-95">
         {/* Close */}
         <div className="w-full flex justify-between items-center mb-2">
-          <div className="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center">
             <ShieldAlert className="w-4 h-4" />
           </div>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 flex items-center justify-center"
+            className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Title */}
-        <h4 className="font-bold text-gray-900 text-sm text-center">{actionTitle}</h4>
-        <p className="text-[11px] text-gray-500 text-center mt-1">
+        <h4 className="font-bold text-slate-100 text-sm text-center">{actionTitle}</h4>
+        <p className="text-[11px] text-slate-400 text-center mt-1">
           {actionDescription || 'Masukkan 4 digit PIN Manajer / Supervisor untuk melanjutkan aksi ini.'}
         </p>
 
@@ -75,10 +75,10 @@ export const SupervisorPinModal: React.FC<SupervisorPinModalProps> = ({
                 key={i}
                 className={`w-3.5 h-3.5 rounded-full transition-all ${
                   error
-                    ? 'bg-red-500 scale-110'
+                    ? 'bg-rose-500 scale-110 shadow-sm shadow-rose-500/50'
                     : isFilled
-                    ? 'bg-emerald-700 scale-105'
-                    : 'bg-gray-200'
+                    ? 'bg-orange-500 scale-105 shadow-sm shadow-orange-500/50'
+                    : 'bg-slate-800 border border-slate-700'
                 }`}
               />
             );
@@ -86,12 +86,12 @@ export const SupervisorPinModal: React.FC<SupervisorPinModalProps> = ({
         </div>
 
         {error && (
-          <p className="text-[11px] font-bold text-red-600 mb-2 animate-bounce">
+          <p className="text-[11px] font-bold text-rose-400 mb-2 animate-bounce">
             PIN Salah! Silakan periksa kembali.
           </p>
         )}
 
-        <p className="text-[10px] text-gray-400 mb-3">Masukkan 4 digit PIN otorisasi supervisor</p>
+        <p className="text-[10px] text-slate-400 mb-3">Masukkan 4 digit PIN otorisasi supervisor</p>
 
         {/* Numpad */}
         <div className="grid grid-cols-3 gap-2 w-full">
@@ -100,7 +100,7 @@ export const SupervisorPinModal: React.FC<SupervisorPinModalProps> = ({
               key={digit}
               type="button"
               onClick={() => handleDigit(digit)}
-              className="py-3 rounded-xl bg-gray-50 hover:bg-emerald-50 active:bg-emerald-100 text-gray-800 font-bold text-base border border-gray-200 transition-colors"
+              className="py-3 rounded-xl bg-slate-950/70 hover:bg-slate-800 active:bg-slate-700 text-slate-100 font-bold text-base border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer"
             >
               {digit}
             </button>
@@ -108,21 +108,21 @@ export const SupervisorPinModal: React.FC<SupervisorPinModalProps> = ({
           <button
             type="button"
             onClick={handleClear}
-            className="py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold text-xs border border-gray-200"
+            className="py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 font-semibold text-xs border border-slate-700 transition-colors cursor-pointer"
           >
             Clear
           </button>
           <button
             type="button"
             onClick={() => handleDigit('0')}
-            className="py-3 rounded-xl bg-gray-50 hover:bg-emerald-50 active:bg-emerald-100 text-gray-800 font-bold text-base border border-gray-200"
+            className="py-3 rounded-xl bg-slate-950/70 hover:bg-slate-800 active:bg-slate-700 text-slate-100 font-bold text-base border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer"
           >
             0
           </button>
           <button
             type="button"
             onClick={handleBackspace}
-            className="py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold flex items-center justify-center border border-gray-200"
+            className="py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-slate-100 font-semibold flex items-center justify-center border border-slate-700 transition-colors cursor-pointer"
           >
             <Delete className="w-4 h-4" />
           </button>

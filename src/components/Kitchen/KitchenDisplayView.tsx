@@ -152,7 +152,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
       {/* Top KDS Header */}
       <div className="p-3 sm:p-4 bg-slate-950 border-b border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+          <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-orange-400">
             <ChefHat className="w-6 h-6" />
           </div>
           <div>
@@ -160,7 +160,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               <h2 className="text-base sm:text-lg font-black text-white tracking-wide">
                 Layar Dapur & Antrean (KDS)
               </h2>
-              <span className="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-wider">
+              <span className="px-2 py-0.5 rounded-full bg-slate-800 text-orange-400 border border-orange-500/30 text-[10px] font-bold uppercase tracking-wider font-mono">
                 Live Kitchen
               </span>
             </div>
@@ -178,7 +178,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               onClick={() => setStationFilter('Semua')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 stationFilter === 'Semua'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm'
+                  ? 'bg-orange-500 text-white shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -188,7 +188,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               onClick={() => setStationFilter('Dapur')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 stationFilter === 'Dapur'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm'
+                  ? 'bg-orange-500 text-white shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -199,7 +199,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               onClick={() => setStationFilter('Barista')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 stationFilter === 'Barista'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm'
+                  ? 'bg-orange-500 text-white shadow-sm'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -242,7 +242,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               onClick={() => setStatusFilter(tab.id as KitchenStatus | 'Semua Aktif')}
               className={`px-3 py-1.5 rounded-lg font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
                 statusFilter === tab.id
-                  ? 'bg-slate-800 text-amber-400 border border-amber-500/40 shadow-xs'
+                  ? 'bg-slate-800 text-orange-400 border border-orange-500/40 shadow-xs'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
@@ -250,7 +250,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
               <span
                 className={`px-1.5 py-0.2 rounded-full text-[10px] font-black ${
                   statusFilter === tab.id
-                    ? 'bg-amber-500 text-slate-950'
+                    ? 'bg-orange-500 text-white'
                     : 'bg-slate-800 text-slate-300'
                 }`}
               >
@@ -300,7 +300,7 @@ export const KitchenDisplayView: React.FC<KitchenDisplayViewProps> = ({
             {onNavigateToPOS && (
               <button
                 onClick={onNavigateToPOS}
-                className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition-colors flex items-center gap-2 shadow-lg shadow-amber-500/20"
+                className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-xs transition-colors flex items-center gap-2 shadow-lg shadow-orange-950/30"
               >
                 <Utensils className="w-4 h-4" />
                 <span>Buka Kasir & Buat Pesanan Baru</span>

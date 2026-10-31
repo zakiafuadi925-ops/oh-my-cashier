@@ -58,19 +58,19 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-xs">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-emerald-50/50">
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
           <div>
-            <h3 className="font-bold text-gray-900 text-lg leading-tight">{product.name}</h3>
-            <p className="text-emerald-700 font-semibold text-sm">
+            <h3 className="font-bold text-slate-100 text-lg leading-tight">{product.name}</h3>
+            <p className="text-orange-400 font-semibold text-sm">
               Mulai {formatRupiah(product.price)}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white hover:bg-gray-100 flex items-center justify-center text-gray-500 shadow-xs border border-gray-200"
+            className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-200 border border-slate-700 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -84,11 +84,11 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
               return (
                 <div key={group.id} className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
                       {group.name}
-                      {group.required && <span className="text-red-500 ml-1">*</span>}
+                      {group.required && <span className="text-rose-500 ml-1">*</span>}
                     </label>
-                    <span className="text-[11px] text-gray-400">Pilih salah satu</span>
+                    <span className="text-[11px] text-slate-400">Pilih salah satu</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {group.options.map((opt) => {
@@ -98,22 +98,22 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
                           type="button"
                           key={opt.id}
                           onClick={() => handleSelectOption(group.name, opt.name, opt.extraPrice)}
-                          className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                          className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
                             isSelected
-                              ? 'border-emerald-600 bg-emerald-50/70 text-emerald-900 ring-2 ring-emerald-500/20'
-                              : 'border-gray-200 hover:border-gray-300 text-gray-700 bg-white'
+                              ? 'border-orange-500 bg-orange-500/15 text-orange-200 ring-1 ring-orange-500/30'
+                              : 'border-slate-800 hover:border-slate-700 text-slate-300 bg-slate-950/70 hover:bg-slate-800/60'
                           }`}
                         >
                           <div className="flex items-center justify-between w-full">
                             <span className="font-medium text-xs truncate">{opt.name}</span>
-                            {isSelected && <Check className="w-4 h-4 text-emerald-600 shrink-0 ml-1" />}
+                            {isSelected && <Check className="w-4 h-4 text-orange-400 shrink-0 ml-1" />}
                           </div>
                           {opt.extraPrice > 0 ? (
-                            <span className="text-[11px] font-semibold text-emerald-700 mt-1">
+                            <span className="text-[11px] font-semibold text-orange-400 mt-1">
                               +{formatRupiah(opt.extraPrice)}
                             </span>
                           ) : (
-                            <span className="text-[10px] text-gray-400 mt-1">Gratis</span>
+                            <span className="text-[10px] text-slate-400 mt-1">Gratis</span>
                           )}
                         </button>
                       );
@@ -123,12 +123,12 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
               );
             })
           ) : (
-            <p className="text-xs text-gray-500 italic">Produk standar tanpa pilihan varian khusus.</p>
+            <p className="text-xs text-slate-400 italic">Produk standar tanpa pilihan varian khusus.</p>
           )}
 
           {/* Notes */}
-          <div className="space-y-1">
-            <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
               Catatan Pesanan (Opsional)
             </label>
             <input
@@ -136,26 +136,26 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Contoh: jangan terlalu manis, bungkus terpisah..."
-              className="w-full text-xs px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+              className="w-full text-xs px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-orange-500 transition-colors"
             />
           </div>
 
           {/* Quantity selector */}
-          <div className="pt-2 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-sm font-semibold text-gray-700">Jumlah Pesanan</span>
+          <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span className="text-sm font-semibold text-slate-300">Jumlah Pesanan</span>
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                className="w-8 h-8 rounded-lg border border-slate-700 bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-slate-700 hover:text-white transition-colors cursor-pointer"
               >
                 <Minus className="w-4 h-4" />
               </button>
-              <span className="w-6 text-center font-bold text-gray-900">{quantity}</span>
+              <span className="w-6 text-center font-bold text-slate-100">{quantity}</span>
               <button
                 type="button"
                 onClick={() => setQuantity((q) => q + 1)}
-                className="w-8 h-8 rounded-lg border border-emerald-600 bg-emerald-50 text-emerald-700 flex items-center justify-center hover:bg-emerald-100"
+                className="w-8 h-8 rounded-lg border border-slate-700 bg-slate-800 flex items-center justify-center text-slate-100 hover:bg-slate-700 hover:border-slate-600 transition-colors cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
               </button>
@@ -165,7 +165,7 @@ export const ProductVariantModal: React.FC<ProductVariantModalProps> = ({
           {/* Footer Submit */}
           <button
             type="submit"
-            className="w-full mt-2 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl flex items-center justify-between px-4 shadow-md transition-colors"
+            className="w-full mt-2 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl flex items-center justify-between px-4 shadow-md shadow-orange-950/20 active:scale-98 transition-all cursor-pointer"
           >
             <span>Tambahkan ke Pesanan</span>
             <span className="font-mono text-base">{formatRupiah(totalPrice)}</span>
