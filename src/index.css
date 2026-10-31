@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0f172a;       /* Slate 900 */
+  --bg-surface: #1e293b;       /* Slate 800 */
+  --bg-sidebar: #020617;       /* Slate 950 */
+  --border-subtle: #334155;    /* Slate 700 */
+  --text-primary: #f8fafc;     /* Slate 50 */
+  --text-muted: #94a3b8;       /* Slate 400 */
+  --color-brand: #f97316;      /* Orange 500 */
+  --color-success: #10b981;    /* Emerald 500 */
+  --color-warning: #f59e0b;    /* Amber 500 */
+  --color-danger: #f43f5e;     /* Rose 500 */
+  --color-info: #3b82f6;       /* Blue 500 */
+}
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #f8fafc;
+    background-color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom modern dark scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Thermal receipt printable rules */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #thermal-receipt-print-area,
+  #thermal-receipt-print-area * {
+    visibility: visible;
+  }
+  #thermal-receipt-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+}

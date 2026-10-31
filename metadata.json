@@ -1,0 +1,8 @@
+{
+  "name": "Oh My Cashier!",
+  "description": "Oh My Cashier! - Point of Sale (POS) modern bertema terminal shell (Oh My Zsh) untuk kafe, restoran, dan UMKM kuliner dengan manajemen meja, split bill, stok resep, struk thermal, dan siap build ke Android.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
