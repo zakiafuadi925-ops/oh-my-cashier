@@ -7,6 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Zack Cyberpunk Theme Colors
+        zack: {
+          darkBg: '#0b0f19',      // Warna latar belakang utama (gelap pekat)
+          cardBg: '#111827',      // Warna latar belakang kartu/kontainer
+          border: '#1f2937',      // Warna garis pembatas (border) yang tipis
+          accentGreen: '#10b981', // Warna hijau aksen (badge & indikator)
+          accentPurple: '#8b5cf6',// Warna ungu aksen (ikon & highlight)
+          textMain: '#f3f4f6',    // Warna teks utama (putih pudar/terang)
+          textMuted: '#9ca3af',   // Warna teks sekunder/deskripsi (abu-abu)
+        },
         // Semantic Brand Accent (Oh My Cashier vibrant orange/coral)
         brand: {
           DEFAULT: '#f97316',

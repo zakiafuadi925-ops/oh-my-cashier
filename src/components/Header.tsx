@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StoreSettings, Shift, LicenseInfo } from '../types';
-import { Clock, Store, UserCheck, Wifi, Menu, Key, ShieldCheck } from 'lucide-react';
+import { StoreSettings, Shift, LicenseInfo, AppTheme } from '../types';
+import { Clock, Store, UserCheck, Wifi, Menu, Key, ShieldCheck, Palette, Zap } from 'lucide-react';
 
 interface HeaderProps {
   settings: StoreSettings;
@@ -9,6 +9,8 @@ interface HeaderProps {
   onToggleMobileMenu?: () => void;
   licenseInfo?: LicenseInfo;
   onOpenLicenseModal?: () => void;
+  theme?: AppTheme;
+  onToggleTheme?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,6 +20,8 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMobileMenu,
   licenseInfo,
   onOpenLicenseModal,
+  theme = 'cyberpunk',
+  onToggleTheme,
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -122,8 +126,44 @@ export const Header: React.FC<HeaderProps> = ({
         </span>
       </div>
 
-      {/* Right - Shift info & quick status */}
+      {/* Right - Shift info, Theme switcher & quick status */}
       <div className="flex items-center gap-2 sm:gap-3">
+        {/* Cyberpunk / Slate Theme Switcher Button */}
+        {onToggleTheme && (
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            title={
+              theme === 'cyberpunk'
+                ? 'Tema Cyberpunk Zack Aktif (Klik untuk beralih ke Slate)'
+                : 'Tema Slate Aktif (Klik untuk beralih ke Cyberpunk Zack)'
+            }
+            className={`flex items-center gap-1.5 text-xs font-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border transition-all min-h-[36px] sm:min-h-[40px] shrink-0 shadow-sm active:scale-95 ${
+              theme === 'cyberpunk'
+                ? 'bg-[#111827] text-[#8b5cf6] border-[#8b5cf6]/70 hover:border-[#8b5cf6] hover:bg-[#1f2937] cyberpunk-glow-purple ring-1 ring-[#8b5cf6]/40'
+                : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            {theme === 'cyberpunk' ? (
+              <>
+                <Zap className="w-3.5 h-3.5 text-[#10b981] fill-[#10b981] animate-pulse shrink-0" />
+                <span className="font-bold text-[11px] sm:text-xs text-[#f3f4f6]">
+                  Cyberpunk
+                </span>
+                <span className="w-2 h-2 rounded-full bg-[#10b981] inline-block shadow-xs" />
+              </>
+            ) : (
+              <>
+                <Palette className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+                <span className="font-semibold text-[11px] sm:text-xs text-slate-200">
+                  Slate
+                </span>
+                <span className="text-[10px] text-slate-500 hidden sm:inline">[theme]</span>
+              </>
+            )}
+          </button>
+        )}
+
         <div className="hidden sm:flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-slate-900/90 px-2.5 py-1 rounded-md border border-slate-800">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
           <span className="font-semibold text-[11px]">connected</span>

@@ -8,6 +8,7 @@ import {
   Shift,
   OhMyCashierBackupData,
   LicenseInfo,
+  AppTheme,
 } from '../../types';
 import { playSound } from '../../utils/audio';
 import {
@@ -35,6 +36,9 @@ import {
   ShieldCheck,
   Smartphone,
   Award,
+  Palette,
+  Zap,
+  Sparkles,
 } from 'lucide-react';
 import { SupervisorPinModal } from '../Auth/SupervisorPinModal';
 import { RestorePreviewModal } from './RestorePreviewModal';
@@ -55,6 +59,8 @@ interface SettingsViewProps {
   onRestoreFullDatabase?: (backup: OhMyCashierBackupData) => void;
   licenseInfo: LicenseInfo;
   onUpdateLicense: (newLicense: LicenseInfo) => void;
+  theme?: AppTheme;
+  onThemeChange?: (newTheme: AppTheme) => void;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
@@ -72,6 +78,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onRestoreFullDatabase,
   licenseInfo,
   onUpdateLicense,
+  theme = 'cyberpunk',
+  onThemeChange,
 }) => {
   const [formData, setFormData] = useState<StoreSettings>(settings);
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -274,6 +282,142 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       <div className="flex-1 p-4 overflow-y-auto max-w-4xl space-y-4">
+        {/* Card 0: Tema Antarmuka (Cyberpunk / Slate) */}
+        {onThemeChange && (
+          <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <Palette className="w-4 h-4 text-orange-400" />
+                <span>Tema & Tampilan Antarmuka (UI Theme)</span>
+              </h3>
+              <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-slate-900 border border-slate-700 text-slate-300">
+                Mode:{' '}
+                <strong className={theme === 'cyberpunk' ? 'text-[#8b5cf6]' : 'text-orange-400'}>
+                  {theme === 'cyberpunk' ? 'Cyberpunk (Zack)' : 'Slate Neutral'}
+                </strong>
+              </span>
+            </div>
+
+            <p className="text-xs text-slate-400">
+              Pilih gaya visual antarmuka sistem kasir. Perubahan tema langsung tersinkronisasi ke seluruh layar POS, KDS, dan laporan.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {/* Option 1: Cyberpunk Zack */}
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => {
+                  onThemeChange('cyberpunk');
+                  playSound('beep');
+                  showToast('Tema Cyberpunk Zack diaktifkan');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    onThemeChange('cyberpunk');
+                    playSound('beep');
+                  }
+                }}
+                className={`p-4 rounded-xl border text-left cursor-pointer transition-all relative select-none ${
+                  theme === 'cyberpunk'
+                    ? 'bg-[#0b0f19] border-[#8b5cf6] ring-2 ring-[#8b5cf6]/40 cyberpunk-glow-purple shadow-lg'
+                    : 'bg-slate-900/80 border-slate-700 hover:border-slate-500 hover:bg-slate-900'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-[#111827] border border-[#8b5cf6]/60 flex items-center justify-center text-[#8b5cf6]">
+                      <Zap className="w-4 h-4 text-[#10b981] fill-[#10b981]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-[#f3f4f6] flex items-center gap-1.5">
+                        Cyberpunk (Zack)
+                      </h4>
+                      <span className="text-[10px] font-mono text-[#9ca3af]">Config: colors.zack</span>
+                    </div>
+                  </div>
+                  {theme === 'cyberpunk' && (
+                    <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-[#8b5cf6]/20 text-[#8b5cf6] border border-[#8b5cf6]/40 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] inline-block" />
+                      Aktif
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-[11px] text-[#9ca3af] leading-relaxed mb-3">
+                  Gelap pekat, kontainer navy malam, aksen ungu elektrik (highlight & ikon), serta indikator hijau neon.
+                </p>
+
+                {/* Color swatches */}
+                <div className="flex items-center gap-1.5 pt-2 border-t border-[#1f2937]">
+                  <span className="text-[10px] text-slate-500 font-mono mr-1">Palet:</span>
+                  <span className="w-4 h-4 rounded-full border border-slate-700 bg-[#0b0f19] shadow-xs" title="darkBg: #0b0f19" />
+                  <span className="w-4 h-4 rounded-full border border-slate-700 bg-[#111827] shadow-xs" title="cardBg: #111827" />
+                  <span className="w-4 h-4 rounded-full border border-slate-600 bg-[#1f2937] shadow-xs" title="border: #1f2937" />
+                  <span className="w-4 h-4 rounded-full border border-purple-400 bg-[#8b5cf6] shadow-xs" title="accentPurple: #8b5cf6" />
+                  <span className="w-4 h-4 rounded-full border border-emerald-400 bg-[#10b981] shadow-xs" title="accentGreen: #10b981" />
+                </div>
+              </div>
+
+              {/* Option 2: Slate Dark Classic */}
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => {
+                  onThemeChange('slate');
+                  playSound('beep');
+                  showToast('Tema Slate Neutral diaktifkan');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    onThemeChange('slate');
+                    playSound('beep');
+                  }
+                }}
+                className={`p-4 rounded-xl border text-left cursor-pointer transition-all relative select-none ${
+                  theme === 'slate'
+                    ? 'bg-slate-900 border-orange-500 ring-2 ring-orange-500/40 shadow-lg'
+                    : 'bg-slate-900/80 border-slate-700 hover:border-slate-500 hover:bg-slate-900'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-orange-400">
+                      <Palette className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                        Slate Dark Neutral
+                      </h4>
+                      <span className="text-[10px] font-mono text-slate-400">Standar Slate & Orange</span>
+                    </div>
+                  </div>
+                  {theme === 'slate' && (
+                    <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/40 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                      Aktif
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-[11px] text-slate-400 leading-relaxed mb-3">
+                  Warna Slate seimbang dan minimalis dengan aksen tombol aksi oranye kontras khas Oh My Cashier.
+                </p>
+
+                {/* Color swatches */}
+                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-800">
+                  <span className="text-[10px] text-slate-500 font-mono mr-1">Palet:</span>
+                  <span className="w-4 h-4 rounded-full border border-slate-700 bg-slate-900 shadow-xs" title="Slate 900: #0f172a" />
+                  <span className="w-4 h-4 rounded-full border border-slate-700 bg-slate-800 shadow-xs" title="Slate 800: #1e293b" />
+                  <span className="w-4 h-4 rounded-full border border-slate-600 bg-slate-700 shadow-xs" title="Slate 700: #334155" />
+                  <span className="w-4 h-4 rounded-full border border-orange-400 bg-orange-500 shadow-xs" title="Brand Orange: #f97316" />
+                  <span className="w-4 h-4 rounded-full border border-emerald-400 bg-emerald-500 shadow-xs" title="Status Green: #10b981" />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Card 1: Profil Usaha */}
           <div className="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-2xs space-y-4">

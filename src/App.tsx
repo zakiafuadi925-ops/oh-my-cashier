@@ -19,6 +19,7 @@ import {
   KitchenStatus,
   OhMyCashierBackupData,
   LicenseInfo,
+  AppTheme,
 } from './types';
 import { loadLicenseInfo } from './utils/license';
 import { Header } from './components/Header';
@@ -33,7 +34,7 @@ import { ReportsView } from './components/Reports/ReportsView';
 import { SettingsView } from './components/Settings/SettingsView';
 import { ReceiptModal } from './components/POS/ReceiptModal';
 import { ActivationModal } from './components/Settings/ActivationModal';
-import { safeLoad, safeSave } from './lib/storage';
+import { safeLoad, safeSave, safeGet, safeSet } from './lib/storage';
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>('pos');
@@ -77,6 +78,25 @@ export const App: React.FC = () => {
     safeLoad('omc_settings', INITIAL_SETTINGS)
   );
   const [licenseInfo, setLicenseInfo] = useState<LicenseInfo>(() => loadLicenseInfo());
+
+  // UI Theme state ('cyberpunk' as default or persisted from localStorage)
+  const [theme, setTheme] = useState<AppTheme>(() =>
+    safeGet<AppTheme>('omc_theme', 'cyberpunk')
+  );
+
+  // Sync theme changes to html class and localStorage
+  useEffect(() => {
+    safeSet('omc_theme', theme);
+    if (theme === 'cyberpunk') {
+      document.documentElement.classList.add('theme-cyberpunk');
+    } else {
+      document.documentElement.classList.remove('theme-cyberpunk');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'cyberpunk' ? 'slate' : 'cyberpunk'));
+  };
 
   // Sync state changes to localStorage with Zod validation
   useEffect(() => {
@@ -625,6 +645,8 @@ export const App: React.FC = () => {
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
         licenseInfo={licenseInfo}
         onOpenLicenseModal={() => setIsGlobalLicenseModalOpen(true)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Main Layout: Sidebar + Dynamic View */}
@@ -744,6 +766,8 @@ export const App: React.FC = () => {
               onRestoreFullDatabase={handleRestoreFullDatabase}
               licenseInfo={licenseInfo}
               onUpdateLicense={setLicenseInfo}
+              theme={theme}
+              onThemeChange={setTheme}
               onTestPrint={() => {
                 if (orders.length > 0) {
                   setTestReceiptOrder(orders[0]);

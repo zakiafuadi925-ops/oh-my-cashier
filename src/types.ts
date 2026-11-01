@@ -199,5 +199,8 @@ export interface LicenseInfo {
   maxTransactions?: number;
 }
 
+// UI Theme types
+export type AppTheme = 'slate' | 'cyberpunk';
+
 // Backward-compatible alias for existing imports
 export type KasgoBackupData = OhMyCashierBackupData;

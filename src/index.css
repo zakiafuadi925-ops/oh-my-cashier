@@ -10,10 +10,27 @@
   --text-primary: #f8fafc;     /* Slate 50 */
   --text-muted: #94a3b8;       /* Slate 400 */
   --color-brand: #f97316;      /* Orange 500 */
+  --color-brand-hover: #ea580c;/* Orange 600 */
   --color-success: #10b981;    /* Emerald 500 */
   --color-warning: #f59e0b;    /* Amber 500 */
   --color-danger: #f43f5e;     /* Rose 500 */
   --color-info: #3b82f6;       /* Blue 500 */
+}
+
+/* Cyberpunk (Zack) Theme Variables */
+html.theme-cyberpunk {
+  --bg-primary: #0b0f19;       /* Zack darkBg */
+  --bg-surface: #111827;       /* Zack cardBg */
+  --bg-sidebar: #070a12;       /* Deeper dark */
+  --border-subtle: #1f2937;    /* Zack border */
+  --text-primary: #f3f4f6;     /* Zack textMain */
+  --text-muted: #9ca3af;       /* Zack textMuted */
+  --color-brand: #8b5cf6;      /* Zack accentPurple */
+  --color-brand-hover: #7c3aed;
+  --color-success: #10b981;    /* Zack accentGreen */
+  --color-warning: #f59e0b;
+  --color-danger: #f43f5e;
+  --color-info: #06b6d4;
 }
 
 @layer base {
@@ -24,6 +41,91 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  html.theme-cyberpunk body {
+    color: #f3f4f6;
+    background-color: #0b0f19;
+  }
+}
+
+/* Cyberpunk Zack Theme Overrides */
+html.theme-cyberpunk .bg-slate-950 {
+  background-color: #070a12 !important;
+}
+html.theme-cyberpunk .bg-slate-900 {
+  background-color: #0b0f19 !important;
+}
+html.theme-cyberpunk .bg-slate-900\/90,
+html.theme-cyberpunk .bg-slate-900\/80,
+html.theme-cyberpunk .bg-slate-900\/60 {
+  background-color: rgba(11, 15, 25, 0.92) !important;
+}
+html.theme-cyberpunk .bg-slate-800 {
+  background-color: #111827 !important;
+}
+html.theme-cyberpunk .bg-slate-800\/90,
+html.theme-cyberpunk .bg-slate-800\/80,
+html.theme-cyberpunk .bg-slate-800\/60 {
+  background-color: rgba(17, 24, 39, 0.92) !important;
+}
+html.theme-cyberpunk .bg-slate-700 {
+  background-color: #1f2937 !important;
+}
+html.theme-cyberpunk .hover\:bg-slate-800:hover {
+  background-color: #111827 !important;
+}
+html.theme-cyberpunk .hover\:bg-slate-700:hover {
+  background-color: #1f2937 !important;
+}
+
+/* Cyberpunk Borders */
+html.theme-cyberpunk .border-slate-800,
+html.theme-cyberpunk .border-slate-700,
+html.theme-cyberpunk .border-slate-700\/80,
+html.theme-cyberpunk .border-slate-700\/60 {
+  border-color: #1f2937 !important;
+}
+
+/* Cyberpunk Texts */
+html.theme-cyberpunk .text-slate-50,
+html.theme-cyberpunk .text-slate-100,
+html.theme-cyberpunk .text-slate-200 {
+  color: #f3f4f6 !important;
+}
+html.theme-cyberpunk .text-slate-400,
+html.theme-cyberpunk .text-slate-500 {
+  color: #9ca3af !important;
+}
+
+/* Cyberpunk Brand Accent: Vibrant Purple */
+html.theme-cyberpunk .bg-orange-500,
+html.theme-cyberpunk .bg-orange-600 {
+  background-color: #8b5cf6 !important;
+}
+html.theme-cyberpunk .hover\:bg-orange-600:hover,
+html.theme-cyberpunk .hover\:bg-orange-500:hover {
+  background-color: #7c3aed !important;
+}
+html.theme-cyberpunk .text-orange-400,
+html.theme-cyberpunk .text-orange-500 {
+  color: #8b5cf6 !important;
+}
+html.theme-cyberpunk .border-orange-500,
+html.theme-cyberpunk .border-orange-600,
+html.theme-cyberpunk .border-orange-800\/80 {
+  border-color: #8b5cf6 !important;
+}
+html.theme-cyberpunk .ring-orange-500,
+html.theme-cyberpunk .ring-orange-500\/40 {
+  --tw-ring-color: #8b5cf6 !important;
+}
+
+/* Cyberpunk Glowing Accents */
+.cyberpunk-glow-purple {
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.45);
+}
+.cyberpunk-glow-green {
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
 }
 
 /* Custom modern dark scrollbars */
@@ -34,12 +136,21 @@
 ::-webkit-scrollbar-track {
   background: #0f172a;
 }
+html.theme-cyberpunk ::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
 ::-webkit-scrollbar-thumb {
   background: #334155;
   border-radius: 9999px;
 }
+html.theme-cyberpunk ::-webkit-scrollbar-thumb {
+  background: #1f2937;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
+}
+html.theme-cyberpunk ::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
 }
 
 /* Thermal receipt printable rules */
@@ -48,10 +159,13 @@
     visibility: hidden;
   }
   #thermal-receipt-print-area,
-  #thermal-receipt-print-area * {
+  #thermal-receipt-print-area *,
+  #kot-printable-area,
+  #kot-printable-area * {
     visibility: visible;
   }
-  #thermal-receipt-print-area {
+  #thermal-receipt-print-area,
+  #kot-printable-area {
     position: absolute;
     left: 0;
     top: 0;
