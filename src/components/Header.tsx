@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StoreSettings, Shift, LicenseInfo } from '../types';
-import { Clock, Store, UserCheck, Wifi, Menu, Key, ShieldCheck } from 'lucide-react';
+import { Clock, Store, UserCheck, Wifi, Menu, Key, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   settings: StoreSettings;
@@ -9,6 +9,7 @@ interface HeaderProps {
   onToggleMobileMenu?: () => void;
   licenseInfo?: LicenseInfo;
   onOpenLicenseModal?: () => void;
+  onToggleTheme?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleMobileMenu,
   licenseInfo,
   onOpenLicenseModal,
+  onToggleTheme,
 }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -122,8 +124,26 @@ export const Header: React.FC<HeaderProps> = ({
         </span>
       </div>
 
-      {/* Right - Shift info & quick status */}
-      <div className="flex items-center gap-2 sm:gap-3">
+      {/* Right - Shift info, Theme toggle & quick status */}
+      <div className="flex items-center gap-2 sm:gap-2.5">
+        {onToggleTheme && (
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            title={`Tema: ${settings.theme === 'cyberpunk' ? 'Cyberpunk 2077 Neon' : 'Terminal Slate'} (Klik untuk beralih)`}
+            className={`flex items-center gap-1 sm:gap-1.5 text-xs font-mono px-2 sm:px-2.5 py-1 rounded-lg border transition-all min-h-[36px] sm:min-h-[40px] shrink-0 active:scale-95 cursor-pointer ${
+              settings.theme === 'cyberpunk'
+                ? 'bg-[#151632] text-[#00f0ff] border-[#00f0ff]/50 shadow-[0_0_10px_rgba(0,240,255,0.3)] hover:border-[#ff007f]'
+                : 'bg-slate-900 hover:bg-slate-850 text-slate-300 border-slate-700/80 hover:text-white'
+            }`}
+          >
+            <Sparkles className={`w-3.5 h-3.5 ${settings.theme === 'cyberpunk' ? 'text-[#ff007f] animate-pulse' : 'text-amber-400'}`} />
+            <span className="font-bold text-[10px] sm:text-[11px] hidden xs:inline">
+              {settings.theme === 'cyberpunk' ? 'CYBER⚡' : 'SLATE'}
+            </span>
+          </button>
+        )}
+
         <div className="hidden sm:flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-slate-900/90 px-2.5 py-1 rounded-md border border-slate-800">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
           <span className="font-semibold text-[11px]">connected</span>

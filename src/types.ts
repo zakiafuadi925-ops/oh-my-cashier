@@ -159,6 +159,7 @@ export interface StoreSettings {
   printerType: 'ESC/POS' | 'TSPL';
   currencySymbol: string;
   supervisorPin: string;
+  theme?: 'slate' | 'cyberpunk';
 }
 
 export interface OhMyCashierBackupData {

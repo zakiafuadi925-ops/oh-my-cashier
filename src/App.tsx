@@ -107,6 +107,24 @@ export const App: React.FC = () => {
     safeSave('omc_settings', settings);
   }, [settings]);
 
+  // Sync Cyberpunk Theme class on root document and body
+  useEffect(() => {
+    const isCyberpunk = (settings.theme || 'cyberpunk') === 'cyberpunk';
+    document.documentElement.classList.toggle('theme-cyberpunk', isCyberpunk);
+    document.body.classList.toggle('theme-cyberpunk', isCyberpunk);
+    if (isCyberpunk) {
+      document.documentElement.setAttribute('data-theme', 'cyberpunk');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [settings.theme]);
+
+  const handleToggleTheme = () => {
+    const currentTheme = settings.theme || 'cyberpunk';
+    const nextTheme = currentTheme === 'cyberpunk' ? 'slate' : 'cyberpunk';
+    setSettings((prev) => ({ ...prev, theme: nextTheme }));
+  };
+
   // Test receipt modal from Settings
   const [testReceiptOrder, setTestReceiptOrder] = useState<Order | null>(null);
   const [isGlobalLicenseModalOpen, setIsGlobalLicenseModalOpen] = useState<boolean>(false);
@@ -616,7 +634,11 @@ export const App: React.FC = () => {
   ).length;
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-slate-950 text-slate-50 overflow-hidden select-none">
+    <div
+      className={`flex flex-col h-screen w-screen bg-slate-950 text-slate-50 overflow-hidden select-none ${
+        (settings.theme || 'cyberpunk') === 'cyberpunk' ? 'theme-cyberpunk theme-cyberpunk-scanlines' : ''
+      }`}
+    >
       {/* Top Application Header */}
       <Header
         settings={settings}
@@ -625,6 +647,7 @@ export const App: React.FC = () => {
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
         licenseInfo={licenseInfo}
         onOpenLicenseModal={() => setIsGlobalLicenseModalOpen(true)}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Main Layout: Sidebar + Dynamic View */}
@@ -641,6 +664,7 @@ export const App: React.FC = () => {
           isMobileOpen={isMobileMenuOpen}
           onCloseMobile={() => setIsMobileMenuOpen(false)}
           onOpenMobile={() => setIsMobileMenuOpen(true)}
+          theme={settings.theme || 'cyberpunk'}
         />
 
         {/* Dynamic View Canvas: pb-16 on mobile (< 768px) to prevent bottom nav bar overlap */}

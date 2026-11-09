@@ -35,6 +35,7 @@ import {
   ShieldCheck,
   Smartphone,
   Award,
+  Sparkles,
 } from 'lucide-react';
 import { SupervisorPinModal } from '../Auth/SupervisorPinModal';
 import { RestorePreviewModal } from './RestorePreviewModal';
@@ -322,6 +323,77 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-3 py-2 border border-zinc-300 rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
                 />
+              </div>
+            </div>
+          </div>
+
+          {/* Card: Tema & Tampilan Antarmuka (UI Theme Selector) */}
+          <div className="bg-white p-5 rounded-2xl border border-zinc-200 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
+              <h3 className="font-bold text-zinc-900 text-sm flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-rose-600" />
+                <span>Tema & Estetika Antarmuka (Theme Selector)</span>
+              </h3>
+              <span className="text-[11px] font-mono px-2 py-0.5 rounded-md font-bold bg-zinc-100 text-zinc-700">
+                active: {formData.theme || 'cyberpunk'}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+              {/* Option 1: Terminal Slate */}
+              <div
+                onClick={() => setFormData({ ...formData, theme: 'slate' })}
+                className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  (formData.theme || 'cyberpunk') === 'slate'
+                    ? 'border-orange-500 bg-slate-900 text-white shadow-md ring-2 ring-orange-500/20'
+                    : 'border-zinc-200 bg-zinc-50 hover:border-zinc-300 text-zinc-800'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-mono font-bold text-sm flex items-center gap-1.5">
+                    <span className="text-emerald-400">➜</span>
+                    <span>Terminal Slate</span>
+                  </span>
+                  {(formData.theme || 'cyberpunk') === 'slate' && (
+                    <CheckCircle2 className="w-4 h-4 text-orange-400" />
+                  )}
+                </div>
+                <p className="text-[11px] opacity-80 font-mono leading-relaxed">
+                  Estetika dark slate & zinc robbyrussell. Nyaman di mata untuk shift kerja panjang, aksen oranye ramah kasir.
+                </p>
+                <div className="mt-3 flex items-center gap-1.5 font-mono text-[10px]">
+                  <span className="px-1.5 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">#0f172a</span>
+                  <span className="px-1.5 py-0.5 rounded bg-orange-500 text-white font-bold">#f97316</span>
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">#10b981</span>
+                </div>
+              </div>
+
+              {/* Option 2: Cyberpunk 2077 Neon */}
+              <div
+                onClick={() => setFormData({ ...formData, theme: 'cyberpunk' })}
+                className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  (formData.theme || 'cyberpunk') === 'cyberpunk'
+                    ? 'border-[#ff007f] bg-[#090a16] text-[#00f0ff] shadow-[0_0_15px_rgba(255,0,127,0.25)] ring-2 ring-[#ff007f]/30'
+                    : 'border-zinc-200 bg-zinc-50 hover:border-zinc-300 text-zinc-800'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-mono font-bold text-sm flex items-center gap-1.5">
+                    <span className="text-[#00ff9f]">⚡</span>
+                    <span className="text-[#00f0ff]">Cyberpunk 2077</span>
+                  </span>
+                  {(formData.theme || 'cyberpunk') === 'cyberpunk' && (
+                    <CheckCircle2 className="w-4 h-4 text-[#ff007f]" />
+                  )}
+                </div>
+                <p className="text-[11px] opacity-80 font-mono leading-relaxed">
+                  Nuansa futuristik Netrunner berlatar obsidian hitam, neon magenta & glowing cyan accents, scanlines CRT retro.
+                </p>
+                <div className="mt-3 flex items-center gap-1.5 font-mono text-[10px]">
+                  <span className="px-1.5 py-0.5 rounded bg-[#090a16] text-[#00f0ff] border border-[#ff007f]/40">#090a16</span>
+                  <span className="px-1.5 py-0.5 rounded bg-[#ff007f] text-white font-bold shadow-[0_0_8px_#ff007f]">#ff007f</span>
+                  <span className="px-1.5 py-0.5 rounded bg-[#00f0ff]/20 text-[#00f0ff]">#00f0ff</span>
+                </div>
               </div>
             </div>
           </div>

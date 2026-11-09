@@ -173,6 +173,7 @@ export const StoreSettingsSchema = z.object({
   printerType: z.enum(['ESC/POS', 'TSPL']).default('ESC/POS'),
   currencySymbol: z.string().default('Rp'),
   supervisorPin: z.string().default('1234'),
+  theme: z.enum(['slate', 'cyberpunk']).default('cyberpunk'),
 });
 
 // Map key to corresponding Zod Schema

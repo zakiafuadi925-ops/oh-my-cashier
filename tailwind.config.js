@@ -26,6 +26,20 @@ export default {
           900: '#7c2d12',
           950: '#431407',
         },
+        // Cyberpunk 2077 Neon Theme Colors
+        cyber: {
+          pink: '#ff007f',
+          magenta: '#f72585',
+          cyan: '#00f0ff',
+          yellow: '#ffe600',
+          purple: '#9d4edd',
+          green: '#00ff9f',
+          bg: '#080811',
+          surface: '#12132b',
+          card: '#181938',
+          elevated: '#242654',
+          border: '#ff007f',
+        },
         // Unified Dark Slate / Zinc Neutral Palette
         surface: {
           sidebar: '#020617', // Slate 950 (Sidebar navigation & top app bar)

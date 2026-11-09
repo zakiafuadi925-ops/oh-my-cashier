@@ -30,6 +30,7 @@ interface SidebarProps {
   isMobileOpen?: boolean;
   onCloseMobile?: () => void;
   onOpenMobile?: () => void;
+  theme?: 'slate' | 'cyberpunk';
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -40,6 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobileOpen = false,
   onCloseMobile,
   onOpenMobile,
+  theme,
 }) => {
   const menuItems = [
     {
@@ -177,10 +179,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="p-3 border-t border-slate-800 text-center lg:text-left bg-slate-950/80 font-mono">
           <div className="hidden lg:block">
             <p className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-              <span className="text-emerald-400">➜</span>
+              <span className={theme === 'cyberpunk' ? 'text-[#00ff9f]' : 'text-emerald-400'}>➜</span>
               <span>oh-my-cashier</span>
             </p>
-            <p className="text-[10px] text-slate-400">v1.26.6 • unified slate theme</p>
+            <p className="text-[10px] text-slate-400">
+              v1.26.6 • {theme === 'cyberpunk' ? 'cyberpunk 2077 neon' : 'unified slate theme'}
+            </p>
           </div>
         </div>
       </aside>
@@ -268,10 +272,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Drawer Bottom Version */}
             <div className="p-3.5 sm:p-4 border-t border-slate-800 bg-slate-900/80 text-xs font-mono text-slate-400">
               <span className="font-semibold block text-slate-200 text-xs sm:text-sm flex items-center gap-1.5">
-                <span className="text-emerald-400">➜</span>
+                <span className={theme === 'cyberpunk' ? 'text-[#00ff9f]' : 'text-emerald-400'}>➜</span>
                 <span>oh-my-cashier mobile</span>
               </span>
-              <span className="text-[10px] text-slate-400">robbyrussell inspired theme • v1.26.6</span>
+              <span className="text-[10px] text-slate-400">
+                {theme === 'cyberpunk' ? 'netrunner cyberpunk neon • v1.26.6' : 'robbyrussell inspired theme • v1.26.6'}
+              </span>
             </div>
           </div>
 

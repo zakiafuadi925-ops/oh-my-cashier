@@ -414,6 +414,7 @@ export const INITIAL_SETTINGS: StoreSettings = {
   printerType: 'ESC/POS',
   currencySymbol: 'Rp',
   supervisorPin: '1234',
+  theme: 'cyberpunk',
 };
 
 export const INITIAL_SHIFT: Shift = {
