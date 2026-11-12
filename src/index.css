@@ -40,6 +40,8 @@ html.theme-cyberpunk {
     background-color: #0f172a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html.theme-cyberpunk body {

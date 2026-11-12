@@ -4,19 +4,25 @@ const config: CapacitorConfig = {
   appId: 'com.ohmycashier.pos',
   appName: 'Oh My Cashier',
   webDir: 'dist',
+  backgroundColor: '#090a16',
+  android: {
+    allowMixedContent: true,
+    backgroundColor: '#090a16',
+  },
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    cleartext: true,
   },
   plugins: {
     SplashScreen: {
       launchShowDuration: 1500,
       launchAutoHide: true,
-      backgroundColor: '#181825',
+      backgroundColor: '#090a16',
       androidSplashResourceName: 'splash',
       androidScaleType: 'CENTER_CROP',
-      showSpinner: false
-    }
-  }
+      showSpinner: false,
+    },
+  },
 };
 
 export default config;

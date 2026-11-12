@@ -185,6 +185,14 @@ export interface OhMyCashierBackupData {
   };
 }
 
+export interface LocalSnapshot {
+  id: string;
+  createdAt: string;
+  label: string;
+  metadata: OhMyCashierBackupData['metadata'];
+  backup: OhMyCashierBackupData;
+}
+
 export type LicenseTier = 'Trial' | 'Pro' | 'Enterprise' | 'Lifetime';
 
 export interface LicenseInfo {

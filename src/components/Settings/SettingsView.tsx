@@ -39,10 +39,27 @@ import {
   Palette,
   Zap,
   Sparkles,
+  Share2,
+  Copy,
+  Clipboard,
+  Trash2,
+  History,
+  HardDrive,
 } from 'lucide-react';
 import { SupervisorPinModal } from '../Auth/SupervisorPinModal';
 import { RestorePreviewModal } from './RestorePreviewModal';
 import { ActivationModal } from './ActivationModal';
+import { PasteJsonModal } from './PasteJsonModal';
+import {
+  buildBackupPayload,
+  exportJsonData,
+  copyBackupToClipboard,
+  getLocalSnapshots,
+  saveLocalSnapshot,
+  deleteLocalSnapshot,
+  validateBackupJson,
+} from '../../utils/mobileStorage';
+import { LocalSnapshot } from '../../types';
 
 interface SettingsViewProps {
   settings: StoreSettings;
@@ -91,77 +108,87 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [pendingRestoreData, setPendingRestoreData] = useState<OhMyCashierBackupData | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
+  const [showPasteModal, setShowPasteModal] = useState(false);
+  const [localSnapshots, setLocalSnapshots] = useState<LocalSnapshot[]>(() => getLocalSnapshots());
+  const [isExporting, setIsExporting] = useState(false);
 
   const showToast = (msg: string) => {
     setToastMsg(msg);
     setTimeout(() => setToastMsg(null), 3000);
   };
 
-  const handleExportBackup = () => {
+  const getCurrentBackupPayload = () => {
+    return buildBackupPayload({
+      products,
+      categories,
+      customers,
+      ingredients,
+      orders,
+      activeShift,
+      settings: formData,
+    });
+  };
+
+  const handleExportBackup = async (method: 'auto' | 'share' | 'download' = 'auto') => {
     try {
-      const backup: OhMyCashierBackupData = {
-        app: 'Oh My Cashier',
-        version: '1.26.6',
-        exportedAt: new Date().toISOString(),
-        metadata: {
-          storeName: formData.storeName,
-          branchName: formData.branchName,
-          productsCount: products.length,
-          categoriesCount: categories.length,
-          customersCount: customers.length,
-          ingredientsCount: ingredients.length,
-          ordersCount: orders.length,
-        },
-        data: {
-          products,
-          categories,
-          customers,
-          ingredients,
-          orders,
-          shift: activeShift || {
-            id: 'shift-1',
-            cashierName: 'Ahmad Fauzi (Kasir)',
-            startTime: new Date().toISOString(),
-            initialCash: 500000,
-            cashSales: 0,
-            nonCashSales: 0,
-            cashIn: 0,
-            cashOut: 0,
-            expectedCash: 500000,
-            status: 'Open',
-            entries: [],
-          },
-          settings: formData,
-        },
-      };
-
-      const jsonStr = JSON.stringify(backup, null, 2);
-      const blob = new Blob([jsonStr], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      const now = new Date();
-      const dateTag = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}-${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
-      const safeStore = (formData.storeName || 'ohmycashier').replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
-      link.href = url;
-      link.download = `ohmycashier_backup_${safeStore}_${dateTag}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
+      setIsExporting(true);
+      const backup = getCurrentBackupPayload();
+      const result = await exportJsonData(backup, method);
+      setLocalSnapshots(getLocalSnapshots());
       playSound('chime_ready');
-      showToast('Berkas cadangan basis data (.json) berhasil diekspor & diunduh!');
-    } catch (err) {
+      showToast(result.message);
+    } catch (err: any) {
       console.error(err);
-      showToast('Gagal membuat berkas cadangan');
+      showToast('Gagal mengekspor data cadangan JSON.');
+    } finally {
+      setIsExporting(false);
     }
+  };
+
+  const handleCopyJson = async () => {
+    try {
+      const backup = getCurrentBackupPayload();
+      const success = await copyBackupToClipboard(backup);
+      if (success) {
+        playSound('beep');
+        showToast('Teks cadangan JSON berhasil disalin ke papan klip (clipboard)!');
+      } else {
+        showToast('Gagal menyalin data ke clipboard.');
+      }
+    } catch (err) {
+      showToast('Gagal menyalin data ke clipboard.');
+    }
+  };
+
+  const handleCreateManualSnapshot = () => {
+    try {
+      const backup = getCurrentBackupPayload();
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const updated = saveLocalSnapshot(backup, `Snapshot Manual (${timeStr})`);
+      setLocalSnapshots(updated);
+      playSound('chime_ready');
+      showToast('Snapshot lokal berhasil disimpan secara offline!');
+    } catch {
+      showToast('Gagal membuat snapshot lokal.');
+    }
+  };
+
+  const handleDeleteSnapshot = (id: string) => {
+    const updated = deleteLocalSnapshot(id);
+    setLocalSnapshots(updated);
+    playSound('beep');
+    showToast('Snapshot lokal berhasil dihapus.');
+  };
+
+  const handleRestoreSnapshot = (snapshot: LocalSnapshot) => {
+    setPendingRestoreData(snapshot.backup);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Defense against memory exhaustion DoS (limit max JSON backup size to 15MB)
     if (file.size > 15 * 1024 * 1024) {
       setImportError('Ukuran berkas melebihi batas aman (Maksimum 15 MB).');
       playSound('beep');
@@ -173,64 +200,12 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     reader.onload = (event) => {
       try {
         const text = event.target?.result as string;
-
-        // Prototype pollution detection & denial
-        if (text.includes('"__proto__"') || text.includes('"constructor"') || text.includes('"prototype"')) {
-          throw new Error('Berkas cadangan ditolak: terdeteksi pola payload tidak aman (Prototype Pollution hazard).');
+        const validation = validateBackupJson(text);
+        if (!validation.valid || !validation.data) {
+          throw new Error(validation.error || 'Format berkas cadangan JSON tidak valid.');
         }
 
-        const parsed = JSON.parse(text);
-
-        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-          throw new Error('Format berkas tidak valid.');
-        }
-
-        // Deep prototype safety check
-        const hasPrototypePollution = (obj: any): boolean => {
-          if (!obj || typeof obj !== 'object') return false;
-          for (const key of Object.getOwnPropertyNames(obj)) {
-            if (key === '__proto__' || key === 'constructor' || key === 'prototype') return true;
-            if (typeof obj[key] === 'object' && hasPrototypePollution(obj[key])) return true;
-          }
-          return false;
-        };
-
-        if (hasPrototypePollution(parsed)) {
-          throw new Error('Berkas terdeteksi memiliki struktur objek berbahaya.');
-        }
-
-        let validBackup: OhMyCashierBackupData;
-        if (parsed.data && parsed.data.products && Array.isArray(parsed.data.products)) {
-          validBackup = parsed as OhMyCashierBackupData;
-        } else if (Array.isArray(parsed.products) || Array.isArray(parsed.orders)) {
-          validBackup = {
-            app: typeof parsed.app === 'string' ? parsed.app : 'Oh My Cashier',
-            version: typeof parsed.version === 'string' ? parsed.version : '1.26.6',
-            exportedAt: typeof parsed.exportedAt === 'string' ? parsed.exportedAt : new Date().toISOString(),
-            metadata: {
-              storeName: typeof parsed.settings?.storeName === 'string' ? parsed.settings.storeName : 'Oh My Cashier',
-              branchName: typeof parsed.settings?.branchName === 'string' ? parsed.settings.branchName : 'Cabang',
-              productsCount: Array.isArray(parsed.products) ? parsed.products.length : 0,
-              categoriesCount: Array.isArray(parsed.categories) ? parsed.categories.length : 0,
-              customersCount: Array.isArray(parsed.customers) ? parsed.customers.length : 0,
-              ingredientsCount: Array.isArray(parsed.ingredients) ? parsed.ingredients.length : 0,
-              ordersCount: Array.isArray(parsed.orders) ? parsed.orders.length : 0,
-            },
-            data: {
-              products: Array.isArray(parsed.products) ? parsed.products : [],
-              categories: Array.isArray(parsed.categories) ? parsed.categories : [],
-              customers: Array.isArray(parsed.customers) ? parsed.customers : [],
-              ingredients: Array.isArray(parsed.ingredients) ? parsed.ingredients : [],
-              orders: Array.isArray(parsed.orders) ? parsed.orders : [],
-              shift: parsed.shift || ({} as any),
-              settings: parsed.settings || formData,
-            },
-          };
-        } else {
-          throw new Error('Berkas JSON tidak berisi struktur data Oh My Cashier / Kasgo yang sah.');
-        }
-
-        setPendingRestoreData(validBackup);
+        setPendingRestoreData(validation.data);
         setImportError(null);
       } catch (err: any) {
         setImportError(err.message || 'Gagal membaca berkas cadangan JSON.');
@@ -244,6 +219,15 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
   const handleConfirmRestore = (restoreData: OhMyCashierBackupData) => {
     if (onRestoreFullDatabase) {
+      // Auto-save a safety snapshot of current data before overwriting
+      try {
+        const currentBackup = getCurrentBackupPayload();
+        const updated = saveLocalSnapshot(currentBackup, 'Auto-Snapshot Sebelum Restore');
+        setLocalSnapshots(updated);
+      } catch (e) {
+        console.warn('Failed to take pre-restore snapshot:', e);
+      }
+
       onRestoreFullDatabase(restoreData);
       setFormData(restoreData.data.settings || formData);
       playSound('chime_ready');
@@ -740,7 +724,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             {/* Action Grid: Export & Import */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
               {/* Export Button Card */}
-              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-2 flex flex-col justify-between text-slate-200">
+              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-3 flex flex-col justify-between text-slate-200">
                 <div>
                   <div className="flex items-center gap-2 font-bold text-xs text-slate-100 font-mono">
                     <span className="text-emerald-400">➜</span>
@@ -748,51 +732,161 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                     <span>Ekspor Cadangan Lengkap (.json)</span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
-                    Unduh satu berkas JSON berisi seluruh basis data aplikasi secara instan untuk disimpan sebagai arsip cadangan.
+                    Mendukung ekspor langsung ke WhatsApp, Google Drive, File Manager (Android), atau unduh berkas offline.
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={handleExportBackup}
-                  className="w-full py-2 px-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-2xs transition-colors cursor-pointer font-mono active:scale-95"
-                >
-                  <FileJson className="w-4 h-4" />
-                  <span>Unduh Cadangan (.json)</span>
-                </button>
+                <div className="space-y-2 pt-1">
+                  {/* Share / Save to Device */}
+                  <button
+                    type="button"
+                    onClick={() => handleExportBackup('share')}
+                    disabled={isExporting}
+                    className="w-full py-2 px-3 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-2xs transition-colors cursor-pointer font-mono active:scale-95"
+                  >
+                    <Share2 className="w-3.5 h-3.5" />
+                    <span>Bagikan / Simpan ke Perangkat (.json)</span>
+                  </button>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleExportBackup('download')}
+                      disabled={isExporting}
+                      className="py-1.5 px-2.5 bg-slate-800 hover:bg-slate-750 text-slate-200 font-mono text-[11px] font-semibold rounded-lg border border-slate-700 flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <Download className="w-3 h-3 text-cyan-400" />
+                      <span>Unduh File</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleCopyJson}
+                      className="py-1.5 px-2.5 bg-slate-800 hover:bg-slate-750 text-slate-200 font-mono text-[11px] font-semibold rounded-lg border border-slate-700 flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                    >
+                      <Copy className="w-3 h-3 text-purple-400" />
+                      <span>Salin JSON</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {/* Import Button Card */}
-              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-2 flex flex-col justify-between text-slate-200">
+              <div className="p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-3 flex flex-col justify-between text-slate-200">
                 <div>
                   <div className="flex items-center gap-2 font-bold text-xs text-slate-100 font-mono">
                     <span className="text-emerald-400">➜</span>
                     <Upload className="w-4 h-4 text-cyan-400" />
-                    <span>Pulihkan Basis Data dari Berkas (.json)</span>
+                    <span>Pulihkan Basis Data (.json)</span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
-                    Pilih berkas cadangan JSON yang pernah diunduh sebelumnya untuk memulihkan seluruh data toko ke perangkat ini.
+                    Pilih berkas .json atau tempel teks langsung (sangat praktis saat menerima data lewat WhatsApp di HP).
                   </p>
                 </div>
 
-                <div>
+                <div className="space-y-2 pt-1">
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept=".json,application/json"
+                    accept=".json,application/json,text/plain,*/*"
                     onChange={handleFileChange}
                     className="hidden"
                   />
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 border border-slate-700 shadow-2xs transition-colors cursor-pointer font-mono"
+                    className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-lg text-xs flex items-center justify-center gap-1.5 border border-slate-700 shadow-2xs transition-colors cursor-pointer font-mono active:scale-95"
                   >
-                    <Upload className="w-4 h-4 text-cyan-400" />
+                    <FileJson className="w-4 h-4 text-cyan-400" />
                     <span>Pilih Berkas Cadangan (.json)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPasteModal(true)}
+                    className="w-full py-1.5 px-3 bg-slate-900 hover:bg-slate-850 text-cyan-300 font-mono text-[11px] font-semibold rounded-lg border border-cyan-500/30 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Clipboard className="w-3.5 h-3.5" />
+                    <span>Tempel Teks JSON (Tanpa Berkas)</span>
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Offline Snapshots Section */}
+            <div className="mt-3 p-3.5 bg-slate-950 rounded-xl border border-slate-700 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+                <div className="flex items-center gap-2">
+                  <History className="w-4 h-4 text-emerald-400" />
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-100 font-mono">
+                      Riwayat Snapshot Lokal (Offline Auto-Snapshots)
+                    </h4>
+                    <span className="text-[10px] text-slate-400 block font-mono">
+                      Cadangan otomatis tersimpan di memori perangkat, siap dipulihkan seketika tanpa koneksi internet
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleCreateManualSnapshot}
+                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-emerald-300 text-[11px] font-mono font-semibold rounded-lg border border-emerald-500/30 flex items-center gap-1 shrink-0 cursor-pointer self-start sm:self-auto"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  <span>+ Buat Snapshot Sekarang</span>
+                </button>
+              </div>
+
+              {localSnapshots.length === 0 ? (
+                <div className="py-4 text-center font-mono text-[11px] text-slate-500">
+                  Belum ada snapshot lokal. Snapshot akan otomatis disimpan saat Anda melakukan ekspor atau pemulihan data.
+                </div>
+              ) : (
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {localSnapshots.map((snap) => (
+                    <div
+                      key={snap.id}
+                      className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-between gap-3 text-xs font-mono"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-emerald-400 font-bold">●</span>
+                          <span className="font-semibold text-slate-200 truncate block">
+                            {snap.label}
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-slate-400 block mt-0.5">
+                          {snap.metadata.productsCount} Menu • {snap.metadata.ordersCount} Transaksi •{' '}
+                          {new Date(snap.createdAt).toLocaleString('id-ID', {
+                            day: 'numeric',
+                            month: 'short',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleRestoreSnapshot(snap)}
+                          className="px-2.5 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded text-[11px] font-bold cursor-pointer transition-colors"
+                        >
+                          Pulihkan
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteSnapshot(snap.id)}
+                          className="p-1 text-slate-500 hover:text-rose-400 rounded cursor-pointer transition-colors"
+                          title="Hapus Snapshot Ini"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Factory Reset Section */}
@@ -846,6 +940,17 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             backupData={pendingRestoreData}
             onClose={() => setPendingRestoreData(null)}
             onConfirmRestore={handleConfirmRestore}
+          />
+        )}
+
+        {/* Paste JSON Text Modal */}
+        {showPasteModal && (
+          <PasteJsonModal
+            onClose={() => setShowPasteModal(false)}
+            onConfirmJson={(data) => {
+              setPendingRestoreData(data);
+              setShowPasteModal(false);
+            }}
           />
         )}
 
