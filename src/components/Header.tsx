@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Right - Shift info, Theme switcher & quick status */}
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Cyberpunk / Slate Theme Switcher Button */}
+        {/* Cyberpunk / Slate Theme Switcher Button (Desktop & Tablet; on Mobile it is in Sidebar) */}
         {onToggleTheme && (
           <button
             type="button"
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
                 ? 'Tema Cyberpunk Zack Aktif (Klik untuk beralih ke Slate)'
                 : 'Tema Slate Aktif (Klik untuk beralih ke Cyberpunk Zack)'
             }
-            className={`flex items-center gap-1.5 text-xs font-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border transition-all min-h-[36px] sm:min-h-[40px] shrink-0 shadow-sm active:scale-95 ${
+            className={`hidden sm:flex items-center gap-1.5 text-xs font-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border transition-all min-h-[36px] sm:min-h-[40px] shrink-0 shadow-sm active:scale-95 ${
               theme === 'cyberpunk'
                 ? 'bg-[#111827] text-[#8b5cf6] border-[#8b5cf6]/70 hover:border-[#8b5cf6] hover:bg-[#1f2937] cyberpunk-glow-purple ring-1 ring-[#8b5cf6]/40'
                 : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white'
