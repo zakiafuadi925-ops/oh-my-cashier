@@ -10,7 +10,10 @@ import {
   ChefHat,
   X,
   MoreHorizontal,
+  Zap,
+  Palette,
 } from 'lucide-react';
+import { AppTheme } from '../types';
 
 export type NavTab =
   | 'pos'
@@ -30,6 +33,8 @@ interface SidebarProps {
   isMobileOpen?: boolean;
   onCloseMobile?: () => void;
   onOpenMobile?: () => void;
+  theme?: AppTheme;
+  onToggleTheme?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -40,6 +45,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobileOpen = false,
   onCloseMobile,
   onOpenMobile,
+  theme = 'cyberpunk',
+  onToggleTheme,
 }) => {
   const menuItems = [
     {
@@ -175,6 +182,40 @@ export const Sidebar: React.FC<SidebarProps> = ({
           })}
         </div>
 
+        {/* Desktop Sidebar Theme Switcher */}
+        {onToggleTheme && (
+          <div className="px-2 lg:px-3 py-2 border-t border-slate-800">
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              title={theme === 'cyberpunk' ? 'Ganti ke Tema Slate' : 'Ganti ke Tema Cyberpunk Zack'}
+              className={`w-full flex items-center justify-center lg:justify-between px-2.5 py-2 rounded-xl border text-xs font-mono transition-all min-h-[40px] select-none active:scale-95 ${
+                theme === 'cyberpunk'
+                  ? 'bg-[#111827] text-[#8b5cf6] border-[#8b5cf6]/70 hover:border-[#8b5cf6] cyberpunk-glow-purple ring-1 ring-[#8b5cf6]/40'
+                  : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                {theme === 'cyberpunk' ? (
+                  <Zap className="w-4 h-4 text-[#10b981] fill-[#10b981] animate-pulse shrink-0" />
+                ) : (
+                  <Palette className="w-4 h-4 text-orange-400 shrink-0" />
+                )}
+                <span className="hidden lg:inline font-bold text-xs text-slate-100">
+                  {theme === 'cyberpunk' ? 'Cyberpunk' : 'Slate Dark'}
+                </span>
+              </div>
+              <span className={`hidden lg:inline text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                theme === 'cyberpunk'
+                  ? 'bg-[#8b5cf6]/20 text-[#8b5cf6]'
+                  : 'bg-slate-800 text-slate-400'
+              }`}>
+                {theme === 'cyberpunk' ? 'ZACK' : 'SLATE'}
+              </span>
+            </button>
+          </div>
+        )}
+
         {/* Desktop Footer stamp */}
         <div className="p-3 border-t border-slate-800 text-center lg:text-left bg-slate-950/80 font-mono">
           <div className="hidden lg:block">
@@ -182,7 +223,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span className="text-emerald-400">➜</span>
               <span>oh-my-cashier</span>
             </p>
-            <p className="text-[10px] text-slate-400">v1.26.6 • unified slate theme</p>
+            <p className="text-[10px] text-slate-400">v1.26.6 • {theme === 'cyberpunk' ? 'cyberpunk zack theme' : 'unified slate theme'}</p>
           </div>
         </div>
       </aside>
@@ -218,7 +259,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
 
               {/* Drawer Menu Items */}
-              <div className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-140px)]">
+              <div className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-210px)]">
                 {menuItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = currentTab === item.id;
@@ -268,6 +309,54 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 })}
               </div>
             </div>
+
+            {/* Mobile Drawer Cyberpunk / Slate Theme Switcher */}
+            {onToggleTheme && (
+              <div className="p-3 border-t border-slate-800 bg-slate-950/90">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onToggleTheme();
+                  }}
+                  className={`w-full flex items-center justify-between p-3 rounded-xl border text-xs font-mono transition-all min-h-[48px] shadow-sm active:scale-98 select-none ${
+                    theme === 'cyberpunk'
+                      ? 'bg-[#111827] text-[#8b5cf6] border-[#8b5cf6]/70 cyberpunk-glow-purple ring-1 ring-[#8b5cf6]/40'
+                      : 'bg-slate-900 text-slate-200 border-slate-700 hover:bg-slate-800'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
+                      theme === 'cyberpunk'
+                        ? 'bg-[#0b0f19] border-[#8b5cf6]/50'
+                        : 'bg-slate-800 border-slate-700'
+                    }`}>
+                      {theme === 'cyberpunk' ? (
+                        <Zap className="w-4 h-4 text-[#10b981] fill-[#10b981] animate-pulse" />
+                      ) : (
+                        <Palette className="w-4 h-4 text-orange-400" />
+                      )}
+                    </div>
+                    <div className="text-left">
+                      <span className="block font-bold text-xs sm:text-sm text-slate-100 leading-tight">
+                        {theme === 'cyberpunk' ? 'Tema: Cyberpunk (Zack)' : 'Tema: Slate Dark'}
+                      </span>
+                      <span className="block text-[10px] text-slate-400 mt-0.5">
+                        {theme === 'cyberpunk' ? 'Ungu elektrik & Hijau neon' : 'Slate netral & Oranye'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className={`text-[10px] font-bold font-mono px-2 py-1 rounded-md border ${
+                      theme === 'cyberpunk'
+                        ? 'bg-[#8b5cf6]/20 text-[#8b5cf6] border-[#8b5cf6]/40'
+                        : 'bg-slate-800 text-slate-300 border-slate-700'
+                    }`}>
+                      {theme === 'cyberpunk' ? '⚡ AKTIF' : 'GANTI'}
+                    </span>
+                  </div>
+                </button>
+              </div>
+            )}
 
             {/* Drawer Bottom Version */}
             <div className="p-3.5 sm:p-4 border-t border-slate-800 bg-slate-900/80 text-xs font-mono text-slate-400">

@@ -663,6 +663,8 @@ export const App: React.FC = () => {
           isMobileOpen={isMobileMenuOpen}
           onCloseMobile={() => setIsMobileMenuOpen(false)}
           onOpenMobile={() => setIsMobileMenuOpen(true)}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
 
         {/* Dynamic View Canvas: pb-16 on mobile (< 768px) to prevent bottom nav bar overlap */}
